@@ -237,7 +237,7 @@
         .hero {
             position: relative;
             height: 100vh;
-            min-height: 700px;
+            min-height: 800px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -279,6 +279,7 @@
             z-index: 2;
             text-align: center;
             padding: 0 20px;
+            margin-bottom: 120px;
         }
 
         .hero-logo {
@@ -708,21 +709,21 @@
         .media-banner {
             position: relative;
             overflow: hidden;
-            height: 500px;
+            height: 600px;
         }
 
         .media-banner img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: top center;
+            object-position: center 70%;
         }
 
         .media-banner::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(0,0,0,0.7), transparent, rgba(0,0,0,0.7));
+            background: rgba(0, 0, 0, 0.6);
         }
 
         .media-banner-text {
@@ -736,19 +737,21 @@
 
         .media-banner-text h2 {
             font-family: var(--font-display);
-            font-size: clamp(36px, 5vw, 64px);
+            font-size: clamp(48px, 6vw, 96px);
             color: var(--white);
-            letter-spacing: 3px;
+            letter-spacing: 6px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.8);
         }
 
         .media-banner-text p {
             font-family: var(--font-body);
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 400;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            color: var(--light-gray);
-            margin-top: 10px;
+            color: var(--off-white);
+            margin-top: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         /* ============================================
