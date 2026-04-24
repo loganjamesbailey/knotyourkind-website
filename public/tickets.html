@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNOT YOUR KIND — Tickets</title>
+
+<!-- ============================================================
+     NOSCRIPT FALLBACK: Auto-redirect if JS is disabled
+     Update the eTix URL below if the show changes.
+     ============================================================ -->
+<noscript><meta http-equiv="refresh" content="1;url=https://www.etix.com/ticket/p/98865715/knot-your-kind-a-tribute-to-slipknot-raleigh-lincoln-theatre"></noscript>
+
+<!-- ============================================================
+     TIKTOK PIXEL — ID: D77S1NJC77U88C4A6J5G
+     Manage at TikTok Ads Manager > Assets > Events > Web Events.
+     ============================================================ -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;
+  var ttq=w[t]=w[t]||[];
+  ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"];
+  ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};
+  for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);
+  ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};
+  ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var i=d.createElement("script");i.type="text/javascript",i.async=!0,i.src=r+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(i,a)};
+
+  ttq.load('D77S1NJC77U88C4A6J5G');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+
+<!-- ============================================================
+     META/FACEBOOK PIXEL — ID: 1281813543911189
+     Manage at Meta Events Manager > Data Sources.
+     ============================================================ -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1281813543911189');
+fbq('track', 'PageView');
+fbq('trackCustom', 'TicketRedirect', {content_name: 'KYK Lincoln Theatre April 10'});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1281813543911189&ev=PageView&noscript=1"
+/></noscript>
+
+<style>html,body{margin:0;background:#000}</style>
+</head>
+<body>
+<noscript><p style="color:#fff;text-align:center;padding:2rem"><a href="https://www.etix.com/ticket/p/98865715/knot-your-kind-a-tribute-to-slipknot-raleigh-lincoln-theatre" style="color:#fff">Click here for tickets</a></p></noscript>
+
+<script>
+(function () {
+  // ============================================================
+  // DESTINATION URL — Update this for future shows.
+  // ============================================================
+  var ETIX_URL = 'https://www.etix.com/ticket/p/98865715/knot-your-kind-a-tribute-to-slipknot-raleigh-lincoln-theatre';
+
+  // ============================================================
+  // DEFAULT UTM PARAMETERS — Update per campaign.
+  // ============================================================
+  var DEFAULT_UTMS = {
+    utm_source: 'tiktok',
+    utm_medium: 'paid',
+    utm_campaign: 'kyk_lincoln_apr10'
+  };
+
+  // --- UTM passthrough logic ---
+  var params = new URLSearchParams(window.location.search);
+  var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  var hasUtm = utmKeys.some(function (k) { return params.has(k); });
+
+  var dest = new URL(ETIX_URL);
+  if (hasUtm) {
+    utmKeys.forEach(function (k) {
+      if (params.has(k)) dest.searchParams.set(k, params.get(k));
+    });
+  } else {
+    Object.keys(DEFAULT_UTMS).forEach(function (k) {
+      dest.searchParams.set(k, DEFAULT_UTMS[k]);
+    });
+  }
+
+  // --- Fire TikTok custom event ---
+  if (typeof ttq !== 'undefined') {
+    ttq.track('ClickButton', {
+      content_name: 'KYK Lincoln Theatre April 10',
+      content_type: 'ticket_redirect'
+    });
+  }
+
+  // --- Redirect after 400ms to allow pixel to fire ---
+  setTimeout(function () {
+    window.location.replace(dest.toString());
+  }, 400);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+---
+// Preserves current site's booking integrations verbatim:
+//   - Formspree endpoint f/mykdlbvz
+//   - hCaptcha sitekey 27ee4cbe-dae2-46b0-96c8-093a6852d104 (dark theme)
+//   - honeypot field _gotcha, hidden _subject
+// Restyled to WF-A Meridian vocabulary: thin rust rule, mono labels, square corners.
+---
+
+<section class="sec reveal" id="booking">
+  <div class="sec-inner">
+    <div class="book-wrap">
+      <div>
+        <h2>BOOK <em>US</em></h2>
+        <p>
+          Festivals, clubs, private events across the Carolinas and beyond. We respond within 72 hours.
+        </p>
+        <p class="attrib">
+          <span class="k">BOOKED THROUGH</span>
+          <span class="v">Left Lane Collective</span>
+        </p>
+      </div>
+
+      <form class="book-form" id="contactForm" action="https://formspree.io/f/mykdlbvz" method="POST" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true" />
+        <input type="hidden" name="_subject" value="New Booking Inquiry — Knot Your Kind" />
+
+        <div class="fld">
+          <label for="f-name" class="k">Name</label>
+          <input id="f-name" type="text" name="name" required autocomplete="name" placeholder="Your name" />
+        </div>
+        <div class="fld">
+          <label for="f-email" class="k">Email</label>
+          <input id="f-email" type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+        </div>
+        <div class="fld">
+          <label for="f-venue" class="k">Venue / Event</label>
+          <input id="f-venue" type="text" name="venue" placeholder="Lincoln Theatre / Private Event" />
+        </div>
+        <div class="fld">
+          <label for="f-dates" class="k">Date(s)</label>
+          <input id="f-dates" type="text" name="dates" placeholder="Preferred date(s)" />
+        </div>
+        <div class="fld">
+          <label for="f-msg" class="k">Message</label>
+          <textarea id="f-msg" name="message" rows="4" placeholder="Tell us about your event"></textarea>
+        </div>
+
+        <div class="h-captcha" data-sitekey="27ee4cbe-dae2-46b0-96c8-093a6852d104" data-theme="dark"></div>
+
+        <button type="submit" class="send" aria-label="Send inquiry">SEND INQUIRY →</button>
+        <p class="status-msg" id="form-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  const status = document.getElementById('form-status') as HTMLParagraphElement | null;
+
+  if (form && status) {
+    const btn = form.querySelector<HTMLButtonElement>('.send');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!btn) return;
+
+      const captchaResponse = form.querySelector<HTMLInputElement>('[name="h-captcha-response"]');
+      if (!captchaResponse || !captchaResponse.value) {
+        status.textContent = 'COMPLETE THE CAPTCHA TO SEND';
+        status.classList.add('err');
+        return;
+      }
+
+      btn.textContent = 'SENDING…';
+      btn.disabled = true;
+      status.textContent = '';
+      status.classList.remove('err', 'ok');
+
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error('bad status');
+
+        btn.textContent = 'SENT ✓';
+        status.textContent = 'INQUIRY RECEIVED — WE RESPOND WITHIN 72 HOURS';
+        status.classList.add('ok');
+        form.reset();
+        const anyWin = window as unknown as { hcaptcha?: { reset: () => void } };
+        anyWin.hcaptcha?.reset();
+        setTimeout(() => {
+          btn.textContent = 'SEND INQUIRY →';
+          btn.disabled = false;
+        }, 4000);
+      } catch {
+        btn.textContent = 'ERROR — TRY AGAIN';
+        btn.disabled = false;
+        status.textContent = 'SOMETHING BROKE. TRY AGAIN OR EMAIL DIRECTLY.';
+        status.classList.add('err');
+        setTimeout(() => {
+          btn.textContent = 'SEND INQUIRY →';
+        }, 4000);
+      }
+    });
+  }
+</script>
+
+<style>
+  .sec {
+    padding: var(--f-144) 0;
+    border-top: 1px solid var(--rust-dim);
+    position: relative;
+  }
+  .sec::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: var(--rust);
+    opacity: 0.5;
+  }
+  .sec-inner {
+    max-width: var(--f-1597);
+    margin: 0 auto;
+    padding: 0 var(--f-144);
+  }
+
+  .book-wrap {
+    display: grid;
+    grid-template-columns: 610px 1fr;
+    gap: var(--f-144);
+    align-items: start;
+  }
+  .book-wrap h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(48px, 9vw, 89px);
+    margin: 0 0 var(--f-34);
+    letter-spacing: 0.04em;
+  }
+  .book-wrap h2 em {
+    font-style: normal;
+    color: var(--rust);
+  }
+  .book-wrap p {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 1.5;
+    margin: 0 0 var(--f-21);
+    color: var(--bone-dim);
+    max-width: 610px;
+    letter-spacing: 0.02em;
+  }
+  .book-wrap .attrib {
+    margin-top: var(--f-55);
+    padding-top: var(--f-21);
+    border-top: 1px solid var(--rust);
+  }
+  .book-wrap .attrib .k {
+    display: block;
+    font: 400 11px/1 var(--font-mono);
+    color: var(--rust);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: var(--f-13);
+  }
+  .book-wrap .attrib .v {
+    font-family: var(--font-display);
+    font-size: 34px;
+    color: var(--bone);
+    letter-spacing: 0.02em;
+  }
+
+  .book-form {
+    border: 1px solid var(--rust);
+    padding: var(--f-55);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .fld {
+    border-bottom: 1px solid var(--ash-dim);
+    padding: var(--f-21) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--f-8);
+  }
+  .fld:first-of-type { padding-top: 0; }
+  .fld .k {
+    font: 400 11px/1 var(--font-mono);
+    color: var(--rust);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .fld input,
+  .fld textarea {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 21px;
+    color: var(--bone);
+    background: transparent;
+    border: 0;
+    padding: 0;
+    outline: none;
+    letter-spacing: 0.02em;
+    width: 100%;
+    resize: vertical;
+  }
+  .fld input::placeholder,
+  .fld textarea::placeholder {
+    color: var(--bone-dim);
+    opacity: 0.55;
+  }
+  .fld input:focus,
+  .fld textarea:focus {
+    color: var(--bone);
+  }
+  .fld input:focus ~ .k,
+  .fld textarea:focus ~ .k {
+    color: var(--acid);
+  }
+
+  .h-captcha {
+    margin-top: var(--f-21);
+    align-self: flex-start;
+  }
+
+  .send {
+    margin-top: var(--f-34);
+    padding: var(--f-21);
+    background: var(--rust);
+    color: var(--ink);
+    font: 400 13px/1 var(--font-mono);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid var(--rust);
+    transition: background 180ms, color 180ms, box-shadow 180ms;
+  }
+  .send:hover:not(:disabled) {
+    background: transparent;
+    color: var(--rust);
+    box-shadow: 0 0 20px rgba(225, 6, 0, 0.4);
+  }
+  .send:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .status-msg {
+    margin: var(--f-21) 0 0;
+    font: 400 11px/1.4 var(--font-mono);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    min-height: 1.4em;
+    color: var(--ash);
+  }
+  .status-msg.ok { color: var(--acid); }
+  .status-msg.err { color: var(--rust); }
+
+  @media (max-width: 960px) {
+    .sec-inner { padding: 0 var(--f-21); }
+    .sec { padding: var(--f-55) 0; }
+    .book-wrap {
+      grid-template-columns: 1fr;
+      gap: var(--f-55);
+    }
+    .book-form { padding: var(--f-34); }
+  }
+</style>

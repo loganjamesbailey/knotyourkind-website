@@ -1,0 +1,239 @@
+---
+import { getCollection } from 'astro:content';
+
+const startOfToday = new Date();
+startOfToday.setHours(0, 0, 0, 0);
+
+const upcoming = (await getCollection('shows'))
+  .filter((s) => s.data.date >= startOfToday)
+  .sort((a, b) => a.data.date.getTime() - b.data.date.getTime());
+
+const year = new Date().getFullYear();
+
+const statusLabel: Record<string, string> = {
+  'on-sale': 'ON SALE',
+  'few-left': 'FEW LEFT',
+  'sold-out': 'SOLD OUT',
+  announced: 'ANNOUNCED',
+};
+
+function formatDay(d: Date) {
+  return d.toLocaleString('en-US', { day: '2-digit' });
+}
+function formatMonth(d: Date) {
+  return d.toLocaleString('en-US', { month: 'short' }).toUpperCase();
+}
+---
+
+<section class="sec reveal" id="tour">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <h2>TOUR <em>{year}</em></h2>
+      <span class="stamp"><b>§·03</b> · {String(upcoming.length).padStart(2, '0')}·SHOWS · UPCOMING</span>
+    </div>
+
+    {upcoming.length === 0 ? (
+      <div class="empty">
+        <p>NO DATES ANNOUNCED</p>
+        <p class="sm">Bookings via Left Lane Collective. Check back soon.</p>
+      </div>
+    ) : (
+      <div>
+        {upcoming.map((s) => {
+          const sold = s.data.status === 'sold-out';
+          const row = (
+            <div class="tour-row">
+              <div>
+                <div class="date-d">{formatDay(s.data.date)}</div>
+                <div class="date-m">{formatMonth(s.data.date)}</div>
+              </div>
+              <div>
+                <div class="city">{s.data.city.toUpperCase()}</div>
+                <div class="venue">{s.data.venue}{s.data.support ? ` · w/ ${s.data.support}` : ''}</div>
+              </div>
+              <div class="times">
+                {s.data.doors && <span>DOORS {s.data.doors}</span>}
+                {s.data.showtime && <span> · SHOW {s.data.showtime}</span>}
+              </div>
+              <div class="status">{statusLabel[s.data.status]}</div>
+              <div class={`cta ${sold ? 'sold' : ''}`}>{sold ? '— — —' : 'TICKETS →'}</div>
+            </div>
+          );
+          return sold || !s.data.ticketUrl ? row : (
+            <a href={s.data.ticketUrl} target="_blank" rel="noopener" class="tour-link">{row}</a>
+          );
+        })}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .sec {
+    padding: var(--f-144) 0;
+    border-top: 1px solid var(--rust-dim);
+    position: relative;
+  }
+  .sec::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: var(--rust);
+    opacity: 0.5;
+  }
+  .sec-inner {
+    max-width: var(--f-1597);
+    margin: 0 auto;
+    padding: 0 var(--f-144);
+  }
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--f-21);
+    margin-bottom: var(--f-55);
+    flex-wrap: wrap;
+  }
+  .sec-head h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(44px, 9vw, 89px);
+    margin: 0;
+    letter-spacing: 0.04em;
+  }
+  .sec-head h2 em {
+    font-style: normal;
+    color: var(--rust);
+  }
+  .stamp {
+    font: 400 11px/1.3 var(--font-mono);
+    color: var(--ash);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .stamp b { color: var(--rust); font-weight: 400; }
+
+  .tour-link {
+    display: block;
+    color: inherit;
+    transition: background 220ms;
+  }
+  .tour-link:hover {
+    background: linear-gradient(90deg, var(--rust-ghost), transparent);
+  }
+
+  .tour-row {
+    display: grid;
+    grid-template-columns: 89px 1fr auto 144px 144px;
+    align-items: center;
+    gap: var(--f-34);
+    padding: var(--f-34) 0;
+    border-top: 1px solid var(--ash-dim);
+  }
+  .tour-row:last-child { border-bottom: 1px solid var(--ash-dim); }
+
+  .date-d {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(36px, 4vw, 55px);
+    color: var(--bone);
+    line-height: 1;
+  }
+  .date-m {
+    font: 400 11px/1.3 var(--font-mono);
+    color: var(--rust);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .city {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(22px, 2.6vw, 34px);
+    color: var(--bone);
+    letter-spacing: 0.04em;
+  }
+  .venue {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--bone-dim);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+  }
+  .times {
+    font: 400 11px/1.4 var(--font-mono);
+    color: var(--ash);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .status {
+    font: 400 11px/1 var(--font-mono);
+    letter-spacing: 0.2em;
+    color: var(--ash);
+    text-transform: uppercase;
+  }
+  .cta {
+    font: 400 11px/1 var(--font-mono);
+    letter-spacing: 0.2em;
+    color: var(--rust);
+    text-transform: uppercase;
+    text-align: right;
+    border: 1px solid var(--rust);
+    padding: var(--f-13) var(--f-21);
+    justify-self: end;
+    transition: background 160ms, color 160ms;
+  }
+  .tour-link:hover .cta {
+    background: var(--rust);
+    color: var(--ink);
+  }
+  .cta.sold {
+    color: var(--ash);
+    border-color: var(--ash-dim);
+    cursor: default;
+  }
+
+  .empty {
+    text-align: center;
+    padding: var(--f-89) 0;
+  }
+  .empty p {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(24px, 3vw, 34px);
+    color: var(--rust);
+    letter-spacing: 0.08em;
+    margin: 0;
+  }
+  .empty p.sm {
+    margin-top: var(--f-13);
+    font-size: 16px;
+    color: var(--bone-dim);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 960px) {
+    .sec-inner { padding: 0 var(--f-21); }
+    .sec { padding: var(--f-55) 0; }
+    .tour-row {
+      grid-template-columns: 89px 1fr auto;
+      gap: var(--f-21);
+    }
+    .times, .status { display: none; }
+  }
+  @media (max-width: 480px) {
+    .tour-row {
+      grid-template-columns: 64px 1fr;
+    }
+    .cta {
+      grid-column: 1 / -1;
+      justify-self: stretch;
+      text-align: center;
+      margin-top: var(--f-13);
+    }
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  palette?: 'blood' | 'plasma' | 'editorial';
+}
+
+const {
+  title = 'KNOT YOUR KIND — A Tribute to Slipknot',
+  description = "The Southeast's premier Slipknot tribute band. Performing across the Carolinas.",
+  ogImage = '/images/og.png',
+  palette = 'blood',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicGroup',
+  name: 'Knot Your Kind',
+  alternateName: 'A Tribute to Slipknot',
+  url: 'https://weareknotyourkind.com',
+  genre: ['Metal', 'Nu Metal', 'Tribute'],
+  description,
+  sameAs: [
+    'https://www.facebook.com/KnotYourKindTribute',
+    'https://www.instagram.com/knotyourkindtribute',
+    'https://www.youtube.com/@knotyourkind',
+    'https://www.tiktok.com/@knotyourkind',
+  ],
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" data-palette={palette}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preload" href="/fonts/Industry-Light.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="/fonts/Industry-Book.otf" as="font" type="font/otf" crossorigin />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <slot />
+
+    <script>
+      // Scroll-reveal: add .show to .reveal elements when they enter viewport
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduced) {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('show'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.2, rootMargin: '0px 0px -80px 0px' },
+        );
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      }
+    </script>
+
+    <script>
+      // Lenis smooth scroll — honor reduced-motion
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        import('lenis').then(({ default: Lenis }) => {
+          const lenis = new Lenis({
+            duration: 1.1,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+          });
+          function raf(time: number) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+          requestAnimationFrame(raf);
+        });
+      }
+    </script>
+  </body>
+</html>

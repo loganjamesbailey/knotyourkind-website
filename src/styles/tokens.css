@@ -1,0 +1,79 @@
+/* φ = 1.6180339887  */
+/* Fibonacci scale — every spatial, typographic, and compositional decision derives from this. */
+/* Ported from design handoff. "Blood" palette shipped. */
+/* Inline values from _design/.../index.html are ground truth; they differ slightly from */
+/* the external assets/css/tokens.css and these are what the prototype actually renders with. */
+
+@font-face {
+  font-family: "Industry";
+  src: url("/fonts/Industry-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: "Industry";
+  src: url("/fonts/Industry-Book.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  /* ——— φ constants ——— */
+  --phi: 1.6180339887;
+  --phi-inv: 0.6180339887;
+
+  /* ——— Fibonacci spacing (px) ——— */
+  --f-1:  1px;
+  --f-2:  2px;
+  --f-3:  3px;
+  --f-5:  5px;
+  --f-8:  8px;
+  --f-13: 13px;
+  --f-21: 21px;
+  --f-34: 34px;
+  --f-55: 55px;
+  --f-89: 89px;
+  --f-144: 144px;
+  --f-233: 233px;
+  --f-377: 377px;
+  --f-610: 610px;
+  --f-987: 987px;
+  --f-1597: 1597px;
+  --f-2584: 2584px;
+
+  /* ——— Type scale (Fibonacci px) ——— */
+  --t-xs:  13px;
+  --t-sm:  21px;
+  --t-md:  34px;
+  --t-lg:  55px;
+  --t-xl:  89px;
+  --t-2xl: 144px;
+
+  /* ——— Color — "blood" palette ——— */
+  --ink:         #000;
+  --ink-2:       #060606;
+  --bone:        #ece7dc;
+  --bone-dim:    #8e8b83;
+  --ash:         rgba(236,231,220,0.45);
+  --ash-dim:     rgba(236,231,220,0.10);
+  --rust:        #e10600;
+  --rust-soft:   #b00500;
+  --rust-dim:    rgba(225,6,0,0.55);
+  --rust-ghost:  rgba(225,6,0,0.15);
+  --rule:        rgba(225,6,0,0.55);
+  --rule-dim:    rgba(225,6,0,0.18);
+
+  /* sigil accents */
+  --acid:        #9bff3a;
+  --acid-dim:    rgba(155,255,58,0.55);
+  --acid-ghost:  rgba(155,255,58,0.15);
+  --viol:        #b84dff;
+  --viol-dim:    rgba(184,77,255,0.55);
+  --viol-ghost:  rgba(184,77,255,0.15);
+
+  /* ——— Type ——— */
+  --font-display: "Industry", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono:    ui-monospace, "JetBrains Mono", Menlo, Consolas, monospace;
+}
