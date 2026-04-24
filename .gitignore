@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# design handoff — reference only, not shipped
+_design/
+
+# archived legacy single-file site (kept locally during rebuild, removed at merge)
+_legacy/
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# editor
+.vscode/
+.idea/
+*.swp
