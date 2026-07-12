@@ -1358,7 +1358,7 @@ function SoleMember() {
       margin: '0 auto'
     }
   }, /*#__PURE__*/React.createElement("img", {
-    src: "/assets/member_8_photo_overlay.png",
+    src: "/assets/member_8_blueprint.png",
     alt: "Part #8 — mask and suit over metal endoskeleton, hidden lines",
     width: 380,
     height: 380,
