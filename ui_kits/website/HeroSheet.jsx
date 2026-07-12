@@ -72,7 +72,7 @@ function HeroSheet() {
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>Experience</span>
               </div>
               <p className="kyk-caps" style={{ margin: '18px 0 0', fontSize: 'var(--text-dim)', color: 'var(--text-annotation)', textAlign: 'center' }}>
-                This is not a tribute. This is a resurrection. · Performing across the Carolinas
+                This is not a tribute. This is a resurrection. · Experience the (sic)ness
               </p>
             </div>
           </div>

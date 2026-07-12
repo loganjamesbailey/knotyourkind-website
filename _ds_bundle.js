@@ -1054,7 +1054,7 @@ function HeroSheet() {
       color: 'var(--text-annotation)',
       textAlign: 'center'
     }
-  }, "This is not a tribute. This is a resurrection. \xB7 Performing across the Carolinas"))), /*#__PURE__*/React.createElement("div", {
+  }, "This is not a tribute. This is a resurrection. \xB7 Experience the (sic)ness"))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',
