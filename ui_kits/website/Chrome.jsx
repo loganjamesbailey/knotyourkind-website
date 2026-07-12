@@ -22,7 +22,7 @@ function NavLink({ href, children }) {
 }
 
 function SiteNav() {
-  const { Button, Nonagram } = window.KnotYourKindDesignSystem_e3a90c;
+  const { Nonagram } = window.KnotYourKindDesignSystem_e3a90c;
   return (
     <nav
       style={{
@@ -45,9 +45,6 @@ function SiteNav() {
       <NavLink href="#about">About</NavLink>
       <NavLink href="#tribal-s">Tribal S</NavLink>
       <NavLink href="#the-one">The One</NavLink>
-      <Button style={{ padding: '8px 18px', fontSize: 'var(--text-dim)' }} onClick={() => window.open('https://www.facebook.com/KnotYourKindTribute', '_blank')}>
-        Book Us
-      </Button>
     </nav>
   );
 }
@@ -64,12 +61,6 @@ function SiteFooter() {
           scale="NTS"
           sheet="1 OF 9"
         />
-        <div style={{ display: 'flex', gap: 24, paddingBottom: 6 }}>
-          <NavLink href="https://www.facebook.com/KnotYourKindTribute">Facebook</NavLink>
-          <NavLink href="https://www.instagram.com/knotyourkindtribute">Instagram</NavLink>
-          <NavLink href="https://www.youtube.com/@knotyourkind">YouTube</NavLink>
-          <NavLink href="https://www.tiktok.com/@knotyourkind">TikTok</NavLink>
-        </div>
         <p style={{ margin: 0, fontSize: 10, textTransform: 'uppercase', color: 'var(--text-annotation)', paddingBottom: 8 }}>
           All rights reserved Knot Your Kind, LLC.
         </p>

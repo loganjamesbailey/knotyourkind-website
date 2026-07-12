@@ -752,7 +752,6 @@ function NavLink({
 }
 function SiteNav() {
   const {
-    Button,
     Nonagram
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("nav", {
@@ -795,13 +794,7 @@ function SiteNav() {
     href: "#tribal-s"
   }, "Tribal S"), /*#__PURE__*/React.createElement(NavLink, {
     href: "#the-one"
-  }, "The One"), /*#__PURE__*/React.createElement(Button, {
-    style: {
-      padding: '8px 18px',
-      fontSize: 'var(--text-dim)'
-    },
-    onClick: () => window.open('https://www.facebook.com/KnotYourKindTribute', '_blank')
-  }, "Book Us"));
+  }, "The One"));
 }
 function SiteFooter() {
   const {
@@ -825,21 +818,7 @@ function SiteFooter() {
     date: "MARCH 14, 2024",
     scale: "NTS",
     sheet: "1 OF 9"
-  }), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      gap: 24,
-      paddingBottom: 6
-    }
-  }, /*#__PURE__*/React.createElement(NavLink, {
-    href: "https://www.facebook.com/KnotYourKindTribute"
-  }, "Facebook"), /*#__PURE__*/React.createElement(NavLink, {
-    href: "https://www.instagram.com/knotyourkindtribute"
-  }, "Instagram"), /*#__PURE__*/React.createElement(NavLink, {
-    href: "https://www.youtube.com/@knotyourkind"
-  }, "YouTube"), /*#__PURE__*/React.createElement(NavLink, {
-    href: "https://www.tiktok.com/@knotyourkind"
-  }, "TikTok")), /*#__PURE__*/React.createElement("p", {
+  }), /*#__PURE__*/React.createElement("p", {
     style: {
       margin: 0,
       fontSize: 10,
