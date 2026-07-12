@@ -833,13 +833,13 @@ function SiteNav() {
     size: 34,
     showConstruction: false
   })), /*#__PURE__*/React.createElement("img", {
-    src: "/assets/logotype_graphite.png",
+    src: "/assets/nav-logotype.png",
     alt: "Knot Your Kind",
-    width: 2000,
-    height: 776,
+    width: 1569,
+    height: 481,
     decoding: "async",
     style: {
-      height: 26,
+      height: 34,
       width: 'auto',
       display: 'block',
       objectFit: 'contain'
