@@ -1,9 +1,9 @@
 const React = window.React;
 
 /** Numbered NOTES section, drafting style. */
-export function NotesList({ title = 'NOTES:', notes = [], style }) {
+export function NotesList({ title = 'NOTES:', notes = [], style, className }) {
   return (
-    <div style={{ fontFamily: 'var(--font-drafting)', ...style }}>
+    <div className={className} style={{ fontFamily: 'var(--font-drafting)', ...style }}>
       <div
         style={{
           fontSize: 'var(--text-note)',

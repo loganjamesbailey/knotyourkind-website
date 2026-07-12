@@ -4,3 +4,293 @@
 @import './tokens/spacing.css';
 @import './tokens/lines.css';
 @import './tokens/surfaces.css';
+
+/* —— Global layout safety —— */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
+  font-family: var(--font-drafting), ui-monospace, monospace;
+  color: var(--text-body);
+}
+
+#root {
+  min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.kyk-site {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  max-width: 100%;
+}
+
+/* Horizontal scroll only inside tables when needed */
+.kyk-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.kyk-titleblock {
+  max-width: 100% !important;
+  min-width: 0 !important;
+  width: 100%;
+}
+
+.kyk-titleblock span {
+  white-space: normal !important;
+  word-break: break-word;
+}
+
+/* —— Tablet & phone (portrait) —— */
+@media (max-width: 900px) {
+  :root {
+    --sheet-margin: 12px;
+    --space-5: 16px;
+    --space-6: 24px;
+    --text-title-sm: 20px;
+  }
+
+  .kyk-site section {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  #home {
+    padding: 10px !important;
+  }
+
+  /* SheetFrame inner padding is inline — tighten via paper children */
+  .kyk-paper {
+    max-width: 100%;
+  }
+
+  .kyk-paper > div {
+    padding: 12px !important;
+    max-width: 100%;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .kyk-hide-mobile {
+    display: none !important;
+  }
+
+  .kyk-caps,
+  .kyk-caps-wide {
+    letter-spacing: 0.06em !important;
+  }
+
+  .kyk-table-scroll {
+    border: var(--line-w-hair) solid var(--line-standard);
+  }
+
+  .kyk-table-scroll table {
+    min-width: 480px;
+    font-size: 11px !important;
+  }
+
+  .kyk-table-scroll th,
+  .kyk-table-scroll td {
+    padding: 6px 8px !important;
+    font-size: 11px !important;
+  }
+
+  /* Keep long annotation lines inside the sheet */
+  p.kyk-caps,
+  .kyk-notes li {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Nav */
+  .kyk-nav {
+    flex-wrap: wrap !important;
+    gap: 10px 14px !important;
+    padding: 10px 12px !important;
+  }
+
+  .kyk-nav-brand img {
+    height: 18px !important;
+    max-width: 120px;
+    object-fit: contain;
+  }
+
+  .kyk-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Hero stamp: no longer absolute giant — centered inspection mark */
+  .kyk-stamp-hero {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    display: block !important;
+    width: fit-content;
+    max-width: calc(100% - 8px) !important;
+    margin: 0 auto 18px !important;
+    z-index: 5 !important;
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+    border-width: 2px !important;
+    white-space: normal !important;
+    text-align: center !important;
+    line-height: 1.25 !important;
+    transform: rotate(-8deg) !important;
+  }
+
+  /* Vertical dimension rails eat width — hide on narrow */
+  .kyk-vdim {
+    display: none !important;
+  }
+
+  /* Side callout columns — stack under subjects */
+  .kyk-callouts-side {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 8px 12px !important;
+    padding: 10px 0 0 !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+
+  .kyk-drawing-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .kyk-subject {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: none !important;
+  }
+
+  .kyk-subject-figure {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1;
+  }
+
+  .kyk-subject-figure img,
+  .kyk-subject img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: min(52vh, 360px) !important;
+    object-fit: contain !important;
+  }
+
+  /* Hero logotype block */
+  .kyk-hero-art {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .kyk-hero-art img {
+    height: auto !important;
+    max-height: 140px !important;
+  }
+
+  .kyk-lockup {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    justify-content: center !important;
+  }
+
+  .kyk-lockup span {
+    font-size: 16px !important;
+  }
+
+  .kyk-lockup img {
+    height: 40px !important;
+  }
+
+  .kyk-hero-meta {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  /* About BOM grid */
+  .kyk-about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .kyk-about-grid .kyk-titleblock {
+    align-self: stretch !important;
+  }
+
+  /* Section titles */
+  .kyk-section-title h2 {
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Notes / body */
+  .kyk-notes,
+  .kyk-notes li,
+  .kyk-notes p {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  footer {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  footer > div {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .kyk-stamp-hero {
+    font-size: 12px !important;
+    padding: 7px 10px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .kyk-nav-brand .kyk-nonagram {
+    width: 26px !important;
+    height: 26px !important;
+  }
+
+  .kyk-subject-figure img,
+  .kyk-subject img {
+    max-height: min(46vh, 300px) !important;
+  }
+}

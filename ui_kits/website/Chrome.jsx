@@ -14,6 +14,7 @@ function NavLink({ href, children }) {
         textDecoration: hover ? 'underline' : 'none',
         textUnderlineOffset: '4px',
         color: hover ? 'var(--text-title)' : 'var(--text-body)',
+        whiteSpace: 'nowrap',
       }}
     >
       {children}
@@ -25,6 +26,7 @@ function SiteNav() {
   const { Nonagram } = window.KnotYourKindDesignSystem_e3a90c;
   return (
     <nav
+      className="kyk-nav"
       style={{
         position: 'sticky',
         top: 0,
@@ -37,14 +39,22 @@ function SiteNav() {
         padding: '10px var(--space-5)',
       }}
     >
-      <a href="#home" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-        <Nonagram size={34} showConstruction={false} />
+      <a
+        href="#home"
+        className="kyk-nav-brand"
+        style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', minWidth: 0 }}
+      >
+        <span className="kyk-nonagram" style={{ display: 'inline-flex', flex: 'none' }}>
+          <Nonagram size={34} showConstruction={false} />
+        </span>
         <img src="/assets/logotype_graphite.png" alt="Knot Your Kind" style={{ height: 26, display: 'block' }} />
       </a>
-      <span style={{ flex: 1 }}></span>
-      <NavLink href="#about">About</NavLink>
-      <NavLink href="#tribal-s">Tribal S</NavLink>
-      <NavLink href="#the-one">The One</NavLink>
+      <span style={{ flex: 1, minWidth: 8 }}></span>
+      <div className="kyk-nav-links">
+        <NavLink href="#about">About</NavLink>
+        <NavLink href="#tribal-s">Tribal S</NavLink>
+        <NavLink href="#the-one">The One</NavLink>
+      </div>
     </nav>
   );
 }

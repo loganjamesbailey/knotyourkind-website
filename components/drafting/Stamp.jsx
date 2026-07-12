@@ -1,7 +1,7 @@
 const React = window.React;
 
 /** Angled rubber inspection stamp. The ONLY sanctioned use of red. */
-export function Stamp({ children, color = 'red', angle = -8, size = 'md', style }) {
+export function Stamp({ children, color = 'red', angle = -8, size = 'md', style, className }) {
   // Solid stamp red for max presence; graphite variant stays muted.
   const c = color === 'red' ? 'var(--stamp-red)' : 'var(--graphite-2)';
   const sizes = {
@@ -13,6 +13,7 @@ export function Stamp({ children, color = 'red', angle = -8, size = 'md', style 
   const s = sizes[size] || sizes.md;
   return (
     <span
+      className={className}
       style={{
         display: 'inline-block',
         transform: `rotate(${angle}deg)`,
@@ -28,7 +29,6 @@ export function Stamp({ children, color = 'red', angle = -8, size = 'md', style 
         whiteSpace: 'nowrap',
         lineHeight: 1.15,
         boxShadow: '0 2px 0 rgba(44, 43, 40, 0.08)',
-        // Light tooth only — heavy mask made red stamps hard to read.
         opacity: 1,
         ...style,
       }}

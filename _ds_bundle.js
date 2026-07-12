@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":4,"namespace":"KnotYourKindDesignSystem_e3a90c","components":[{"name":"Callout","sourcePath":"components/drafting/Callout.jsx"},{"name":"Dimension","sourcePath":"components/drafting/Dimension.jsx"},{"name":"Nonagram","sourcePath":"components/drafting/Nonagram.jsx"},{"name":"NotesList","sourcePath":"components/drafting/NotesList.jsx"},{"name":"RevisionTable","sourcePath":"components/drafting/RevisionTable.jsx"},{"name":"SheetFrame","sourcePath":"components/drafting/SheetFrame.jsx"},{"name":"Stamp","sourcePath":"components/drafting/Stamp.jsx"},{"name":"TitleBlock","sourcePath":"components/drafting/TitleBlock.jsx"},{"name":"Button","sourcePath":"components/forms/Button.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"}],"sourceHashes":{"components/drafting/Callout.jsx":"2c20aedf514b","components/drafting/Dimension.jsx":"e9963e33c4f5","components/drafting/Nonagram.jsx":"2a4338a3d17c","components/drafting/NotesList.jsx":"fb99d25e1e94","components/drafting/RevisionTable.jsx":"3f024e216914","components/drafting/SheetFrame.jsx":"2051141dbbdb","components/drafting/Stamp.jsx":"81a1c9ee0332","components/drafting/TitleBlock.jsx":"22ccc14ebeef","components/forms/Button.jsx":"dae5c67f15f1","components/forms/Field.jsx":"2ca4bfed186a","ui_kits/website/AboutBom.jsx":"78fa782f197b","ui_kits/website/Chrome.jsx":"b151b39fb57b","ui_kits/website/HeroSheet.jsx":"5f07845f79de","ui_kits/website/SoleMember.jsx":"4c8c677fde21","ui_kits/website/TribalS.jsx":"1e6b65c4f553"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":4,"namespace":"KnotYourKindDesignSystem_e3a90c","components":[{"name":"Callout","sourcePath":"components/drafting/Callout.jsx"},{"name":"Dimension","sourcePath":"components/drafting/Dimension.jsx"},{"name":"Nonagram","sourcePath":"components/drafting/Nonagram.jsx"},{"name":"NotesList","sourcePath":"components/drafting/NotesList.jsx"},{"name":"RevisionTable","sourcePath":"components/drafting/RevisionTable.jsx"},{"name":"SheetFrame","sourcePath":"components/drafting/SheetFrame.jsx"},{"name":"Stamp","sourcePath":"components/drafting/Stamp.jsx"},{"name":"TitleBlock","sourcePath":"components/drafting/TitleBlock.jsx"},{"name":"Button","sourcePath":"components/forms/Button.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"}],"sourceHashes":{},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -65,6 +65,7 @@ function Callout({
     }
   }, label));
 }
+
 Object.assign(__ds_scope, { Callout });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/drafting/Callout.jsx", error: String((e && e.message) || e) }); }
 
@@ -157,6 +158,7 @@ function Dimension({
     fill: "var(--line-standard)"
   })));
 }
+
 Object.assign(__ds_scope, { Dimension });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/drafting/Dimension.jsx", error: String((e && e.message) || e) }); }
 
@@ -232,6 +234,7 @@ function Nonagram({
     strokeLinejoin: "miter"
   }));
 }
+
 Object.assign(__ds_scope, { Nonagram });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/drafting/Nonagram.jsx", error: String((e && e.message) || e) }); }
 
@@ -243,9 +246,11 @@ const React = window.React;
 function NotesList({
   title = 'NOTES:',
   notes = [],
-  style
+  style,
+  className
 }) {
   return /*#__PURE__*/React.createElement("div", {
+    className: className,
     style: {
       fontFamily: 'var(--font-drafting)',
       ...style
@@ -279,6 +284,7 @@ function NotesList({
     }
   }, n))));
 }
+
 Object.assign(__ds_scope, { NotesList });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/drafting/NotesList.jsx", error: String((e && e.message) || e) }); }
 
@@ -341,6 +347,7 @@ function RevisionTable({
     }
   }, cell))))));
 }
+
 Object.assign(__ds_scope, { RevisionTable });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/drafting/RevisionTable.jsx", error: String((e && e.message) || e) }); }
 
@@ -375,6 +382,7 @@ function SheetFrame({
     }
   }, children));
 }
+
 Object.assign(__ds_scope, { SheetFrame });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/drafting/SheetFrame.jsx", error: String((e && e.message) || e) }); }
 
@@ -388,17 +396,36 @@ function Stamp({
   color = 'red',
   angle = -8,
   size = 'md',
-  style
+  style,
+  className
 }) {
+  // Solid stamp red for max presence; graphite variant stays muted.
   const c = color === 'red' ? 'var(--stamp-red)' : 'var(--graphite-2)';
   const sizes = {
-    sm: { pad: '4px 12px', fs: '12px', border: 2 },
-    md: { pad: '6px 16px', fs: '14px', border: 2 },
-    lg: { pad: '12px 26px', fs: '22px', border: 3 },
-    xl: { pad: '16px 32px', fs: '28px', border: 3 }
+    sm: {
+      pad: '4px 12px',
+      fs: '12px',
+      border: 2
+    },
+    md: {
+      pad: '6px 16px',
+      fs: '14px',
+      border: 2
+    },
+    lg: {
+      pad: '12px 26px',
+      fs: '22px',
+      border: 3
+    },
+    xl: {
+      pad: '16px 32px',
+      fs: '28px',
+      border: 3
+    }
   };
   const s = sizes[size] || sizes.md;
   return /*#__PURE__*/React.createElement("span", {
+    className: className,
     style: {
       display: 'inline-block',
       transform: `rotate(${angle}deg)`,
@@ -419,6 +446,7 @@ function Stamp({
     }
   }, children);
 }
+
 Object.assign(__ds_scope, { Stamp });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/drafting/Stamp.jsx", error: String((e && e.message) || e) }); }
 
@@ -458,12 +486,14 @@ function TitleBlock({
   style
 }) {
   return /*#__PURE__*/React.createElement("div", {
+    className: "kyk-titleblock",
     style: {
       border: 'var(--line-w-hair) solid var(--line-standard)',
       backgroundColor: 'var(--surface-cell)',
       fontFamily: 'var(--font-drafting)',
       display: 'inline-block',
-      minWidth: '340px',
+      minWidth: 'min(340px, 100%)',
+      maxWidth: '100%',
       ...style
     }
   }, /*#__PURE__*/React.createElement("div", {
@@ -516,6 +546,7 @@ function TitleBlock({
     style: tbValue
   }, sheet))));
 }
+
 Object.assign(__ds_scope, { TitleBlock });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/drafting/TitleBlock.jsx", error: String((e && e.message) || e) }); }
 
@@ -564,6 +595,7 @@ function Button({
     }
   }, children);
 }
+
 Object.assign(__ds_scope, { Button });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Button.jsx", error: String((e && e.message) || e) }); }
 
@@ -640,6 +672,7 @@ function Field({
     }
   }, label), control);
 }
+
 Object.assign(__ds_scope, { Field });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Field.jsx", error: String((e && e.message) || e) }); }
 
@@ -651,6 +684,7 @@ function SectionTitle({
   title
 }) {
   return /*#__PURE__*/React.createElement("header", {
+    className: "kyk-section-title",
     style: {
       marginBottom: 'var(--space-4)'
     }
@@ -686,32 +720,42 @@ function AboutBom() {
       padding: '0 var(--space-5) var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(SectionTitle, {
-    label: "Section A\u2013A",
+    label: "Section A–A",
     title: "We Are Knot Your Kind"
   }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-about-grid",
     style: {
       display: 'grid',
       gridTemplateColumns: '1.3fr 1fr',
       gap: 'var(--space-6)',
       alignItems: 'start'
     }
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      minWidth: 0,
+      maxWidth: '100%'
+    }
+  }, /*#__PURE__*/React.createElement("p", {
     className: "kyk-caps",
     style: {
       margin: '0 0 var(--space-3)',
       fontSize: 'var(--text-dim)',
       color: 'var(--text-title)'
     }
-  }, "Bill of Materials \u2014 Assembly, Rev B"), /*#__PURE__*/React.createElement(RevisionTable, {
+  }, "Bill of Materials — Assembly, Rev B"), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-table-scroll"
+  }, /*#__PURE__*/React.createElement(RevisionTable, {
     columns: ['ITEM', 'QTY', 'DESCRIPTION', 'SPEC'],
     rows: [['1', '1', 'MEMBER, MASKED (#8)', 'SOLE REMAINING'], ['2', '8', 'MEMBERS, FORMER', 'REMOVED PER ECO-009'], ['3', '1', 'MASK, HAUNTING', 'INSTALLED'], ['4', 'A/R', 'GUITARS, DOWN-TUNED', 'DROP TUNING'], ['5', 'A/R', 'PERCUSSION, HEAVY', 'INCL. KEG'], ['6', '1', 'VOCALS', 'MELODIC TO PRIMAL'], ['7', 'A/R', 'CHAOS', 'REF. ONLY — DO NOT DIMENSION']]
-  })), /*#__PURE__*/React.createElement("div", {
+  }))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       flexDirection: 'column',
-      gap: 'var(--space-4)'
+      gap: 'var(--space-4)',
+      minWidth: 0
     }
   }, /*#__PURE__*/React.createElement(NotesList, {
+    className: "kyk-notes",
     notes: ['BAND TO BE PERFORMED LIVE.', 'FULL STAGE SHOW, BUILT TO HIT THE WAY A SLIPKNOT SHOW IS SUPPOSED TO HIT.', 'BOOKED THROUGH LEFT LANE COLLECTIVE FOR FESTIVALS, VENUES, AND PRIVATE EVENTS.']
   }), /*#__PURE__*/React.createElement(TitleBlock, {
     title: "ASSEMBLY, REV B",
@@ -726,6 +770,7 @@ Object.assign(window, {
   AboutBom,
   SectionTitle
 });
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/AboutBom.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/Chrome.jsx
@@ -746,7 +791,8 @@ function NavLink({
       textTransform: 'uppercase',
       textDecoration: hover ? 'underline' : 'none',
       textUnderlineOffset: '4px',
-      color: hover ? 'var(--text-title)' : 'var(--text-body)'
+      color: hover ? 'var(--text-title)' : 'var(--text-body)',
+      whiteSpace: 'nowrap'
     }
   }, children);
 }
@@ -755,6 +801,7 @@ function SiteNav() {
     Nonagram
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("nav", {
+    className: "kyk-nav",
     style: {
       position: 'sticky',
       top: 0,
@@ -768,16 +815,24 @@ function SiteNav() {
     }
   }, /*#__PURE__*/React.createElement("a", {
     href: "#home",
+    className: "kyk-nav-brand",
     style: {
       display: 'flex',
       alignItems: 'center',
-      gap: 12,
-      textDecoration: 'none'
+      gap: 10,
+      textDecoration: 'none',
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "kyk-nonagram",
+    style: {
+      display: 'inline-flex',
+      flex: 'none'
     }
   }, /*#__PURE__*/React.createElement(Nonagram, {
     size: 34,
     showConstruction: false
-  }), /*#__PURE__*/React.createElement("img", {
+  })), /*#__PURE__*/React.createElement("img", {
     src: "/assets/logotype_graphite.png",
     alt: "Knot Your Kind",
     style: {
@@ -786,15 +841,18 @@ function SiteNav() {
     }
   })), /*#__PURE__*/React.createElement("span", {
     style: {
-      flex: 1
+      flex: 1,
+      minWidth: 8
     }
-  }), /*#__PURE__*/React.createElement(NavLink, {
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-nav-links"
+  }, /*#__PURE__*/React.createElement(NavLink, {
     href: "#about"
   }, "About"), /*#__PURE__*/React.createElement(NavLink, {
     href: "#tribal-s"
   }, "Tribal S"), /*#__PURE__*/React.createElement(NavLink, {
     href: "#the-one"
-  }, "The One"));
+  }, "The One")));
 }
 function SiteFooter() {
   const {
@@ -833,6 +891,7 @@ Object.assign(window, {
   SiteFooter,
   NavLink
 });
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Chrome.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/HeroSheet.jsx
@@ -844,6 +903,7 @@ function VDim({
   side = 'left'
 }) {
   return /*#__PURE__*/React.createElement("div", {
+    className: "kyk-vdim",
     style: {
       position: 'relative',
       width: 30,
@@ -927,6 +987,7 @@ function HeroSheet() {
   }, /*#__PURE__*/React.createElement(Stamp, {
     size: "xl",
     angle: -11,
+    className: "kyk-stamp-hero",
     style: {
       position: 'absolute',
       top: 72,
@@ -940,10 +1001,13 @@ function HeroSheet() {
       justifyContent: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-hero-art",
     style: {
-      width: 'min(760px, 100%)'
+      width: 'min(760px, 100%)',
+      maxWidth: '100%'
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-hide-mobile",
     style: {
       display: 'flex',
       justifyContent: 'flex-end',
@@ -954,7 +1018,7 @@ function HeroSheet() {
     lineLength: 52
   })), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '0 38px'
+      padding: '0 8px'
     }
   }, /*#__PURE__*/React.createElement(Dimension, {
     value: "10.50",
@@ -963,7 +1027,8 @@ function HeroSheet() {
     style: {
       display: 'flex',
       alignItems: 'stretch',
-      marginTop: 8
+      marginTop: 8,
+      maxWidth: '100%'
     }
   }, /*#__PURE__*/React.createElement(VDim, {
     value: "2.75",
@@ -972,10 +1037,10 @@ function HeroSheet() {
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1,
+      minWidth: 0,
       position: 'relative',
       ...gridBg,
-      backgroundPosition: 'center',
-      opacity: 1
+      backgroundPosition: 'center'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -986,7 +1051,7 @@ function HeroSheet() {
     }
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/logotype_sketch.png",
-    alt: "Knot Your Kind \u2014 hand-drawn logotype, dimensioned",
+    alt: "Knot Your Kind — hand-drawn logotype, dimensioned",
     style: {
       width: '100%',
       height: 210,
@@ -1000,12 +1065,14 @@ function HeroSheet() {
     height: 210,
     side: "right"
   })), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-lockup",
     style: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       gap: 18,
-      marginTop: 'var(--space-5)'
+      marginTop: 'var(--space-5)',
+      flexWrap: 'wrap'
     }
   }, /*#__PURE__*/React.createElement("span", {
     className: "kyk-caps-wide",
@@ -1013,13 +1080,19 @@ function HeroSheet() {
       fontSize: 22,
       color: 'var(--text-body)'
     }
-  }, "The"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("img", {
+  }, "The"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: '100%'
+    }
+  }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/slipknot_sketch.png",
-    alt: "Slipknot \u2014 hand-drawn",
+    alt: "Slipknot — hand-drawn",
     style: {
       height: 58,
+      maxWidth: '100%',
       display: 'block',
-      mixBlendMode: 'multiply'
+      mixBlendMode: 'multiply',
+      margin: '0 auto'
     }
   }), /*#__PURE__*/React.createElement(Dimension, {
     value: "2.65",
@@ -1042,6 +1115,7 @@ function HeroSheet() {
       textAlign: 'center'
     }
   }, "This is not a tribute. This is a resurrection."))), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-hero-meta",
     style: {
       display: 'flex',
       justifyContent: 'space-between',
@@ -1051,6 +1125,7 @@ function HeroSheet() {
       flexWrap: 'wrap'
     }
   }, /*#__PURE__*/React.createElement(NotesList, {
+    className: "kyk-notes",
     notes: ['ALL LETTERS DRAWN WITH CONSISTENT STROKE WEIGHT.', 'MAINTAIN ROUGH, JAGGED EDGE CHARACTER.', 'CENTER ALL ELEMENTS ON VERTICAL AXIS.']
   }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
     className: "kyk-caps",
@@ -1080,11 +1155,11 @@ Object.assign(window, {
   HeroSheet,
   VDim
 });
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/HeroSheet.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/SoleMember.jsx
 try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const React = window.React;
 
 /* X-ray skeleton overlay — visible adamantium-style frame under mask + suit. */
@@ -1107,26 +1182,29 @@ function EndoskeletonOverlay() {
   for (let k = 0; k < 6; k++) {
     const y = 545 + k * 44;
     const spread = 150 - k * 8;
-    ribs.push(/*#__PURE__*/React.createElement("path", _extends({
+    ribs.push(/*#__PURE__*/React.createElement("path", {
       key: 'l' + k,
-      d: `M 405 ${y} C ${405 - spread * 0.8} ${y - 26}, ${405 - spread} ${y + 4}, ${405 - spread + 18} ${y + 30}`
-    }, bone)));
-    ribs.push(/*#__PURE__*/React.createElement("path", _extends({
+      d: `M 405 ${y} C ${405 - spread * 0.8} ${y - 26}, ${405 - spread} ${y + 4}, ${405 - spread + 18} ${y + 30}`,
+      ...bone
+    }));
+    ribs.push(/*#__PURE__*/React.createElement("path", {
       key: 'r' + k,
-      d: `M 415 ${y - 4} C ${415 + spread * 0.8} ${y - 30}, ${415 + spread} ${y}, ${415 + spread - 18} ${y + 26}`
-    }, bone)));
+      d: `M 415 ${y - 4} C ${415 + spread * 0.8} ${y - 30}, ${415 + spread} ${y}, ${415 + spread - 18} ${y + 26}`,
+      ...bone
+    }));
   }
   const vertebrae = [];
   for (let k = 0; k < 11; k++) {
     const y = 400 + k * 45;
-    vertebrae.push(/*#__PURE__*/React.createElement("rect", _extends({
+    vertebrae.push(/*#__PURE__*/React.createElement("rect", {
       key: 'v' + k,
       x: 396,
       y: y,
       width: 22,
       height: 26,
-      rx: 0
-    }, fine)));
+      rx: 0,
+      ...fine
+    }));
   }
   return /*#__PURE__*/React.createElement("svg", {
     viewBox: "0 0 900 900",
@@ -1135,66 +1213,86 @@ function EndoskeletonOverlay() {
       inset: 0,
       width: '100%',
       height: '100%'
-    }
-  }, /*#__PURE__*/React.createElement("ellipse", _extends({
+    },
+    preserveAspectRatio: "xMidYMid meet"
+  }, /*#__PURE__*/React.createElement("ellipse", {
     cx: "365",
     cy: "200",
     rx: "112",
-    ry: "138"
-  }, bone)), /*#__PURE__*/React.createElement("ellipse", _extends({
+    ry: "138",
+    ...bone
+  }), /*#__PURE__*/React.createElement("ellipse", {
     cx: "322",
     cy: "205",
     rx: "26",
-    ry: "20"
-  }, fine)), /*#__PURE__*/React.createElement("ellipse", _extends({
+    ry: "20",
+    ...fine
+  }), /*#__PURE__*/React.createElement("ellipse", {
     cx: "408",
     cy: "205",
     rx: "26",
-    ry: "20"
-  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 358 235 L 372 235 L 365 262 Z"
-  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 305 300 Q 365 330 425 300"
-  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 312 312 L 312 296 M 330 320 L 330 302 M 348 326 L 348 306 M 366 328 L 366 308 M 384 326 L 384 306 M 402 320 L 402 302 M 418 312 L 418 296"
-  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 300 268 Q 365 356 430 268"
-  }, bone)), vertebrae, /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 405 470 Q 290 452 172 502"
-  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 415 470 Q 530 448 648 486"
-  }, bone)), /*#__PURE__*/React.createElement("circle", _extends({
+    ry: "20",
+    ...fine
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 358 235 L 372 235 L 365 262 Z",
+    ...fine
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 305 300 Q 365 330 425 300",
+    ...bone
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 312 312 L 312 296 M 330 320 L 330 302 M 348 326 L 348 306 M 366 328 L 366 308 M 384 326 L 384 306 M 402 320 L 402 302 M 418 312 L 418 296",
+    ...fine
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 300 268 Q 365 356 430 268",
+    ...bone
+  }), vertebrae, /*#__PURE__*/React.createElement("path", {
+    d: "M 405 470 Q 290 452 172 502",
+    ...bone
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 415 470 Q 530 448 648 486",
+    ...bone
+  }), /*#__PURE__*/React.createElement("circle", {
     cx: "168",
     cy: "512",
-    r: "24"
-  }, bone)), /*#__PURE__*/React.createElement("circle", _extends({
+    r: "24",
+    ...bone
+  }), /*#__PURE__*/React.createElement("circle", {
     cx: "652",
     cy: "496",
-    r: "24"
-  }, bone)), /*#__PURE__*/React.createElement("line", _extends({
+    r: "24",
+    ...bone
+  }), /*#__PURE__*/React.createElement("line", {
     x1: "408",
     y1: "500",
     x2: "410",
-    y2: "640"
-  }, bone)), ribs, /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 158 534 C 130 620, 108 700, 88 788"
-  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 182 536 C 156 622, 136 702, 118 792"
-  }, fine)), /*#__PURE__*/React.createElement("circle", _extends({
+    y2: "640",
+    ...bone
+  }), ribs, /*#__PURE__*/React.createElement("path", {
+    d: "M 158 534 C 130 620, 108 700, 88 788",
+    ...bone
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 182 536 C 156 622, 136 702, 118 792",
+    ...fine
+  }), /*#__PURE__*/React.createElement("circle", {
     cx: "100",
     cy: "800",
-    r: "16"
-  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 662 518 C 700 600, 740 680, 782 756"
-  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 640 522 C 676 604, 714 684, 756 764"
-  }, fine)), /*#__PURE__*/React.createElement("circle", _extends({
+    r: "16",
+    ...fine
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 662 518 C 700 600, 740 680, 782 756",
+    ...bone
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 640 522 C 676 604, 714 684, 756 764",
+    ...fine
+  }), /*#__PURE__*/React.createElement("circle", {
     cx: "772",
     cy: "770",
-    r: "16"
-  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
-    d: "M 320 862 Q 408 828 500 858"
-  }, bone)));
+    r: "16",
+    ...fine
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M 320 862 Q 408 828 500 858",
+    ...bone
+  }));
 }
 function SoleMember() {
   const {
@@ -1211,9 +1309,10 @@ function SoleMember() {
       padding: '0 var(--space-5) var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
-    label: "Section View \u2014 Internal Structure Shown Hidden",
+    label: "Section View — Internal Structure Shown Hidden",
     title: "Part #8, Frame Assembly"
   }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-drawing-row",
     style: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -1221,26 +1320,35 @@ function SoleMember() {
       alignItems: 'flex-start'
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-subject",
     style: {
-      flex: 'none'
+      flex: '1 1 240px',
+      minWidth: 0,
+      maxWidth: '100%'
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-drawing-row",
     style: {
       display: 'flex',
-      alignItems: 'stretch'
+      alignItems: 'stretch',
+      flexWrap: 'wrap',
+      maxWidth: '100%'
     }
   }, /*#__PURE__*/React.createElement(window.VDim, {
     value: "6 FT 0 IN",
     height: 380
   }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-subject-figure",
     style: {
       position: 'relative',
-      width: 380,
-      height: 380
+      width: '100%',
+      maxWidth: 380,
+      aspectRatio: '1',
+      margin: '0 auto'
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/member_8_sketch.png",
-    alt: "Part #8 \u2014 mask and suit over metal endoskeleton, hidden lines",
+    alt: "Part #8 — mask and suit over metal endoskeleton, hidden lines",
     style: {
       width: '100%',
       height: '100%',
@@ -1249,6 +1357,7 @@ function SoleMember() {
       mixBlendMode: 'multiply'
     }
   }), /*#__PURE__*/React.createElement(EndoskeletonOverlay, null)), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-callouts-side",
     style: {
       display: 'flex',
       flexDirection: 'column',
@@ -1266,8 +1375,9 @@ function SoleMember() {
     lineLength: 42
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 380,
-      marginLeft: 30
+      width: '100%',
+      maxWidth: 380,
+      margin: '0 auto'
     }
   }, /*#__PURE__*/React.createElement(Dimension, {
     value: "QTY: 1",
@@ -1280,12 +1390,13 @@ function SoleMember() {
       display: 'flex',
       flexDirection: 'column',
       gap: 'var(--space-4)',
-      flex: '1 1 260px',
-      minWidth: 240
+      flex: '1 1 220px',
+      minWidth: 0
     }
   }, /*#__PURE__*/React.createElement(Stamp, {
     angle: -6
   }, "No Organic Components"), /*#__PURE__*/React.createElement(NotesList, {
+    className: "kyk-notes",
     notes: ['EXTERIOR: MASK AND SUIT ONLY.', 'NO SKIN. NO MUSCLE. FRAME ONLY.', 'INTERNAL STRUCTURE: METAL ENDOSKELETON, SHOWN AS HIDDEN LINES.', 'PARTS #0 THRU #7 REMOVED PER ECO-009. DO NOT REINSTALL.', 'DO NOT OPERATE UNMASKED.']
   }), /*#__PURE__*/React.createElement(TitleBlock, {
     title: "PART #8, FRAME ASSY",
@@ -1300,6 +1411,7 @@ function SoleMember() {
 Object.assign(window, {
   SoleMember
 });
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/SoleMember.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/TribalS.jsx
@@ -1322,6 +1434,7 @@ function TribalS() {
     label: "Detail Drawing",
     title: "Tribal S Logo"
   }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-drawing-row",
     style: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -1329,37 +1442,48 @@ function TribalS() {
       alignItems: 'flex-start'
     }
   }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-subject",
     style: {
-      flex: 'none'
+      flex: '1 1 220px',
+      minWidth: 0,
+      maxWidth: '100%'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: '0 20px'
+      padding: '0 8px'
     }
   }, /*#__PURE__*/React.createElement(Dimension, {
     value: "1.750",
-    width: "180px",
+    width: "100%",
     style: {
+      maxWidth: 180,
       margin: '0 auto'
     }
   })), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-drawing-row",
     style: {
       display: 'flex',
       alignItems: 'stretch',
-      marginTop: 6
+      marginTop: 6,
+      flexWrap: 'wrap',
+      maxWidth: '100%'
     }
   }, /*#__PURE__*/React.createElement(window.VDim, {
     value: "7.000",
     height: 420
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/tribal_s_sketch.png",
-    alt: "Tribal S \u2014 dimensioned fabrication drawing",
+    alt: "Tribal S — dimensioned fabrication drawing",
     style: {
       height: 420,
+      maxWidth: '100%',
+      width: 'auto',
       display: 'block',
-      mixBlendMode: 'multiply'
+      mixBlendMode: 'multiply',
+      margin: '0 auto'
     }
   }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-callouts-side",
     style: {
       display: 'flex',
       flexDirection: 'column',
@@ -1385,19 +1509,20 @@ function TribalS() {
   }))), /*#__PURE__*/React.createElement("p", {
     className: "kyk-caps",
     style: {
-      margin: '8px 0 0 30px',
+      margin: '8px 0 0',
       fontSize: 'var(--text-dim)',
       color: 'var(--text-body)'
     }
-  }, "15\xB0 TYP. \xB7 .125 THICKNESS")), /*#__PURE__*/React.createElement("div", {
+  }, "15° TYP. · .125 THICKNESS")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       flexDirection: 'column',
       gap: 'var(--space-4)',
-      flex: '1 1 260px',
-      minWidth: 240
+      flex: '1 1 220px',
+      minWidth: 0
     }
   }, /*#__PURE__*/React.createElement(NotesList, {
+    className: "kyk-notes",
     notes: ['ALL DIMENSIONS ARE IN INCHES.', 'ALL CORNERS AND EDGES TO BE SHARP.']
   }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
     className: "kyk-caps",
@@ -1420,15 +1545,15 @@ function TribalS() {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".X"), /*#__PURE__*/React.createElement("td", null, "= \xB1.1")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+  }, ".X"), /*#__PURE__*/React.createElement("td", null, "= ±.1")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".XX"), /*#__PURE__*/React.createElement("td", null, "= \xB1.01")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+  }, ".XX"), /*#__PURE__*/React.createElement("td", null, "= ±.01")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".XXX"), /*#__PURE__*/React.createElement("td", null, "= \xB1.005"))))), /*#__PURE__*/React.createElement(TitleBlock, {
+  }, ".XXX"), /*#__PURE__*/React.createElement("td", null, "= ±.005"))))), /*#__PURE__*/React.createElement(TitleBlock, {
     title: "TRIBAL S LOGO",
     drawnBy: "PROPERTY OF SLIPKNOT",
     date: "UNDETERMINED",
@@ -1443,26 +1568,18 @@ function TribalS() {
 Object.assign(window, {
   TribalS
 });
+
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/TribalS.jsx", error: String((e && e.message) || e) }); }
 
 __ds_ns.Callout = __ds_scope.Callout;
-
 __ds_ns.Dimension = __ds_scope.Dimension;
-
 __ds_ns.Nonagram = __ds_scope.Nonagram;
-
 __ds_ns.NotesList = __ds_scope.NotesList;
-
 __ds_ns.RevisionTable = __ds_scope.RevisionTable;
-
 __ds_ns.SheetFrame = __ds_scope.SheetFrame;
-
 __ds_ns.Stamp = __ds_scope.Stamp;
-
 __ds_ns.TitleBlock = __ds_scope.TitleBlock;
-
 __ds_ns.Button = __ds_scope.Button;
-
 __ds_ns.Field = __ds_scope.Field;
 
 })();

@@ -34,12 +34,14 @@ export function TitleBlock({
 }) {
   return (
     <div
+      className="kyk-titleblock"
       style={{
         border: 'var(--line-w-hair) solid var(--line-standard)',
         backgroundColor: 'var(--surface-cell)',
         fontFamily: 'var(--font-drafting)',
         display: 'inline-block',
-        minWidth: '340px',
+        minWidth: 'min(340px, 100%)',
+        maxWidth: '100%',
         ...style,
       }}
     >

@@ -2,7 +2,7 @@ const React = window.React;
 
 function VDim({ value, height = 200, side = 'left' }) {
   return (
-    <div style={{ position: 'relative', width: 30, height, flex: 'none' }}>
+    <div className="kyk-vdim" style={{ position: 'relative', width: 30, height, flex: 'none' }}>
       <span
         className="kyk-caps"
         style={{
@@ -36,10 +36,10 @@ function HeroSheet() {
     <section id="home" style={{ padding: 'var(--space-5)' }}>
       <SheetFrame padding="var(--space-6)">
         <div style={{ position: 'relative', overflow: 'visible' }}>
-          {/* Inspection stamp — primary visual callout; sits above logotype art */}
           <Stamp
             size="xl"
             angle={-11}
+            className="kyk-stamp-hero"
             style={{
               position: 'absolute',
               top: 72,
@@ -51,18 +51,17 @@ function HeroSheet() {
             Experience the (sic)ness
           </Stamp>
 
-          {/* Logotype, documented */}
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div style={{ width: 'min(760px, 100%)' }}>
-              <div style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: 8 }}>
+            <div className="kyk-hero-art" style={{ width: 'min(760px, 100%)', maxWidth: '100%' }}>
+              <div className="kyk-hide-mobile" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: 8 }}>
                 <Callout label={'LETTERING STYLE:\nCUSTOM / HAND-DRAWN'} lineLength={52} />
               </div>
-              <div style={{ padding: '0 38px' }}>
+              <div style={{ padding: '0 8px' }}>
                 <Dimension value="10.50" width="100%" />
               </div>
-              <div style={{ display: 'flex', alignItems: 'stretch', marginTop: 8 }}>
+              <div style={{ display: 'flex', alignItems: 'stretch', marginTop: 8, maxWidth: '100%' }}>
                 <VDim value="2.75" height={210} side="left" />
-                <div style={{ flex: 1, position: 'relative', ...gridBg, backgroundPosition: 'center', opacity: 1 }}>
+                <div style={{ flex: 1, minWidth: 0, position: 'relative', ...gridBg, backgroundPosition: 'center' }}>
                   <div style={{ position: 'absolute', inset: 0, opacity: 0.35, ...gridBg }}></div>
                   <img
                     src="/assets/logotype_sketch.png"
@@ -73,11 +72,10 @@ function HeroSheet() {
                 <VDim value="2.85" height={210} side="right" />
               </div>
 
-              {/* THE [Slipknot] EXPERIENCE lockup */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 18, marginTop: 'var(--space-5)' }}>
+              <div className="kyk-lockup" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 18, marginTop: 'var(--space-5)', flexWrap: 'wrap' }}>
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>The</span>
-                <div>
-                  <img src="/assets/slipknot_sketch.png" alt="Slipknot — hand-drawn" style={{ height: 58, display: 'block', mixBlendMode: 'multiply' }} />
+                <div style={{ maxWidth: '100%' }}>
+                  <img src="/assets/slipknot_sketch.png" alt="Slipknot — hand-drawn" style={{ height: 58, maxWidth: '100%', display: 'block', mixBlendMode: 'multiply', margin: '0 auto' }} />
                   <Dimension value="2.65" width="100%" style={{ marginTop: 4 }} />
                 </div>
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>Experience</span>
@@ -88,13 +86,15 @@ function HeroSheet() {
             </div>
           </div>
 
-          {/* Notes / material / title block */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 'var(--space-6)', gap: 24, flexWrap: 'wrap' }}>
-            <NotesList notes={[
-              'ALL LETTERS DRAWN WITH CONSISTENT STROKE WEIGHT.',
-              'MAINTAIN ROUGH, JAGGED EDGE CHARACTER.',
-              'CENTER ALL ELEMENTS ON VERTICAL AXIS.',
-            ]} />
+          <div className="kyk-hero-meta" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 'var(--space-6)', gap: 24, flexWrap: 'wrap' }}>
+            <NotesList
+              className="kyk-notes"
+              notes={[
+                'ALL LETTERS DRAWN WITH CONSISTENT STROKE WEIGHT.',
+                'MAINTAIN ROUGH, JAGGED EDGE CHARACTER.',
+                'CENTER ALL ELEMENTS ON VERTICAL AXIS.',
+              ]}
+            />
             <div>
               <p className="kyk-caps" style={{ margin: 0, fontSize: 'var(--text-dim)', textDecoration: 'underline', textUnderlineOffset: '3px', color: 'var(--text-title)' }}>Material:</p>
               <p className="kyk-caps" style={{ margin: '6px 0 0', fontSize: 'var(--text-dim)', color: 'var(--text-body)' }}>Graphite on<br />drafting paper</p>
