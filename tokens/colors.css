@@ -13,8 +13,8 @@
   --graphite-4: #a8a49b;     /* construction lines, faint grid */
 
   /* Accent — inspection stamp only. Never for UI chrome. */
-  --stamp-red: #9e3b30;
-  --stamp-red-faded: rgba(158, 59, 48, 0.75);
+  --stamp-red: #b83328;
+  --stamp-red-faded: rgba(184, 51, 40, 0.92);
 
   /* Semantic aliases */
   --surface-page: var(--paper-2);

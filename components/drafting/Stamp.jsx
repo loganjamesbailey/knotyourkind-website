@@ -2,26 +2,34 @@ const React = window.React;
 
 /** Angled rubber inspection stamp. The ONLY sanctioned use of red. */
 export function Stamp({ children, color = 'red', angle = -8, size = 'md', style }) {
-  const c = color === 'red' ? 'var(--stamp-red-faded)' : 'var(--graphite-2)';
-  const pad = size === 'lg' ? '10px 22px' : '5px 14px';
-  const fs = size === 'lg' ? '20px' : '13px';
+  // Solid stamp red for max presence; graphite variant stays muted.
+  const c = color === 'red' ? 'var(--stamp-red)' : 'var(--graphite-2)';
+  const sizes = {
+    sm: { pad: '4px 12px', fs: '12px', border: 2 },
+    md: { pad: '6px 16px', fs: '14px', border: 2 },
+    lg: { pad: '12px 26px', fs: '22px', border: 3 },
+    xl: { pad: '16px 32px', fs: '28px', border: 3 },
+  };
+  const s = sizes[size] || sizes.md;
   return (
     <span
       style={{
         display: 'inline-block',
         transform: `rotate(${angle}deg)`,
-        border: `2px solid ${c}`,
+        border: `${s.border}px solid ${c}`,
         color: c,
-        padding: pad,
+        background: 'rgba(239, 237, 231, 0.72)',
+        padding: s.pad,
         fontFamily: 'var(--font-drafting)',
-        fontSize: fs,
+        fontSize: s.fs,
+        fontWeight: 600,
         letterSpacing: 'var(--tracking-wide)',
         textTransform: 'uppercase',
         whiteSpace: 'nowrap',
-        maskImage: 'var(--paper-tooth)',
-        maskSize: '180px',
-        WebkitMaskImage: 'var(--paper-tooth)',
-        WebkitMaskSize: '180px',
+        lineHeight: 1.15,
+        boxShadow: '0 2px 0 rgba(44, 43, 40, 0.08)',
+        // Light tooth only — heavy mask made red stamps hard to read.
+        opacity: 1,
         ...style,
       }}
     >

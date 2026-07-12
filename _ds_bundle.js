@@ -390,25 +390,31 @@ function Stamp({
   size = 'md',
   style
 }) {
-  const c = color === 'red' ? 'var(--stamp-red-faded)' : 'var(--graphite-2)';
-  const pad = size === 'lg' ? '10px 22px' : '5px 14px';
-  const fs = size === 'lg' ? '20px' : '13px';
+  const c = color === 'red' ? 'var(--stamp-red)' : 'var(--graphite-2)';
+  const sizes = {
+    sm: { pad: '4px 12px', fs: '12px', border: 2 },
+    md: { pad: '6px 16px', fs: '14px', border: 2 },
+    lg: { pad: '12px 26px', fs: '22px', border: 3 },
+    xl: { pad: '16px 32px', fs: '28px', border: 3 }
+  };
+  const s = sizes[size] || sizes.md;
   return /*#__PURE__*/React.createElement("span", {
     style: {
       display: 'inline-block',
       transform: `rotate(${angle}deg)`,
-      border: `2px solid ${c}`,
+      border: `${s.border}px solid ${c}`,
       color: c,
-      padding: pad,
+      background: 'rgba(239, 237, 231, 0.72)',
+      padding: s.pad,
       fontFamily: 'var(--font-drafting)',
-      fontSize: fs,
+      fontSize: s.fs,
+      fontWeight: 600,
       letterSpacing: 'var(--tracking-wide)',
       textTransform: 'uppercase',
       whiteSpace: 'nowrap',
-      maskImage: 'var(--paper-tooth)',
-      maskSize: '180px',
-      WebkitMaskImage: 'var(--paper-tooth)',
-      WebkitMaskSize: '180px',
+      lineHeight: 1.15,
+      boxShadow: '0 2px 0 rgba(44, 43, 40, 0.08)',
+      opacity: 1,
       ...style
     }
   }, children);
@@ -936,16 +942,18 @@ function HeroSheet() {
     padding: "var(--space-6)"
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      position: 'relative'
+      position: 'relative',
+      overflow: 'visible'
     }
   }, /*#__PURE__*/React.createElement(Stamp, {
-    size: "lg",
-    angle: -7,
+    size: "xl",
+    angle: -11,
     style: {
       position: 'absolute',
-      top: -18,
-      right: 0,
-      zIndex: 2
+      top: 72,
+      right: '4%',
+      zIndex: 30,
+      pointerEvents: 'none'
     }
   }, "Experience the (sic)ness"), /*#__PURE__*/React.createElement("div", {
     style: {
@@ -1054,7 +1062,7 @@ function HeroSheet() {
       color: 'var(--text-annotation)',
       textAlign: 'center'
     }
-  }, "This is not a tribute. This is a resurrection. \xB7 Experience the (sic)ness"))), /*#__PURE__*/React.createElement("div", {
+  }, "This is not a tribute. This is a resurrection."))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',

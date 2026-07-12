@@ -35,8 +35,19 @@ function HeroSheet() {
   return (
     <section id="home" style={{ padding: 'var(--space-5)' }}>
       <SheetFrame padding="var(--space-6)">
-        <div style={{ position: 'relative' }}>
-          <Stamp size="lg" angle={-7} style={{ position: 'absolute', top: -18, right: 0, zIndex: 2 }}>
+        <div style={{ position: 'relative', overflow: 'visible' }}>
+          {/* Inspection stamp — primary visual callout; sits above logotype art */}
+          <Stamp
+            size="xl"
+            angle={-11}
+            style={{
+              position: 'absolute',
+              top: 72,
+              right: '4%',
+              zIndex: 30,
+              pointerEvents: 'none',
+            }}
+          >
             Experience the (sic)ness
           </Stamp>
 
@@ -72,7 +83,7 @@ function HeroSheet() {
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>Experience</span>
               </div>
               <p className="kyk-caps" style={{ margin: '18px 0 0', fontSize: 'var(--text-dim)', color: 'var(--text-annotation)', textAlign: 'center' }}>
-                This is not a tribute. This is a resurrection. · Experience the (sic)ness
+                This is not a tribute. This is a resurrection.
               </p>
             </div>
           </div>

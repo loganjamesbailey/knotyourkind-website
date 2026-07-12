@@ -2,7 +2,7 @@
 
 **weareknotyourkind.com**
 
-A Tribute to Slipknot. Performing across the Carolinas.
+The Slipknot Experience. Experience the (sic)ness.
 
 ---
 
