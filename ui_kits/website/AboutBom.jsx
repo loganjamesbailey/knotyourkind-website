@@ -39,7 +39,6 @@ function AboutBom() {
               notes={[
                 'BAND TO BE PERFORMED LIVE.',
                 'FULL STAGE SHOW, BUILT TO HIT THE WAY A SLIPKNOT SHOW IS SUPPOSED TO HIT.',
-                'BOOKED THROUGH LEFT LANE COLLECTIVE FOR FESTIVALS, VENUES, AND PRIVATE EVENTS.',
               ]}
             />
             <TitleBlock title="ASSEMBLY, REV B" scale="NTS" sheet="2 OF 9" style={{ alignSelf: 'flex-end' }} />

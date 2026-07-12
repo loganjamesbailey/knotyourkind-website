@@ -756,7 +756,7 @@ function AboutBom() {
     }
   }, /*#__PURE__*/React.createElement(NotesList, {
     className: "kyk-notes",
-    notes: ['BAND TO BE PERFORMED LIVE.', 'FULL STAGE SHOW, BUILT TO HIT THE WAY A SLIPKNOT SHOW IS SUPPOSED TO HIT.', 'BOOKED THROUGH LEFT LANE COLLECTIVE FOR FESTIVALS, VENUES, AND PRIVATE EVENTS.']
+    notes: ['BAND TO BE PERFORMED LIVE.', 'FULL STAGE SHOW, BUILT TO HIT THE WAY A SLIPKNOT SHOW IS SUPPOSED TO HIT.']
   }), /*#__PURE__*/React.createElement(TitleBlock, {
     title: "ASSEMBLY, REV B",
     scale: "NTS",
@@ -835,12 +835,14 @@ function SiteNav() {
   })), /*#__PURE__*/React.createElement("img", {
     src: "/assets/logotype_graphite.png",
     alt: "Knot Your Kind",
-    width: 200,
-    height: 26,
+    width: 2000,
+    height: 776,
     decoding: "async",
     style: {
       height: 26,
-      display: 'block'
+      width: 'auto',
+      display: 'block',
+      objectFit: 'contain'
     }
   })), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -1094,14 +1096,16 @@ function HeroSheet() {
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/slipknot_sketch.png",
     alt: "Slipknot — hand-drawn",
-    width: 320,
+    width: 266,
     height: 116,
     loading: "lazy",
     decoding: "async",
     style: {
       height: 58,
+      width: 'auto',
       maxWidth: '100%',
       display: 'block',
+      objectFit: 'contain',
       mixBlendMode: 'multiply',
       margin: '0 auto'
     }
