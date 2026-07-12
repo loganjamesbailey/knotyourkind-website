@@ -1,0 +1,44 @@
+<!-- @dsCard group="Website" viewport="1280x820" name="weareknotyourkind.com" subtitle="The band site as a set of fabrication drawings" -->
+<!-- @startingPoint section="Website" subtitle="One-page band site — hero sheet, BOM, Part #8 exploded view" viewport="1280x820" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KNOT YOUR KIND | The Slipknot Experience</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="/_ds_bundle.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-drafting), ui-monospace, monospace;
+      color: var(--text-body);
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    (function () {
+      var e = React.createElement;
+      function Site() {
+        return e(
+          'div',
+          { style: { maxWidth: 1280, margin: '0 auto' } },
+          e(window.SiteNav),
+          e(window.HeroSheet),
+          e(window.AboutBom),
+          e(window.TribalS),
+          e(window.SoleMember),
+          e(window.SiteFooter)
+        );
+      }
+      ReactDOM.createRoot(document.getElementById('root')).render(e(Site));
+    })();
+  </script>
+</body>
+</html>

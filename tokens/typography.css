@@ -1,0 +1,38 @@
+/* Knot Your Kind — type tokens. Two voices only:
+   1. Drafting caps (mono, letterspaced, all caps) — every annotation, dimension,
+      label, and body note.
+   2. The hand-drawn logotype (image asset) — the artifact being documented.
+   Serif and decorative type are out. */
+:root {
+  --font-drafting: 'Share Tech Mono', 'Courier New', monospace;
+  --font-title: 'Oswald', 'Arial Narrow', sans-serif; /* large drawing titles only */
+
+  /* Sizes (px) */
+  --text-dim: 12px;          /* dimensions, tolerances */
+  --text-note: 13px;         /* numbered notes, body copy */
+  --text-label: 14px;        /* field labels, nav */
+  --text-callout: 15px;      /* leader-line callouts */
+  --text-cell-value: 18px;   /* title-block values */
+  --text-title-sm: 24px;     /* section titles */
+  --text-title-lg: 40px;     /* sheet titles */
+
+  /* Tracking */
+  --tracking-drafting: 0.08em;
+  --tracking-wide: 0.18em;
+
+  --leading-note: 1.65;
+}
+
+body {
+  font-family: var(--font-drafting);
+  font-size: var(--text-note);
+  color: var(--text-body);
+  letter-spacing: var(--tracking-drafting);
+}
+
+/* Drafting text is uppercase by rule. */
+.kyk-caps { text-transform: uppercase; letter-spacing: var(--tracking-drafting); }
+.kyk-caps-wide { text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+
+a { color: var(--text-body); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--text-title); }

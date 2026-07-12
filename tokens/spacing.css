@@ -1,0 +1,18 @@
+/* Knot Your Kind — spacing. Drawings are gridded; use multiples of 8
+   with a 4px half-step for dimension text clearance. */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  /* Sheet geometry */
+  --sheet-margin: 24px;        /* border inset from sheet edge */
+  --sheet-border-gap: 4px;     /* gap between double border rules */
+  --cell-pad-x: 12px;
+  --cell-pad-y: 8px;
+}

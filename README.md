@@ -6,70 +6,51 @@ A Tribute to Slipknot. Performing across the Carolinas.
 
 ---
 
+## Design system
+
+Implemented from the **Knot Your Kind Design System** (Claude Design):
+
+- Source project: [claude.ai/design](https://claude.ai/design/p/e3a90c83-eae4-4aad-8184-0dfaf21ccb30?file=ui_kits%2Fwebsite%2Findex.html)
+- Visual direction: **The Fabrication Drawing** — graphite on drafting paper, dimensioned sheets, title blocks, inspection stamps
+- UI kit: `ui_kits/website/` (hero sheet, about BOM, Tribal S detail, Part #8 frame assembly)
+- Tokens: `tokens/` · components: `components/` · runtime: `_ds_bundle.js`
+
+---
+
 ## Deploying to GitHub Pages
 
-### 1. Create the Repository
-- Go to [github.com](https://github.com) and create a new repository
-- Name it whatever you want (e.g., `knotyourkind-website`)
-- Make it **Public**
+### 1. Enable GitHub Pages
+- Repository **Settings** → **Pages**
+- Source: **Deploy from a branch** → `main` / **/** (root)
+- Custom domain: `weareknotyourkind.com` · Enforce HTTPS
 
-### 2. Upload Files
-- Upload ALL files from this folder to the repository, keeping the folder structure:
-  ```
-  index.html
-  CNAME
-  images/
-    ├── 0.png through 8.png (member photos)
-    ├── 202_sic__poster.PNG
-    ├── nonagram_logo.png
-    ├── knot_your_logo_smooth_matte.png
-    ├── knot_your_logo_jagged.png
-    ├── kyk_new_logo.png
-    ├── phonto-3.png
-    └── atribte_to_slipknot.PNG
-  ```
-
-### 3. Enable GitHub Pages
-- Go to repository **Settings** → **Pages**
-- Under "Source", select **Deploy from a branch**
-- Choose **main** branch and **/ (root)** folder
-- Click **Save**
-
-### 4. Configure Custom Domain
-- In the same Pages settings, under "Custom domain", enter: `weareknotyourkind.com`
-- Check "Enforce HTTPS"
-
-### 5. DNS Configuration (at your domain registrar)
-Add these DNS records for `weareknotyourkind.com`:
-
-**A Records** (point to GitHub Pages IPs):
+### 2. DNS (at your registrar)
+**A records** for apex:
 ```
 185.199.108.153
 185.199.109.153
 185.199.110.153
 185.199.111.153
 ```
+**CNAME** for www → `yourusername.github.io`
 
-**CNAME Record** (for www subdomain):
+### 3. Local preview
+```bash
+python3 -m http.server 8080
+# open http://localhost:8080/
 ```
-www → yourusername.github.io
-```
-
-### 6. Wait & Verify
-- DNS propagation can take up to 24-48 hours
-- GitHub will automatically provision an SSL certificate
 
 ---
 
-## Customization Notes
+## Customization
 
-- **Shows section**: Edit the `show-list` div in index.html to add upcoming dates
-- **Social links**: Update the Facebook, Instagram, YouTube, and TikTok URLs
-- **Contact form**: Currently client-side only — consider adding Formspree or Netlify Forms for actual email delivery
-- **Images**: All images are in the `/images` directory
+- **Social / booking**: `ui_kits/website/Chrome.jsx` (nav Book Us + footer links) — rebuild is reflected in `_ds_bundle.js` for the live site
+- **About BOM copy**: `ui_kits/website/AboutBom.jsx`
+- **Hero / Part #8 / Tribal S**: matching files under `ui_kits/website/`
+- **Assets**: `/assets/` (graphite sketches used by the live site)
+- **Shows / booking sections**: removed per ECO-010 / ECO-011 in the design system
 
 ## Tech Stack
-- Pure HTML/CSS/JS (no build tools needed)
-- Google Fonts (Bebas Neue, Oswald, Barlow Condensed)
-- Font Awesome 6 icons
-- GitHub Pages hosting
+- Static HTML + React 18 (CDN) + design-system bundle
+- Google Fonts (Share Tech Mono, Oswald)
+- GitHub Pages hosting · custom domain `weareknotyourkind.com`

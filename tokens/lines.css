@@ -1,0 +1,17 @@
+/* Knot Your Kind — line system. Line-weight discipline is the whole game.
+   Hairlines everywhere; ONE heavier weight reserved for the subject. */
+:root {
+  --line-w-hair: 1px;                 /* dimension lines, borders, leaders */
+  --line-w-subject: 2.5px;            /* the subject of the drawing only */
+  --dash-construction: 5px 4px; /* @kind other */
+  --dash-center: 14px 4px 3px 4px; /* @kind other */
+
+  --radius-none: 0px;                 /* ALL CORNERS AND EDGES TO BE SHARP. */
+}
+
+/* Hairline rule helpers */
+.kyk-rule { border: 0; border-top: var(--line-w-hair) solid var(--line-standard); }
+.kyk-rule-construction {
+  border: 0;
+  border-top: var(--line-w-hair) dashed var(--line-construction);
+}

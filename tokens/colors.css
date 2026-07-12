@@ -1,0 +1,30 @@
+/* Knot Your Kind — color tokens. "The Fabrication Drawing."
+   Graphite on warm drafting paper. No blueprint blue, no white-on-black. */
+:root {
+  /* Base — paper */
+  --paper-1: #efede7;        /* primary sheet */
+  --paper-2: #e7e4dc;        /* desk / behind-sheet */
+  --paper-3: #f4f2ee;        /* raised field (title block cells) */
+
+  /* Base — graphite */
+  --graphite-1: #2c2b28;     /* heavy line, subject of the drawing */
+  --graphite-2: #45433f;     /* standard linework + text */
+  --graphite-3: #77746d;     /* light annotations, secondary text */
+  --graphite-4: #a8a49b;     /* construction lines, faint grid */
+
+  /* Accent — inspection stamp only. Never for UI chrome. */
+  --stamp-red: #9e3b30;
+  --stamp-red-faded: rgba(158, 59, 48, 0.75);
+
+  /* Semantic aliases */
+  --surface-page: var(--paper-2);
+  --surface-sheet: var(--paper-1);
+  --surface-cell: var(--paper-3);
+  --text-title: var(--graphite-1);
+  --text-body: var(--graphite-2);
+  --text-annotation: var(--graphite-3);
+  --line-subject: var(--graphite-1);
+  --line-standard: var(--graphite-2);
+  --line-construction: var(--graphite-4);
+  --focus-ring: var(--graphite-2);
+}
