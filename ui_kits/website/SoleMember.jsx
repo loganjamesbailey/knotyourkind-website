@@ -55,7 +55,7 @@ function SoleMember() {
               <window.VDim value="6 FT 0 IN" height={380} />
               <div className="kyk-subject-figure" style={{ position: 'relative', width: '100%', maxWidth: 380, aspectRatio: '1', margin: '0 auto' }}>
                 <img
-                  src="/assets/member_8_sketch.png"
+                  src="/assets/member_8_photo_overlay.png"
                   alt="Part #8 — mask and suit over metal endoskeleton, hidden lines"
                   width={380}
                   height={380}
