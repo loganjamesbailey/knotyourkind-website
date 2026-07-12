@@ -778,13 +778,15 @@ try { (() => {
 const React = window.React;
 function NavLink({
   href,
-  children
+  children,
+  onNavigate
 }) {
   const [hover, setHover] = React.useState(false);
   return /*#__PURE__*/React.createElement("a", {
     href: href,
     onMouseEnter: () => setHover(true),
     onMouseLeave: () => setHover(false),
+    onClick: onNavigate,
     style: {
       fontSize: 'var(--text-dim)',
       letterSpacing: 'var(--tracking-wide)',
@@ -796,11 +798,48 @@ function NavLink({
     }
   }, children);
 }
+function NavToggle({
+  open,
+  onClick
+}) {
+  return /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "kyk-nav-toggle",
+    "aria-label": open ? 'Close menu' : 'Open menu',
+    "aria-expanded": open,
+    onClick: onClick
+  }, /*#__PURE__*/React.createElement("svg", {
+    width: "22",
+    height: "16",
+    viewBox: "0 0 22 16",
+    fill: "none",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("line", { x1: "0", y1: "1", x2: "22", y2: "1", stroke: "var(--graphite-1)", strokeWidth: "2" }), /*#__PURE__*/React.createElement("line", { x1: "0", y1: "8", x2: "22", y2: "8", stroke: "var(--graphite-1)", strokeWidth: "2" }), /*#__PURE__*/React.createElement("line", { x1: "0", y1: "15", x2: "22", y2: "15", stroke: "var(--graphite-1)", strokeWidth: "2" })));
+}
 function SiteNav() {
   const {
     Nonagram
   } = window.KnotYourKindDesignSystem_e3a90c;
+  const [open, setOpen] = React.useState(false);
+  const navRef = React.useRef(null);
+  React.useEffect(() => {
+    if (!open) return;
+    function onDocClick(e) {
+      if (navRef.current && !navRef.current.contains(e.target)) setOpen(false);
+    }
+    function onKeyDown(e) {
+      if (e.key === 'Escape') setOpen(false);
+    }
+    document.addEventListener('click', onDocClick);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('click', onDocClick);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [open]);
+  const close = () => setOpen(false);
   return /*#__PURE__*/React.createElement("nav", {
+    ref: navRef,
     className: "kyk-nav",
     style: {
       position: 'sticky',
@@ -821,8 +860,10 @@ function SiteNav() {
       alignItems: 'center',
       gap: 10,
       textDecoration: 'none',
-      minWidth: 0
-    }
+      minWidth: 0,
+      flex: 'none'
+    },
+    onClick: close
   }, /*#__PURE__*/React.createElement("span", {
     className: "kyk-nonagram",
     style: {
@@ -849,14 +890,20 @@ function SiteNav() {
       flex: 1,
       minWidth: 8
     }
+  }), /*#__PURE__*/React.createElement(NavToggle, {
+    open: open,
+    onClick: () => setOpen(o => !o)
   }), /*#__PURE__*/React.createElement("div", {
-    className: "kyk-nav-links"
+    className: 'kyk-nav-links' + (open ? ' kyk-nav-links-open' : '')
   }, /*#__PURE__*/React.createElement(NavLink, {
-    href: "#about"
+    href: "#about",
+    onNavigate: close
   }, "About"), /*#__PURE__*/React.createElement(NavLink, {
-    href: "#tribal-s"
+    href: "#tribal-s",
+    onNavigate: close
   }, "Tribal S"), /*#__PURE__*/React.createElement(NavLink, {
-    href: "#the-one"
+    href: "#the-one",
+    onNavigate: close
   }, "The One")));
 }
 function SiteFooter() {

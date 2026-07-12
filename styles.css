@@ -71,6 +71,26 @@ table {
   word-break: break-word;
 }
 
+/* —— Nav (default / desktop) —— */
+.kyk-nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.kyk-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  flex: none;
+  background: var(--surface-sheet);
+  border: var(--line-w-hair) solid var(--line-standard);
+  cursor: pointer;
+}
+
 /* —— Tablet & phone (portrait) —— */
 @media (max-width: 900px) {
   :root {
@@ -150,10 +170,10 @@ table {
     word-break: break-word;
   }
 
-  /* Nav */
+  /* Nav — collapses to a hamburger toggle; the dropdown sits below the
+     full-width bar so it never crowds or wraps under the logo. */
   .kyk-nav {
-    flex-wrap: wrap !important;
-    gap: 10px 14px !important;
+    position: relative;
     padding: 10px 12px !important;
   }
 
@@ -163,12 +183,37 @@ table {
     object-fit: contain;
   }
 
-  .kyk-nav-links {
+  .kyk-nav-toggle {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px 14px;
-    width: 100%;
-    justify-content: flex-start;
+  }
+
+  .kyk-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--surface-sheet);
+    border-bottom: var(--line-w-hair) solid var(--line-standard);
+    box-shadow: var(--shadow-sheet);
+    padding: 6px var(--space-5) 10px;
+    z-index: 99;
+  }
+
+  .kyk-nav-links.kyk-nav-links-open {
+    display: flex;
+  }
+
+  .kyk-nav-links a {
+    padding: 10px 0;
+    border-top: var(--line-w-hair) solid var(--line-construction);
+  }
+
+  .kyk-nav-links a:first-child {
+    border-top: none;
   }
 
   /* Hero stamp: no longer absolute giant — centered inspection mark */
