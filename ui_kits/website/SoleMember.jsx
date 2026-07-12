@@ -57,6 +57,10 @@ function SoleMember() {
                 <img
                   src="/assets/member_8_sketch.png"
                   alt="Part #8 — mask and suit over metal endoskeleton, hidden lines"
+                  width={380}
+                  height={380}
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', mixBlendMode: 'multiply' }}
                 />
                 <EndoskeletonOverlay />

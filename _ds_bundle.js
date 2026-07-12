@@ -835,6 +835,9 @@ function SiteNav() {
   })), /*#__PURE__*/React.createElement("img", {
     src: "/assets/logotype_graphite.png",
     alt: "Knot Your Kind",
+    width: 200,
+    height: 26,
+    decoding: "async",
     style: {
       height: 26,
       display: 'block'
@@ -1052,6 +1055,10 @@ function HeroSheet() {
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/logotype_sketch.png",
     alt: "Knot Your Kind — hand-drawn logotype, dimensioned",
+    width: 1520,
+    height: 420,
+    fetchPriority: "high",
+    decoding: "async",
     style: {
       width: '100%',
       height: 210,
@@ -1087,6 +1094,10 @@ function HeroSheet() {
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/slipknot_sketch.png",
     alt: "Slipknot — hand-drawn",
+    width: 320,
+    height: 116,
+    loading: "lazy",
+    decoding: "async",
     style: {
       height: 58,
       maxWidth: '100%',
@@ -1349,6 +1360,10 @@ function SoleMember() {
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/member_8_sketch.png",
     alt: "Part #8 — mask and suit over metal endoskeleton, hidden lines",
+    width: 380,
+    height: 380,
+    loading: "lazy",
+    decoding: "async",
     style: {
       width: '100%',
       height: '100%',
@@ -1474,6 +1489,10 @@ function TribalS() {
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/tribal_s_sketch.png",
     alt: "Tribal S — dimensioned fabrication drawing",
+    width: 280,
+    height: 420,
+    loading: "lazy",
+    decoding: "async",
     style: {
       height: 420,
       maxWidth: '100%',

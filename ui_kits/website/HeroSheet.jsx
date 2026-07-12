@@ -66,6 +66,10 @@ function HeroSheet() {
                   <img
                     src="/assets/logotype_sketch.png"
                     alt="Knot Your Kind — hand-drawn logotype, dimensioned"
+                    width={1520}
+                    height={420}
+                    fetchPriority="high"
+                    decoding="async"
                     style={{ width: '100%', height: 210, objectFit: 'contain', display: 'block', position: 'relative', mixBlendMode: 'multiply' }}
                   />
                 </div>
@@ -75,7 +79,7 @@ function HeroSheet() {
               <div className="kyk-lockup" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 18, marginTop: 'var(--space-5)', flexWrap: 'wrap' }}>
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>The</span>
                 <div style={{ maxWidth: '100%' }}>
-                  <img src="/assets/slipknot_sketch.png" alt="Slipknot — hand-drawn" style={{ height: 58, maxWidth: '100%', display: 'block', mixBlendMode: 'multiply', margin: '0 auto' }} />
+                  <img src="/assets/slipknot_sketch.png" alt="Slipknot — hand-drawn" width={320} height={116} loading="lazy" decoding="async" style={{ height: 58, maxWidth: '100%', display: 'block', mixBlendMode: 'multiply', margin: '0 auto' }} />
                   <Dimension value="2.65" width="100%" style={{ marginTop: 4 }} />
                 </div>
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>Experience</span>

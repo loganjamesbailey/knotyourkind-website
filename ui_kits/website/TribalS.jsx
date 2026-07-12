@@ -16,6 +16,10 @@ function TribalS() {
               <img
                 src="/assets/tribal_s_sketch.png"
                 alt="Tribal S — dimensioned fabrication drawing"
+                width={280}
+                height={420}
+                loading="lazy"
+                decoding="async"
                 style={{ height: 420, maxWidth: '100%', width: 'auto', display: 'block', mixBlendMode: 'multiply', margin: '0 auto' }}
               />
               <div className="kyk-callouts-side" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '30px 0 40px', marginLeft: -6 }}>

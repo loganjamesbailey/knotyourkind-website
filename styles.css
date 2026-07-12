@@ -10,8 +10,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 64px;
   -webkit-text-size-adjust: 100%;
   overflow-x: clip;
+}
+
+section[id] {
+  scroll-margin-top: 64px;
 }
 
 body {

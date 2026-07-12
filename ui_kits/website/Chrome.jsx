@@ -47,7 +47,7 @@ function SiteNav() {
         <span className="kyk-nonagram" style={{ display: 'inline-flex', flex: 'none' }}>
           <Nonagram size={34} showConstruction={false} />
         </span>
-        <img src="/assets/logotype_graphite.png" alt="Knot Your Kind" style={{ height: 26, display: 'block' }} />
+        <img src="/assets/logotype_graphite.png" alt="Knot Your Kind" width={200} height={26} decoding="async" style={{ height: 26, display: 'block' }} />
       </a>
       <span style={{ flex: 1, minWidth: 8 }}></span>
       <div className="kyk-nav-links">

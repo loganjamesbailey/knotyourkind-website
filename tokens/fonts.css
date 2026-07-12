@@ -1,7 +1,4 @@
 /* Knot Your Kind — webfonts.
-   No font binaries were provided. Nearest Google Fonts matches for the
-   drafting/CAD lettering seen in the reference drawings:
-   - Share Tech Mono  → technical mono for dimensions, annotations, title blocks
-   - Oswald           → DIN-style condensed caps for large drawing titles
-   SUBSTITUTION — replace with licensed DIN / ISOCPEUR-style faces if available. */
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oswald:wght@400;500;600&display=swap');
+   Loaded from index.html via <link> (not @import) to avoid CSS waterfall.
+   Families: Share Tech Mono (drafting) + Oswald 500 (titles).
+   SUBSTITUTION — self-host WOFF2 under /assets/fonts/ when available. */
