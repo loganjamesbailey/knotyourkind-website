@@ -44,8 +44,8 @@
         "message": "<Button> doesn't accept that prop. Declared props: children, variant, disabled, onClick, type, style."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|subject)$/]",
-        "message": "<Button> variant must be one of 'default' | 'subject'."
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|deep|invert|bar|subject)$/]",
+        "message": "<Button> variant must be one of 'default' | 'deep' | 'invert' | 'bar'."
       },
       {
         "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit)$/]",

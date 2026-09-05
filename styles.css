@@ -102,16 +102,8 @@ table {
   color: var(--color-nav-active);
 }
 
-.kyk-btn,
-.kyk-readmore {
+.kyk-btn {
   transition: color var(--motion-hover) ease, background-color var(--motion-hover) ease, border-color var(--motion-hover) ease;
-}
-
-.kyk-readmore:hover,
-.kyk-btn:hover {
-  background-color: var(--color-readmore-hover);
-  border-color: var(--color-readmore-hover);
-  color: var(--kyk-white);
 }
 
 .kyk-chip {
