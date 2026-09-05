@@ -782,12 +782,12 @@ function AboutBom() {
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("section", {
     id: "about",
-    className: "kyk-slab-invert",
+    className: "kyk-slab-charcoal",
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(SectionTitle, {
-    label: "Section A–A",
+    label: "Section A\u2013A",
     title: "We Are Knot Your Kind"
   }), /*#__PURE__*/React.createElement("div", {
     className: "kyk-about-grid",
@@ -809,7 +809,7 @@ function AboutBom() {
       fontSize: 'var(--text-dim)',
       color: 'var(--text-title)'
     }
-  }, "Bill of Materials — Assembly, Rev B"), /*#__PURE__*/React.createElement("div", {
+  }, "Bill of Materials \u2014 Assembly, Rev B"), /*#__PURE__*/React.createElement("div", {
     className: "kyk-table-scroll"
   }, /*#__PURE__*/React.createElement(RevisionTable, {
     columns: ['ITEM', 'QTY', 'DESCRIPTION', 'SPEC'],
@@ -837,7 +837,6 @@ Object.assign(window, {
   AboutBom,
   SectionTitle
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/AboutBom.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/Chrome.jsx
@@ -1030,6 +1029,36 @@ Object.assign(window, {
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Chrome.jsx", error: String((e && e.message) || e) }); }
 
+// ui_kits/website/HeroBumper.jsx
+try { (() => {
+const React = window.React;
+
+/** Opening hero: ultrawide bumper letterboxed so the full wordmark + glow stay visible. */
+function HeroBumper() {
+  return /*#__PURE__*/React.createElement("section", {
+    id: "home",
+    className: "kyk-hero-bumper",
+    "aria-label": "Knot Your Kind bumper"
+  }, /*#__PURE__*/React.createElement("video", {
+    className: "kyk-hero-bumper-video",
+    muted: true,
+    autoPlay: true,
+    loop: true,
+    playsInline: true,
+    preload: "metadata"
+  }, /*#__PURE__*/React.createElement("source", {
+    src: "/media/kyk-logo-bumper-neon-glitch-ultrawide.mp4",
+    type: "video/mp4"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-media-fade",
+    "aria-hidden": "true"
+  }));
+}
+Object.assign(window, {
+  HeroBumper
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/HeroBumper.jsx", error: String((e && e.message) || e) }); }
+
 // ui_kits/website/HeroSheet.jsx
 try { (() => {
 const React = window.React;
@@ -1109,10 +1138,10 @@ function HeroSheet() {
     backgroundSize: '56px 56px'
   };
   return /*#__PURE__*/React.createElement("section", {
-    id: "home",
+    id: "logotype",
     className: "kyk-slab-black",
     style: {
-      padding: 'var(--space-5)'
+      padding: '0 var(--space-5) var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(SheetFrame, {
     padding: "var(--space-6)"
@@ -1131,7 +1160,7 @@ function HeroSheet() {
     width: 293,
     height: 420
   }), /*#__PURE__*/React.createElement("img", {
-    className: "kyk-hero-mark-star kyk-ink-art",
+    className: "kyk-hero-mark-star",
     src: "/assets/favicon.svg",
     alt: "",
     width: 180,
@@ -1203,12 +1232,12 @@ function HeroSheet() {
     }
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/logotype_sketch.png",
-    alt: "Knot Your Kind — hand-drawn logotype, dimensioned",
-    className: "kyk-ink-art",
+    alt: "Knot Your Kind \u2014 hand-drawn logotype, dimensioned",
     width: 1520,
     height: 420,
     fetchPriority: "high",
     decoding: "async",
+    className: "kyk-ink-art",
     style: {
       width: '100%',
       height: 210,
@@ -1242,7 +1271,7 @@ function HeroSheet() {
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/slipknot_sketch.png",
-    alt: "Slipknot — hand-drawn",
+    alt: "Slipknot \u2014 hand-drawn",
     className: "kyk-ink-art",
     width: 266,
     height: 116,
@@ -1323,7 +1352,6 @@ Object.assign(window, {
   HeroSheet,
   VDim
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/HeroSheet.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/SoleMember.jsx
@@ -1452,7 +1480,7 @@ function SoleMember() {
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("section", {
     id: "the-one",
-    className: "kyk-slab-invert",
+    className: "kyk-slab-charcoal",
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
@@ -1582,20 +1610,7 @@ function TribalS() {
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "kyk-tribal-rail",
-    "aria-hidden": "true"
-  }, /*#__PURE__*/React.createElement("video", {
-    className: "kyk-tribal-video",
-    muted: true,
-    autoPlay: true,
-    loop: true,
-    playsInline: true,
-    preload: "metadata"
-  }, /*#__PURE__*/React.createElement("source", {
-    src: "/media/kyk-logo-bumper-neon-glitch-ultrawide.mp4",
-    type: "video/mp4"
-  }))), /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
+  }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
     label: "Detail Drawing",
     title: "Tribal S Logo"
   }), /*#__PURE__*/React.createElement("div", {
@@ -2005,26 +2020,24 @@ Object.assign(window, {
 try { (() => {
 const React = window.React;
 
-/** Single statement plate. Wordmark is already in the art — do not overlay another. */
+/** Crow-bars statement, full-bleed like territory. Wordmark is in the art — no overlay, no frame. */
 function MarkPlate() {
   return /*#__PURE__*/React.createElement("section", {
     id: "mark",
-    className: "kyk-slab-black",
-    style: {
-      padding: '0 var(--space-5) var(--space-5)'
-    }
-  }, /*#__PURE__*/React.createElement("figure", {
-    className: "kyk-statement-plate"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "kyk-caps kyk-media-label"
-  }, "Plate \u2014 Crow / Bars"), /*#__PURE__*/React.createElement("img", {
+    className: "kyk-bleed-photo kyk-bleed-mark",
+    "aria-label": "Crow plate"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "kyk-bleed-photo-img",
     src: "/assets/james-site/crow-red-eyes-bars.jpg",
     alt: "Knot Your Kind \u2014 A Slipknot Experience",
     width: 1600,
     height: 1600,
     loading: "lazy",
     decoding: "async"
-  })));
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-media-fade",
+    "aria-hidden": "true"
+  }));
 }
 Object.assign(window, {
   MarkPlate
@@ -2036,19 +2049,13 @@ Object.assign(window, {
 try { (() => {
 const React = window.React;
 
-/** Contained 1:1 promo. One motion hit — not a hero wallpaper. */
+/** 1:1 promo, no frame. Soft black vignette fades into the page field. */
 function PromoReel() {
   return /*#__PURE__*/React.createElement("section", {
     id: "reel",
-    className: "kyk-slab-black",
-    style: {
-      padding: '0 var(--space-5) var(--space-5)'
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "kyk-promo-frame"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "kyk-caps kyk-media-label"
-  }, "Reel \u2014 30s"), /*#__PURE__*/React.createElement("video", {
+    className: "kyk-reel",
+    "aria-label": "Promo reel"
+  }, /*#__PURE__*/React.createElement("video", {
     className: "kyk-promo-video",
     muted: true,
     autoPlay: true,
@@ -2059,7 +2066,13 @@ function PromoReel() {
   }, /*#__PURE__*/React.createElement("source", {
     src: "/media/kyk-promo-clip-2026-09-05.mp4",
     type: "video/mp4"
-  }))));
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-reel-vignette",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-media-fade",
+    "aria-hidden": "true"
+  }));
 }
 Object.assign(window, {
   PromoReel
@@ -2087,6 +2100,9 @@ function Territory() {
     decoding: "async"
   }), /*#__PURE__*/React.createElement("div", {
     className: "kyk-bleed-scrim",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-media-fade",
     "aria-hidden": "true"
   }), /*#__PURE__*/React.createElement("div", {
     className: "kyk-bleed-copy"

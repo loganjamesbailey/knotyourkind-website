@@ -273,6 +273,41 @@ select {
   color: var(--text-annotation);
 }
 
+/* Opening hero — 2172×724 ultrawide bumper, contained so wordmark + glow never crop */
+.kyk-hero-bumper {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 6vh 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.kyk-hero-bumper-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2172 / 724;
+  object-fit: contain;
+  object-position: center center;
+  background: #000;
+}
+
+.kyk-media-fade {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #000 0%,
+    rgba(0, 0, 0, 0) 14%,
+    rgba(0, 0, 0, 0) 86%,
+    #000 100%
+  );
+}
+
 .kyk-statement-plate {
   margin: 0 auto;
   max-width: 720px;
@@ -283,39 +318,44 @@ select {
   display: block;
   width: 100%;
   height: auto;
-  border: var(--line-w-hair) solid var(--line-standard);
+  border: none;
   border-radius: var(--radius-none);
 }
 
-.kyk-tribal-rail {
+/* Promo reel — 1:1, no frame, vignette into the black field */
+.kyk-reel {
   position: relative;
-  width: 100%;
-  aspect-ratio: 2.8 / 1;
-  max-height: 220px;
-  margin-bottom: var(--space-4);
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: var(--space-6) 0;
+  background: #000;
   overflow: hidden;
-  border: var(--line-w-hair) solid var(--line-standard);
-  background: var(--kyk-black);
 }
 
-.kyk-tribal-video,
 .kyk-promo-video {
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--radius-none);
-}
-
-.kyk-promo-frame {
+  width: min(100%, 720px);
+  height: auto;
   margin: 0 auto;
-  max-width: 520px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #000;
+  border: none;
+  border-radius: 0;
 }
 
-.kyk-promo-frame .kyk-promo-video {
-  aspect-ratio: 1;
-  border: var(--line-w-hair) solid var(--line-standard);
-  background: var(--kyk-black);
+.kyk-reel-vignette {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 38%,
+    rgba(0, 0, 0, 0.5) 72%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
 }
 
 .kyk-bleed-photo {
@@ -366,7 +406,7 @@ select {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kyk-tribal-video,
+  .kyk-hero-bumper-video,
   .kyk-promo-video {
     display: none;
   }
@@ -386,8 +426,15 @@ select {
     padding-right: 10px !important;
   }
 
-  #home {
-    padding: 10px !important;
+  #home,
+  #home.kyk-hero-bumper,
+  #mark,
+  #mark.kyk-bleed-photo,
+  #territory,
+  #territory.kyk-bleed-photo,
+  #reel,
+  #reel.kyk-reel {
+    padding: 0 !important;
   }
 
   /* SheetFrame inner padding is inline — tighten via paper children */
@@ -641,9 +688,8 @@ select {
     max-width: none;
   }
 
-  .kyk-tribal-rail {
-    max-height: 140px;
-    aspect-ratio: 2.4 / 1;
+  .kyk-hero-bumper {
+    padding: 4vh 0;
   }
 
   .kyk-bleed-copy {

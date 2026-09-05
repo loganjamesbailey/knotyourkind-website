@@ -33,7 +33,7 @@ function HeroSheet() {
     backgroundSize: '56px 56px',
   };
   return (
-    <section id="home" className="kyk-slab-black" style={{ padding: 'var(--space-5)' }}>
+    <section id="logotype" className="kyk-slab-black" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
       <SheetFrame padding="var(--space-6)">
         <div style={{ position: 'relative', overflow: 'visible' }}>
           <div className="kyk-hero-watermark" aria-hidden="true">

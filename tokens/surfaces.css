@@ -67,3 +67,9 @@ body {
 .kyk-slab-invert .kyk-subject-figure img {
   filter: none;
 }
+
+/* Charcoal slab — Tribal S sheet language, not a hard white invert */
+.kyk-slab-charcoal {
+  background: linear-gradient(180deg, #1c1c1c 0%, #0d0d0d 42%, #000000 100%);
+  color: var(--kyk-white);
+}

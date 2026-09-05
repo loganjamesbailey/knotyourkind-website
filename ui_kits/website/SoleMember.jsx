@@ -46,7 +46,7 @@ function EndoskeletonOverlay() {
 function SoleMember() {
   const { SheetFrame, TitleBlock, NotesList, Stamp, Dimension, Callout } = window.KnotYourKindDesignSystem_e3a90c;
   return (
-    <section id="the-one" className="kyk-slab-invert" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
+    <section id="the-one" className="kyk-slab-charcoal" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
       <SheetFrame>
         <window.SectionTitle label="Members — Section View, Internal Structure Shown Hidden" title="Part #8, Frame Assembly" />
         <div className="kyk-drawing-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-6)', alignItems: 'flex-start' }}>

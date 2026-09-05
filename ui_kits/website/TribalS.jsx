@@ -4,18 +4,6 @@ function TribalS() {
   const { SheetFrame, TitleBlock, NotesList, Callout, Dimension } = window.KnotYourKindDesignSystem_e3a90c;
   return (
     <section id="tribal-s" className="kyk-slab-black" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
-      <div className="kyk-tribal-rail" aria-hidden="true">
-        <video
-          className="kyk-tribal-video"
-          muted
-          autoPlay
-          loop
-          playsInline
-          preload="metadata"
-        >
-          <source src="/media/kyk-logo-bumper-neon-glitch-ultrawide.mp4" type="video/mp4" />
-        </video>
-      </div>
       <SheetFrame>
         <window.SectionTitle label="Detail Drawing" title="Tribal S Logo" />
         <div className="kyk-drawing-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-6)', alignItems: 'flex-start' }}>

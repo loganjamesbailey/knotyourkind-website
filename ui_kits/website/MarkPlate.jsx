@@ -1,20 +1,19 @@
 const React = window.React;
 
-/** Single statement plate. Wordmark is already in the art — do not overlay another. */
+/** Crow-bars statement, full-bleed like territory. Wordmark is in the art — no overlay, no frame. */
 function MarkPlate() {
   return (
-    <section id="mark" className="kyk-slab-black" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
-      <figure className="kyk-statement-plate">
-        <p className="kyk-caps kyk-media-label">Plate — Crow / Bars</p>
-        <img
-          src="/assets/james-site/crow-red-eyes-bars.jpg"
-          alt="Knot Your Kind — A Slipknot Experience"
-          width={1600}
-          height={1600}
-          loading="lazy"
-          decoding="async"
-        />
-      </figure>
+    <section id="mark" className="kyk-bleed-photo kyk-bleed-mark" aria-label="Crow plate">
+      <img
+        className="kyk-bleed-photo-img"
+        src="/assets/james-site/crow-red-eyes-bars.jpg"
+        alt="Knot Your Kind — A Slipknot Experience"
+        width={1600}
+        height={1600}
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="kyk-media-fade" aria-hidden="true"></div>
     </section>
   );
 }

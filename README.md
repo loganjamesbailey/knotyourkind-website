@@ -16,7 +16,8 @@ Restyled in place from the existing Knot Your Kind website kit:
 - Type: **Anybody 700**, uppercase labels/headlines, H1 line-height 1; Arial only on email fields
 - Radius: **0**. No drop shadow. Logo / wordmark / nonagram are image assets only
 - Tagline: **A Slipknot Experience** — never Tribute, never Kinda
-- Rhythm: black → inverted white slab with diagonal cuts → black
+- Rhythm: bumper hero (`#home`) → charcoal About → logotype drawing → crow bleed → Tribal S drawing → charcoal Members → vignetted promo → Iowa bleed → join → footer
+- Footer legal (exact): `© 2024 KNOT YOUR KIND, LLC. ALL RIGHTS RESERVED.`
 - UI kit: `ui_kits/website/` — one James media hit per section (plate / bumper / promo / Iowa bleed)
 - Stills: `assets/james-site/` · motion: `media/`
 - Tokens: `tokens/` · components: `components/` · runtime: `_ds_bundle.js`
@@ -44,8 +45,8 @@ Restyled in place from the existing Knot Your Kind website kit:
 ### 3. Local preview
 ```bash
 python3 -m http.server 8080
-# open http://localhost:8080/
-# footer copyright, #the-one (Members), #join (audition form)
+# http://localhost:8080/
+# #home bumper · #about charcoal · #logotype · #mark crow · #tribal-s · #the-one · #reel · #territory · #join
 ```
 
 ### 4. Audition form email (required before live delivery)

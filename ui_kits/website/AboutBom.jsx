@@ -12,7 +12,7 @@ function SectionTitle({ label, title }) {
 function AboutBom() {
   const { SheetFrame, TitleBlock, RevisionTable, NotesList } = window.KnotYourKindDesignSystem_e3a90c;
   return (
-    <section id="about" className="kyk-slab-invert" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
+    <section id="about" className="kyk-slab-charcoal" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
       <SheetFrame>
         <SectionTitle label="Section A–A" title="We Are Knot Your Kind" />
         <div className="kyk-about-grid" style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 'var(--space-6)', alignItems: 'start' }}>

@@ -14,6 +14,7 @@ function Territory() {
         decoding="async"
       />
       <div className="kyk-bleed-scrim" aria-hidden="true"></div>
+      <div className="kyk-media-fade" aria-hidden="true"></div>
       <div className="kyk-bleed-copy">
         <p className="kyk-caps kyk-media-label">Field note — Iowa</p>
         <h2 className="kyk-h1">Built on this ground.</h2>
