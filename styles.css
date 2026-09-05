@@ -176,6 +176,88 @@ select {
   font-weight: var(--font-weight-locked);
 }
 
+.kyk-footer-copy {
+  margin: 0;
+  padding-bottom: 8px;
+  max-width: 22rem;
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-locked);
+  line-height: 1.45;
+  color: var(--text-body);
+  text-align: right;
+}
+
+.kyk-footer-brand {
+  display: block;
+  margin-top: 4px;
+  color: var(--kyk-red);
+}
+
+.kyk-join-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.kyk-audition-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.kyk-file-field {
+  display: block;
+  border: var(--line-w-hair) solid var(--line-standard);
+  background: var(--surface-cell);
+  padding: var(--cell-pad-y) var(--cell-pad-x) 10px;
+}
+
+.kyk-file-label,
+.kyk-file-meta {
+  display: block;
+  font-family: var(--font-drafting);
+  font-weight: var(--font-weight-locked);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-drafting);
+}
+
+.kyk-file-label {
+  font-size: 10px;
+  color: var(--text-annotation);
+}
+
+.kyk-file-field input[type="file"] {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  color: var(--text-title);
+  background: transparent;
+  border: none;
+}
+
+.kyk-file-meta {
+  margin-top: 8px;
+  font-size: var(--text-dim);
+  color: var(--text-annotation);
+}
+
+.kyk-form-error {
+  margin: 0;
+  color: var(--kyk-red);
+  font-size: var(--text-dim);
+  line-height: 1.5;
+}
+
+.kyk-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* —— Tablet & phone (portrait) —— */
 @media (max-width: 900px) {
   :root {
@@ -396,8 +478,9 @@ select {
     align-items: stretch !important;
   }
 
-  /* About BOM grid */
-  .kyk-about-grid {
+  /* About BOM / join grids */
+  .kyk-about-grid,
+  .kyk-join-grid {
     grid-template-columns: 1fr !important;
     gap: 20px !important;
   }
@@ -437,6 +520,11 @@ select {
   footer > div {
     flex-direction: column !important;
     align-items: stretch !important;
+  }
+
+  .kyk-footer-copy {
+    text-align: left;
+    max-width: none;
   }
 }
 

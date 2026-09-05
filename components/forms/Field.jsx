@@ -1,7 +1,7 @@
 const React = window.React;
 
 /** Labeled form field styled as a title-block cell. */
-export function Field({ label, name, type = 'text', textarea, placeholder, required, rows = 4, value, onChange, style }) {
+export function Field({ label, name, type = 'text', textarea, select, options, placeholder, required, rows = 4, value, onChange, style }) {
   const [focus, setFocus] = React.useState(false);
   const isEmail = type === 'email';
   const inputStyle = {
@@ -18,14 +18,29 @@ export function Field({ label, name, type = 'text', textarea, placeholder, requi
     color: 'var(--text-title)',
     padding: '6px var(--cell-pad-x) 10px',
     resize: 'vertical',
+    appearance: select ? 'none' : undefined,
+    borderRadius: 'var(--radius-none)',
   };
-  const control = textarea ? (
-    <textarea name={name} placeholder={placeholder} required={required} rows={rows} value={value} onChange={onChange}
-      onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} style={inputStyle}></textarea>
-  ) : (
-    <input name={name} type={type} placeholder={placeholder} required={required} value={value} onChange={onChange}
-      onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} className={isEmail ? 'kyk-field-email' : undefined} style={inputStyle} />
-  );
+  const focusBind = { onFocus: () => setFocus(true), onBlur: () => setFocus(false) };
+  let control;
+  if (textarea) {
+    control = (
+      <textarea name={name} placeholder={placeholder} required={required} rows={rows} value={value} onChange={onChange} {...focusBind} style={inputStyle}></textarea>
+    );
+  } else if (select) {
+    control = (
+      <select name={name} required={required} value={value} onChange={onChange} {...focusBind} style={inputStyle}>
+        <option value="">{placeholder || 'SELECT'}</option>
+        {(options || []).map((opt) => (
+          <option key={opt.value || opt} value={opt.value || opt}>{opt.label || opt}</option>
+        ))}
+      </select>
+    );
+  } else {
+    control = (
+      <input name={name} type={type} placeholder={placeholder} required={required} value={value} onChange={onChange} {...focusBind} className={isEmail ? 'kyk-field-email' : undefined} style={inputStyle} />
+    );
+  }
   return (
     <label style={{ display: 'block', border: `var(--line-w-hair) solid ${focus ? 'var(--line-subject)' : 'var(--line-standard)'}`, backgroundColor: 'var(--surface-cell)', ...style }}>
       <span

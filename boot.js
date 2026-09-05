@@ -27,6 +27,7 @@
       window.AboutBom,
       window.TribalS,
       window.SoleMember,
+      window.JoinCast,
     ];
     for (var i = 0; i < need.length; i++) {
       if (!need[i]) {
@@ -49,6 +50,7 @@
         e(window.AboutBom),
         e(window.TribalS),
         e(window.SoleMember),
+        e(window.JoinCast),
         e(window.SiteFooter)
       );
     }

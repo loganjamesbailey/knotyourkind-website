@@ -60,7 +60,7 @@
         "message": "<Dimension> doesn't accept that prop. Declared props: value, width, style."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Field'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|name|type|textarea|placeholder|required|rows|value|onChange|style|key|ref|className|style|children)$/]",
+        "selector": "JSXOpeningElement[name.name='Field'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|name|type|textarea|select|options|placeholder|required|rows|value|onChange|style|key|ref|className|style|children)$/]",
         "message": "<Field> doesn't accept that prop. Declared props: label, name, type, textarea, placeholder, required, rows, value, onChange, style."
       },
       {

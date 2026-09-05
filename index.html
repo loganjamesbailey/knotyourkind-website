@@ -12,7 +12,7 @@
   <meta property="og:image" content="https://weareknotyourkind.com/assets/logotype_graphite.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Baseline CSP: same-origin + self-hosted React + optional Google Fonts until self-hosted -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self'; form-action 'self' https://formsubmit.co https://api.web3forms.com https://formspree.io https://getform.io; frame-ancestors 'none'">
   <title>KNOT YOUR KIND | A Slipknot Experience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +34,7 @@
   <!-- Same-origin React (SRI) — not unpkg. Deferred so HTML/CSS paint first. -->
   <script defer src="/vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
   <script defer src="/vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
+  <script defer src="/form.config.js"></script>
   <script defer src="/_ds_bundle.js"></script>
   <script defer src="/boot.js"></script>
 </body>

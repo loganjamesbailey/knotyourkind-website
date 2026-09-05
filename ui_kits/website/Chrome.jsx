@@ -101,7 +101,8 @@ function SiteNav() {
       <div className={'kyk-nav-links' + (open ? ' kyk-nav-links-open' : '')}>
         <NavLink href="#about" onNavigate={close}>About</NavLink>
         <NavLink href="#tribal-s" onNavigate={close}>Tribal S</NavLink>
-        <NavLink href="#the-one" onNavigate={close}>The One</NavLink>
+        <NavLink href="#the-one" onNavigate={close}>Members</NavLink>
+        <NavLink href="#join" onNavigate={close}>Join</NavLink>
       </div>
     </nav>
   );
@@ -119,8 +120,9 @@ function SiteFooter() {
           scale="NTS"
           sheet="1 OF 9"
         />
-        <p style={{ margin: 0, fontSize: 10, textTransform: 'uppercase', color: 'var(--text-annotation)', paddingBottom: 8 }}>
-          Knot Your Kind — A Slipknot Experience. All rights reserved Knot Your Kind, LLC.
+        <p className="kyk-footer-copy kyk-caps">
+          © 2024 All rights reserved
+          <span className="kyk-footer-brand">Knot Your Kind — A Slipknot Experience</span>
         </p>
       </div>
     </footer>

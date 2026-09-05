@@ -17,8 +17,9 @@ Restyled in place from the existing Knot Your Kind website kit:
 - Radius: **0**. No drop shadow. Logo / wordmark / nonagram are image assets only
 - Tagline: **A Slipknot Experience** — never Tribute, never Kinda
 - Rhythm: black → inverted white slab with diagonal cuts → black
-- UI kit: `ui_kits/website/` (hero sheet, about BOM, Tribal S detail, Part #8 frame assembly)
+- UI kit: `ui_kits/website/` (hero sheet, about BOM, Tribal S detail, Members / Part #8, join/audition)
 - Tokens: `tokens/` · components: `components/` · runtime: `_ds_bundle.js`
+- Audition form: `form.config.js` → FormSubmit.co → `jbaile07@me.com`
 
 ---
 
@@ -43,7 +44,25 @@ Restyled in place from the existing Knot Your Kind website kit:
 ```bash
 python3 -m http.server 8080
 # open http://localhost:8080/
+# footer copyright, #the-one (Members), #join (audition form)
 ```
+
+### 4. Audition form email (required before live delivery)
+The join form is wired to **FormSubmit.co** (`form.config.js`). No API key.
+
+1. Open http://localhost:8080/#join
+2. Submit a small test clip (mp4/mov/webm/mp3/wav/m4a, **max 10 MB**).
+3. FormSubmit emails **jbaile07@me.com** a one-time activation link. James must click it.
+4. After activation, later submissions (name, position, message, file) arrive at that inbox.
+
+Until that confirmation, the form posts but **does not deliver**. That is FormSubmit’s activation step, not a silent success.
+
+To use another relay instead, edit `form.config.js`:
+- **Formspree:** `provider: 'formspree'`, `endpoint: 'https://formspree.io/f/YOUR_FORM_ID'` (file uploads need a paid Formspree plan)
+- **Getform:** `provider: 'getform'`, `endpoint: 'https://getform.io/f/YOUR_FORM_ID'`
+- **Web3Forms:** `provider: 'web3forms'`, `accessKey: 'YOUR_ACCESS_KEY'`
+
+Do not leave those fields blank and assume email works.
 
 ---
 

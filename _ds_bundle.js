@@ -639,6 +639,7 @@ Object.assign(__ds_scope, { Button });
 
 // components/forms/Field.jsx
 try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const React = window.React;
 
 /** Labeled form field styled as a title-block cell. */
@@ -647,6 +648,8 @@ function Field({
   name,
   type = 'text',
   textarea,
+  select,
+  options,
   placeholder,
   required,
   rows = 4,
@@ -669,30 +672,53 @@ function Field({
     textTransform: isEmail ? 'none' : 'uppercase',
     color: 'var(--text-title)',
     padding: '6px var(--cell-pad-x) 10px',
-    resize: 'vertical'
+    resize: 'vertical',
+    appearance: select ? 'none' : undefined,
+    borderRadius: 'var(--radius-none)'
   };
-  const control = textarea ? /*#__PURE__*/React.createElement("textarea", {
-    name: name,
-    placeholder: placeholder,
-    required: required,
-    rows: rows,
-    value: value,
-    onChange: onChange,
+  const focusBind = {
     onFocus: () => setFocus(true),
-    onBlur: () => setFocus(false),
-    style: inputStyle
-  }) : /*#__PURE__*/React.createElement("input", {
-    name: name,
-    type: type,
-    placeholder: placeholder,
-    required: required,
-    value: value,
-    onChange: onChange,
-    onFocus: () => setFocus(true),
-    onBlur: () => setFocus(false),
-    className: isEmail ? 'kyk-field-email' : undefined,
-    style: inputStyle
-  });
+    onBlur: () => setFocus(false)
+  };
+  let control;
+  if (textarea) {
+    control = /*#__PURE__*/React.createElement("textarea", _extends({
+      name: name,
+      placeholder: placeholder,
+      required: required,
+      rows: rows,
+      value: value,
+      onChange: onChange
+    }, focusBind, {
+      style: inputStyle
+    }));
+  } else if (select) {
+    control = /*#__PURE__*/React.createElement("select", _extends({
+      name: name,
+      required: required,
+      value: value,
+      onChange: onChange
+    }, focusBind, {
+      style: inputStyle
+    }), /*#__PURE__*/React.createElement("option", {
+      value: ""
+    }, placeholder || 'SELECT'), (options || []).map(opt => /*#__PURE__*/React.createElement("option", {
+      key: opt.value || opt,
+      value: opt.value || opt
+    }, opt.label || opt)));
+  } else {
+    control = /*#__PURE__*/React.createElement("input", _extends({
+      name: name,
+      type: type,
+      placeholder: placeholder,
+      required: required,
+      value: value,
+      onChange: onChange
+    }, focusBind, {
+      className: isEmail ? 'kyk-field-email' : undefined,
+      style: inputStyle
+    }));
+  }
   return /*#__PURE__*/React.createElement("label", {
     style: {
       display: 'block',
@@ -712,7 +738,6 @@ function Field({
     }
   }, label), control);
 }
-
 Object.assign(__ds_scope, { Field });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Field.jsx", error: String((e && e.message) || e) }); }
 
@@ -854,7 +879,28 @@ function NavToggle({
     viewBox: "0 0 22 16",
     fill: "none",
     "aria-hidden": "true"
-  }, /*#__PURE__*/React.createElement("line", { x1: "0", y1: "1", x2: "22", y2: "1", stroke: "var(--graphite-1)", strokeWidth: "2" }), /*#__PURE__*/React.createElement("line", { x1: "0", y1: "8", x2: "22", y2: "8", stroke: "var(--graphite-1)", strokeWidth: "2" }), /*#__PURE__*/React.createElement("line", { x1: "0", y1: "15", x2: "22", y2: "15", stroke: "var(--graphite-1)", strokeWidth: "2" })));
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: "0",
+    y1: "1",
+    x2: "22",
+    y2: "1",
+    stroke: "var(--graphite-1)",
+    strokeWidth: "2"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "0",
+    y1: "8",
+    x2: "22",
+    y2: "8",
+    stroke: "var(--graphite-1)",
+    strokeWidth: "2"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "0",
+    y1: "15",
+    x2: "22",
+    y2: "15",
+    stroke: "var(--graphite-1)",
+    strokeWidth: "2"
+  })));
 }
 function SiteNav() {
   const [open, setOpen] = React.useState(false);
@@ -917,7 +963,7 @@ function SiteNav() {
     }
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/nav-logotype.png",
-    alt: "Knot Your Kind — A Slipknot Experience",
+    alt: "Knot Your Kind \u2014 A Slipknot Experience",
     width: 1569,
     height: 481,
     decoding: "async",
@@ -946,7 +992,10 @@ function SiteNav() {
   }, "Tribal S"), /*#__PURE__*/React.createElement(NavLink, {
     href: "#the-one",
     onNavigate: close
-  }, "The One")));
+  }, "Members"), /*#__PURE__*/React.createElement(NavLink, {
+    href: "#join",
+    onNavigate: close
+  }, "Join")));
 }
 function SiteFooter() {
   const {
@@ -971,21 +1020,16 @@ function SiteFooter() {
     scale: "NTS",
     sheet: "1 OF 9"
   }), /*#__PURE__*/React.createElement("p", {
-    style: {
-      margin: 0,
-      fontSize: 10,
-      textTransform: 'uppercase',
-      color: 'var(--text-annotation)',
-      paddingBottom: 8
-    }
-  }, "Knot Your Kind \u2014 A Slipknot Experience. All rights reserved Knot Your Kind, LLC.")));
+    className: "kyk-footer-copy kyk-caps"
+  }, "\xA9 2024 All rights reserved", /*#__PURE__*/React.createElement("span", {
+    className: "kyk-footer-brand"
+  }, "Knot Your Kind \u2014 A Slipknot Experience"))));
 }
 Object.assign(window, {
   SiteNav,
   SiteFooter,
   NavLink
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Chrome.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/HeroSheet.jsx
@@ -1286,6 +1330,7 @@ Object.assign(window, {
 
 // ui_kits/website/SoleMember.jsx
 try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const React = window.React;
 
 /* X-ray skeleton overlay — visible adamantium-style frame under mask + suit. */
@@ -1308,29 +1353,26 @@ function EndoskeletonOverlay() {
   for (let k = 0; k < 6; k++) {
     const y = 545 + k * 44;
     const spread = 150 - k * 8;
-    ribs.push(/*#__PURE__*/React.createElement("path", {
+    ribs.push(/*#__PURE__*/React.createElement("path", _extends({
       key: 'l' + k,
-      d: `M 405 ${y} C ${405 - spread * 0.8} ${y - 26}, ${405 - spread} ${y + 4}, ${405 - spread + 18} ${y + 30}`,
-      ...bone
-    }));
-    ribs.push(/*#__PURE__*/React.createElement("path", {
+      d: `M 405 ${y} C ${405 - spread * 0.8} ${y - 26}, ${405 - spread} ${y + 4}, ${405 - spread + 18} ${y + 30}`
+    }, bone)));
+    ribs.push(/*#__PURE__*/React.createElement("path", _extends({
       key: 'r' + k,
-      d: `M 415 ${y - 4} C ${415 + spread * 0.8} ${y - 30}, ${415 + spread} ${y}, ${415 + spread - 18} ${y + 26}`,
-      ...bone
-    }));
+      d: `M 415 ${y - 4} C ${415 + spread * 0.8} ${y - 30}, ${415 + spread} ${y}, ${415 + spread - 18} ${y + 26}`
+    }, bone)));
   }
   const vertebrae = [];
   for (let k = 0; k < 11; k++) {
     const y = 400 + k * 45;
-    vertebrae.push(/*#__PURE__*/React.createElement("rect", {
+    vertebrae.push(/*#__PURE__*/React.createElement("rect", _extends({
       key: 'v' + k,
       x: 396,
       y: y,
       width: 22,
       height: 26,
-      rx: 0,
-      ...fine
-    }));
+      rx: 0
+    }, fine)));
   }
   return /*#__PURE__*/React.createElement("svg", {
     viewBox: "0 0 900 900",
@@ -1341,84 +1383,65 @@ function EndoskeletonOverlay() {
       height: '100%'
     },
     preserveAspectRatio: "xMidYMid meet"
-  }, /*#__PURE__*/React.createElement("ellipse", {
+  }, /*#__PURE__*/React.createElement("ellipse", _extends({
     cx: "365",
     cy: "200",
     rx: "112",
-    ry: "138",
-    ...bone
-  }), /*#__PURE__*/React.createElement("ellipse", {
+    ry: "138"
+  }, bone)), /*#__PURE__*/React.createElement("ellipse", _extends({
     cx: "322",
     cy: "205",
     rx: "26",
-    ry: "20",
-    ...fine
-  }), /*#__PURE__*/React.createElement("ellipse", {
+    ry: "20"
+  }, fine)), /*#__PURE__*/React.createElement("ellipse", _extends({
     cx: "408",
     cy: "205",
     rx: "26",
-    ry: "20",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 358 235 L 372 235 L 365 262 Z",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 305 300 Q 365 330 425 300",
-    ...bone
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 312 312 L 312 296 M 330 320 L 330 302 M 348 326 L 348 306 M 366 328 L 366 308 M 384 326 L 384 306 M 402 320 L 402 302 M 418 312 L 418 296",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 300 268 Q 365 356 430 268",
-    ...bone
-  }), vertebrae, /*#__PURE__*/React.createElement("path", {
-    d: "M 405 470 Q 290 452 172 502",
-    ...bone
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 415 470 Q 530 448 648 486",
-    ...bone
-  }), /*#__PURE__*/React.createElement("circle", {
+    ry: "20"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 358 235 L 372 235 L 365 262 Z"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 305 300 Q 365 330 425 300"
+  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 312 312 L 312 296 M 330 320 L 330 302 M 348 326 L 348 306 M 366 328 L 366 308 M 384 326 L 384 306 M 402 320 L 402 302 M 418 312 L 418 296"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 300 268 Q 365 356 430 268"
+  }, bone)), vertebrae, /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 405 470 Q 290 452 172 502"
+  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 415 470 Q 530 448 648 486"
+  }, bone)), /*#__PURE__*/React.createElement("circle", _extends({
     cx: "168",
     cy: "512",
-    r: "24",
-    ...bone
-  }), /*#__PURE__*/React.createElement("circle", {
+    r: "24"
+  }, bone)), /*#__PURE__*/React.createElement("circle", _extends({
     cx: "652",
     cy: "496",
-    r: "24",
-    ...bone
-  }), /*#__PURE__*/React.createElement("line", {
+    r: "24"
+  }, bone)), /*#__PURE__*/React.createElement("line", _extends({
     x1: "408",
     y1: "500",
     x2: "410",
-    y2: "640",
-    ...bone
-  }), ribs, /*#__PURE__*/React.createElement("path", {
-    d: "M 158 534 C 130 620, 108 700, 88 788",
-    ...bone
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 182 536 C 156 622, 136 702, 118 792",
-    ...fine
-  }), /*#__PURE__*/React.createElement("circle", {
+    y2: "640"
+  }, bone)), ribs, /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 158 534 C 130 620, 108 700, 88 788"
+  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 182 536 C 156 622, 136 702, 118 792"
+  }, fine)), /*#__PURE__*/React.createElement("circle", _extends({
     cx: "100",
     cy: "800",
-    r: "16",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 662 518 C 700 600, 740 680, 782 756",
-    ...bone
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 640 522 C 676 604, 714 684, 756 764",
-    ...fine
-  }), /*#__PURE__*/React.createElement("circle", {
+    r: "16"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 662 518 C 700 600, 740 680, 782 756"
+  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 640 522 C 676 604, 714 684, 756 764"
+  }, fine)), /*#__PURE__*/React.createElement("circle", _extends({
     cx: "772",
     cy: "770",
-    r: "16",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 320 862 Q 408 828 500 858",
-    ...bone
-  }));
+    r: "16"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 320 862 Q 408 828 500 858"
+  }, bone)));
 }
 function SoleMember() {
   const {
@@ -1436,7 +1459,7 @@ function SoleMember() {
       padding: '0 var(--space-5) var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
-    label: "Section View — Internal Structure Shown Hidden",
+    label: "Members \u2014 Section View, Internal Structure Shown Hidden",
     title: "Part #8, Frame Assembly"
   }), /*#__PURE__*/React.createElement("div", {
     className: "kyk-drawing-row",
@@ -1475,12 +1498,12 @@ function SoleMember() {
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/member_8_blueprint.png",
-    alt: "Part #8 — mask and suit over metal endoskeleton, hidden lines",
-    className: "kyk-ink-art",
+    alt: "Part #8 \u2014 mask and suit over metal endoskeleton, hidden lines",
     width: 380,
     height: 380,
     loading: "lazy",
     decoding: "async",
+    className: "kyk-ink-art",
     style: {
       width: '100%',
       height: '100%',
@@ -1542,7 +1565,6 @@ function SoleMember() {
 Object.assign(window, {
   SoleMember
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/SoleMember.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/TribalS.jsx
@@ -1706,6 +1728,267 @@ Object.assign(window, {
 });
 
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/TribalS.jsx", error: String((e && e.message) || e) }); }
+
+
+// ui_kits/website/JoinCast.jsx
+try { (() => {
+const React = window.React;
+const POSITIONS = [{
+  value: 'Drummer',
+  label: 'Drummer'
+}, {
+  value: 'Guitarist',
+  label: 'Guitarist'
+}, {
+  value: 'Bassist',
+  label: 'Bassist'
+}, {
+  value: 'Sampler',
+  label: 'Sampler'
+}];
+const ACCEPT = '.mp4,.mov,.webm,.mp3,.wav,.m4a,video/mp4,video/quicktime,video/webm,audio/mpeg,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a';
+const EXT_OK = /\.(mp4|mov|webm|mp3|wav|m4a)$/i;
+function formAction(cfg) {
+  const provider = cfg && cfg.provider || 'formsubmit';
+  const to = cfg && cfg.to || 'jbaile07@me.com';
+  if (provider === 'formspree' || provider === 'getform') return String(cfg.endpoint || '').trim();
+  if (provider === 'web3forms') return 'https://api.web3forms.com/submit';
+  return 'https://formsubmit.co/' + encodeURIComponent(to);
+}
+function formatBytes(n) {
+  if (n < 1024) return n + ' B';
+  if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+  return (n / (1024 * 1024)).toFixed(1) + ' MB';
+}
+function sentFromUrl() {
+  try {
+    return new URLSearchParams(window.location.search).get('sent') === '1';
+  } catch (e) {
+    return false;
+  }
+}
+function JoinCast() {
+  const {
+    SheetFrame,
+    TitleBlock,
+    NotesList,
+    Stamp,
+    Field,
+    Button
+  } = window.KnotYourKindDesignSystem_e3a90c;
+  const cfg = Object.assign({
+    to: 'jbaile07@me.com',
+    provider: 'formsubmit',
+    endpoint: '',
+    accessKey: '',
+    maxBytes: 10 * 1024 * 1024
+  }, window.KYK_FORM || {});
+  const maxBytes = Number(cfg.maxBytes) > 0 ? Number(cfg.maxBytes) : 10 * 1024 * 1024;
+  const action = formAction(cfg);
+  const provider = (cfg.provider || 'formsubmit').toLowerCase();
+  const configured = provider === 'formsubmit' && !!cfg.to || (provider === 'formspree' || provider === 'getform') && !!String(cfg.endpoint || '').trim() || provider === 'web3forms' && !!String(cfg.accessKey || '').trim();
+  const [fileError, setFileError] = React.useState('');
+  const [fileLabel, setFileLabel] = React.useState('');
+  const [blocked, setBlocked] = React.useState(false);
+  const [sent] = React.useState(sentFromUrl);
+  function onFileChange(e) {
+    const file = e.target.files && e.target.files[0];
+    setFileError('');
+    setBlocked(false);
+    if (!file) {
+      setFileLabel('');
+      return;
+    }
+    setFileLabel(file.name + ' — ' + formatBytes(file.size));
+    if (!EXT_OK.test(file.name)) {
+      setFileError('FILE MUST BE MP4, MOV, WEBM, MP3, WAV, OR M4A.');
+      setBlocked(true);
+      return;
+    }
+    if (file.size > maxBytes) {
+      setFileError('FILE TOO LARGE. MAX ' + formatBytes(maxBytes) + '. COMPRESS THE CLIP AND TRY AGAIN.');
+      setBlocked(true);
+    }
+  }
+  function onSubmit(e) {
+    if (!configured) {
+      e.preventDefault();
+      setFileError('FORM ENDPOINT IS NOT CONFIGURED. SEE FORM.CONFIG.JS.');
+      return;
+    }
+    const fileInput = e.target.querySelector('input[type="file"]');
+    const file = fileInput && fileInput.files && fileInput.files[0];
+    if (!file) {
+      e.preventDefault();
+      setFileError('ATTACH A VIDEO OR AUDIO AUDITION.');
+      setBlocked(true);
+      return;
+    }
+    if (!EXT_OK.test(file.name) || file.size > maxBytes) {
+      e.preventDefault();
+      setBlocked(true);
+      if (!EXT_OK.test(file.name)) setFileError('FILE MUST BE MP4, MOV, WEBM, MP3, WAV, OR M4A.');else setFileError('FILE TOO LARGE. MAX ' + formatBytes(maxBytes) + '.');
+    }
+  }
+  const nextUrl = (typeof window !== 'undefined' ? window.location.origin : '') + '/?sent=1#join';
+  return /*#__PURE__*/React.createElement("section", {
+    id: "join",
+    className: "kyk-slab-black",
+    style: {
+      padding: '0 var(--space-5) var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
+    label: "Casting Call \u2014 Open Requisition",
+    title: "Join The Band"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-join-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps",
+    style: {
+      margin: '0 0 var(--space-3)',
+      fontSize: 'var(--text-label)',
+      color: 'var(--text-title)',
+      lineHeight: 1.45
+    }
+  }, "Knot Your Kind \u2014 A Slipknot Experience is casting. We are currently looking for drummers, guitarists, a bassist, and a sampler."), /*#__PURE__*/React.createElement(NotesList, {
+    className: "kyk-notes",
+    notes: ['POSITIONS OPEN: DRUMMER. GUITARIST. BASSIST. SAMPLER.', 'SUBMIT NAME, POSITION, AND ONE AUDITION CLIP (VIDEO OR AUDIO).', 'MESSAGE IS OPTIONAL. KEEP IT SHORT.', 'MAX FILE ' + formatBytes(maxBytes) + '. MP4 / MOV / WEBM / MP3 / WAV / M4A.']
+  }), /*#__PURE__*/React.createElement(Stamp, {
+    angle: -5,
+    style: {
+      marginTop: 'var(--space-4)'
+    }
+  }, "Now Casting")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, sent ? /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps kyk-form-status",
+    role: "status",
+    style: {
+      margin: 0,
+      color: 'var(--kyk-red)',
+      fontSize: 'var(--text-label)',
+      lineHeight: 1.5
+    }
+  }, "Submission handed to the form relay. If this was the first send, jbaile07@me.com must confirm the activation email before auditions arrive.") : /*#__PURE__*/React.createElement("form", {
+    className: "kyk-audition-form",
+    action: configured ? action : undefined,
+    method: "POST",
+    encType: "multipart/form-data",
+    onSubmit: onSubmit
+  }, provider === 'formsubmit' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_subject",
+    value: "Knot Your Kind audition"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_template",
+    value: "table"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_captcha",
+    value: "false"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_next",
+    value: nextUrl
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    name: "_honey",
+    tabIndex: -1,
+    autoComplete: "off",
+    className: "kyk-honey",
+    "aria-hidden": "true"
+  })), provider === 'web3forms' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "access_key",
+    value: cfg.accessKey || ''
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "subject",
+    value: "Knot Your Kind audition"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "from_name",
+    value: "Knot Your Kind audition"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "redirect",
+    value: nextUrl
+  })), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_gotcha",
+    tabIndex: -1,
+    autoComplete: "off",
+    className: "kyk-honey",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement(Field, {
+    label: "Name",
+    name: "name",
+    placeholder: "YOUR NAME",
+    required: true
+  }), /*#__PURE__*/React.createElement(Field, {
+    label: "Position",
+    name: "position",
+    select: true,
+    required: true,
+    placeholder: "SELECT POSITION",
+    options: POSITIONS
+  }), /*#__PURE__*/React.createElement(Field, {
+    label: "Message (optional)",
+    name: "message",
+    textarea: true,
+    rows: 3,
+    placeholder: "NOTES, CITY, AVAILABILITY"
+  }), /*#__PURE__*/React.createElement("label", {
+    className: "kyk-file-field"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "kyk-file-label"
+  }, "Audition \u2014 video or audio"), /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    name: "attachment",
+    accept: ACCEPT,
+    required: true,
+    onChange: onFileChange
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "kyk-file-meta"
+  }, fileLabel || 'MP4 / MOV / WEBM / MP3 / WAV / M4A · MAX ' + formatBytes(maxBytes))), fileError ? /*#__PURE__*/React.createElement("p", {
+    className: "kyk-form-error kyk-caps",
+    role: "alert"
+  }, fileError) : null, !configured ? /*#__PURE__*/React.createElement("p", {
+    className: "kyk-form-error kyk-caps",
+    role: "alert"
+  }, "Form backend is not configured. Set the provider in form.config.js. Submissions will not send.") : null, /*#__PURE__*/React.createElement(Button, {
+    type: "submit",
+    variant: "bar",
+    disabled: blocked || !configured
+  }, "Submit Audition"), /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps",
+    style: {
+      margin: '12px 0 0',
+      fontSize: 'var(--text-dim)',
+      color: 'var(--text-annotation)',
+      lineHeight: 1.6
+    }
+  }, "Routed to ", cfg.to || 'jbaile07@me.com', " via ", provider.toUpperCase(), ". First FormSubmit send requires inbox confirmation.")), /*#__PURE__*/React.createElement(TitleBlock, {
+    title: "CASTING, OPEN REQ",
+    scale: "NTS",
+    sheet: "5 OF 9",
+    style: {
+      marginTop: 'var(--space-4)',
+      alignSelf: 'flex-end'
+    }
+  })))));
+}
+Object.assign(window, {
+  JoinCast
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/JoinCast.jsx", error: String((e && e.message) || e) }); }
 
 __ds_ns.Callout = __ds_scope.Callout;
 __ds_ns.Dimension = __ds_scope.Dimension;

@@ -48,7 +48,7 @@ function SoleMember() {
   return (
     <section id="the-one" className="kyk-slab-invert" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
       <SheetFrame>
-        <window.SectionTitle label="Section View — Internal Structure Shown Hidden" title="Part #8, Frame Assembly" />
+        <window.SectionTitle label="Members — Section View, Internal Structure Shown Hidden" title="Part #8, Frame Assembly" />
         <div className="kyk-drawing-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-6)', alignItems: 'flex-start' }}>
           <div className="kyk-subject" style={{ flex: '1 1 240px', minWidth: 0, maxWidth: '100%' }}>
             <div className="kyk-drawing-row" style={{ display: 'flex', alignItems: 'stretch', flexWrap: 'wrap', maxWidth: '100%' }}>
