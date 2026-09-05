@@ -1973,9 +1973,9 @@ function JoinCast() {
   }, fileError) : null, !configured ? /*#__PURE__*/React.createElement("p", {
     className: "kyk-form-error kyk-caps",
     role: "alert"
-  }, "Form backend is not configured. Set the provider in form.config.js. Submissions will not send.") : null, /*#__PURE__*/React.createElement(Button, {
+  }, "Form backend is not configured. Set the provider in form.config.js. Submissions will not send.") : null,   /*#__PURE__*/React.createElement(Button, {
     type: "submit",
-    variant: "bar",
+    variant: "default",
     disabled: blocked || !configured
   }, "Submit Audition"), /*#__PURE__*/React.createElement("p", {
     className: "kyk-caps",

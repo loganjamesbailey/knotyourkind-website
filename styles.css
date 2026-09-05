@@ -202,40 +202,54 @@ select {
   min-width: 0;
 }
 
+.kyk-audition-form label,
 .kyk-file-field {
   display: block;
-  border: var(--line-w-hair) solid var(--line-standard);
-  background: var(--surface-cell);
+  background: #FFFFFF !important;
+  border: var(--line-w-hair) solid #FFFFFF !important;
+  border-radius: var(--radius-none);
   padding: var(--cell-pad-y) var(--cell-pad-x) 10px;
 }
 
+.kyk-audition-form label > span,
 .kyk-file-label,
 .kyk-file-meta {
   display: block;
-  font-family: var(--font-drafting);
-  font-weight: var(--font-weight-locked);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-drafting);
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: #000000 !important;
 }
 
-.kyk-file-label {
-  font-size: 10px;
-  color: var(--text-annotation);
-}
-
+.kyk-audition-form input,
+.kyk-audition-form select,
+.kyk-audition-form textarea,
 .kyk-file-field input[type="file"] {
   display: block;
   width: 100%;
-  margin-top: 8px;
-  color: var(--text-title);
-  background: transparent;
+  box-sizing: border-box;
+  margin-top: 4px;
+  padding: 6px 0 4px;
   border: none;
+  outline: none;
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  border-radius: 0 !important;
+}
+
+.kyk-file-field input[type="file"] {
+  margin-top: 8px;
 }
 
 .kyk-file-meta {
   margin-top: 8px;
-  font-size: var(--text-dim);
-  color: var(--text-annotation);
 }
 
 .kyk-form-error {

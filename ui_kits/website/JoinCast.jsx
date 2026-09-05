@@ -176,7 +176,7 @@ function JoinCast() {
                     Form backend is not configured. Set the provider in form.config.js. Submissions will not send.
                   </p>
                 ) : null}
-                <Button type="submit" variant="bar" disabled={blocked || !configured}>Submit Audition</Button>
+                <Button type="submit" variant="default" disabled={blocked || !configured}>Submit Audition</Button>
                 <p className="kyk-caps" style={{ margin: '12px 0 0', fontSize: 'var(--text-dim)', color: 'var(--text-annotation)', lineHeight: 1.6 }}>
                   Routed to {cfg.to || 'jbaile07@me.com'} via {provider.toUpperCase()}. First FormSubmit send requires inbox confirmation.
                 </p>
