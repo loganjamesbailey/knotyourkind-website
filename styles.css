@@ -386,6 +386,18 @@ select {
   filter: none;
 }
 
+/* Crow plate — square still on black. Contain, never cover-zoom the face. */
+#mark.kyk-bleed-mark {
+  min-height: 0;
+  height: min(100vw, 100vh);
+  background: #000;
+}
+
+#mark.kyk-bleed-mark .kyk-bleed-photo-img {
+  object-fit: contain;
+  object-position: center center;
+}
+
 .kyk-bleed-scrim {
   position: absolute;
   inset: 0;
@@ -715,6 +727,11 @@ select {
 
   .kyk-bleed-photo {
     min-height: 56vh;
+  }
+
+  #mark.kyk-bleed-mark {
+    min-height: 0;
+    height: min(100vw, 100vh);
   }
 }
 
