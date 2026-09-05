@@ -431,16 +431,17 @@ function Stamp({
       transform: `rotate(${angle}deg)`,
       border: `${s.border}px solid ${c}`,
       color: c,
-      background: 'rgba(239, 237, 231, 0.72)',
+      background: 'rgba(0, 0, 0, 0.72)',
       padding: s.pad,
       fontFamily: 'var(--font-drafting)',
       fontSize: s.fs,
-      fontWeight: 600,
+      fontWeight: 700,
       letterSpacing: 'var(--tracking-wide)',
       textTransform: 'uppercase',
       whiteSpace: 'nowrap',
       lineHeight: 1.15,
-      boxShadow: '0 2px 0 rgba(44, 43, 40, 0.08)',
+      borderRadius: 'var(--radius-none)',
+      boxShadow: 'none',
       opacity: 1,
       ...style
     }
@@ -580,6 +581,7 @@ function Button({
     onMouseUp: () => setPress(false),
     style: {
       fontFamily: 'var(--font-drafting)',
+      fontWeight: 700,
       fontSize: 'var(--text-label)',
       letterSpacing: 'var(--tracking-wide)',
       textTransform: 'uppercase',
@@ -699,7 +701,7 @@ function SectionTitle({
     style: {
       margin: '4px 0 0',
       fontFamily: 'var(--font-title)',
-      fontWeight: 500,
+      fontWeight: 700,
       fontSize: 'var(--text-title-sm)',
       letterSpacing: '0.08em',
       textTransform: 'uppercase',
@@ -1104,6 +1106,7 @@ function HeroSheet() {
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/logotype_sketch.png",
     alt: "Knot Your Kind — hand-drawn logotype, dimensioned",
+    className: "kyk-ink-art",
     width: 1520,
     height: 420,
     fetchPriority: "high",
@@ -1113,8 +1116,7 @@ function HeroSheet() {
       height: 210,
       objectFit: 'contain',
       display: 'block',
-      position: 'relative',
-      mixBlendMode: 'multiply'
+      position: 'relative'
     }
   })), /*#__PURE__*/React.createElement(VDim, {
     value: "2.85",
@@ -1143,6 +1145,7 @@ function HeroSheet() {
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/slipknot_sketch.png",
     alt: "Slipknot — hand-drawn",
+    className: "kyk-ink-art",
     width: 266,
     height: 116,
     loading: "lazy",
@@ -1153,7 +1156,6 @@ function HeroSheet() {
       maxWidth: '100%',
       display: 'block',
       objectFit: 'contain',
-      mixBlendMode: 'multiply',
       margin: '0 auto'
     }
   }), /*#__PURE__*/React.createElement(Dimension, {
@@ -1176,7 +1178,7 @@ function HeroSheet() {
       color: 'var(--text-annotation)',
       textAlign: 'center'
     }
-  }, "This is not a tribute. This is a resurrection."))), /*#__PURE__*/React.createElement("div", {
+  }, "A Slipknot Experience."))), /*#__PURE__*/React.createElement("div", {
     className: "kyk-hero-meta",
     style: {
       display: 'flex',
@@ -1205,7 +1207,7 @@ function HeroSheet() {
       fontSize: 'var(--text-dim)',
       color: 'var(--text-body)'
     }
-  }, "Graphite on", /*#__PURE__*/React.createElement("br", null), "drafting paper")), /*#__PURE__*/React.createElement(TitleBlock, {
+  }, "Ink on", /*#__PURE__*/React.createElement("br", null), "black")), /*#__PURE__*/React.createElement(TitleBlock, {
     title: "LOGOTYPE, HAND-DRAWN",
     drawnBy: "J. BAILEY",
     drawnByLabel: "Owned by:",
@@ -1411,6 +1413,7 @@ function SoleMember() {
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/member_8_blueprint.png",
     alt: "Part #8 — mask and suit over metal endoskeleton, hidden lines",
+    className: "kyk-ink-art",
     width: 380,
     height: 380,
     loading: "lazy",
@@ -1419,8 +1422,7 @@ function SoleMember() {
       width: '100%',
       height: '100%',
       objectFit: 'contain',
-      display: 'block',
-      mixBlendMode: 'multiply'
+      display: 'block'
     }
   }), /*#__PURE__*/React.createElement(EndoskeletonOverlay, null)), /*#__PURE__*/React.createElement("div", {
     className: "kyk-callouts-side",
@@ -1540,6 +1542,7 @@ function TribalS() {
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/tribal_s_sketch.png",
     alt: "Tribal S — dimensioned fabrication drawing",
+    className: "kyk-ink-art",
     width: 280,
     height: 420,
     loading: "lazy",
@@ -1549,7 +1552,6 @@ function TribalS() {
       maxWidth: '100%',
       width: 'auto',
       display: 'block',
-      mixBlendMode: 'multiply',
       margin: '0 auto'
     }
   }), /*#__PURE__*/React.createElement("div", {

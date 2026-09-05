@@ -70,7 +70,8 @@ function HeroSheet() {
                     height={420}
                     fetchPriority="high"
                     decoding="async"
-                    style={{ width: '100%', height: 210, objectFit: 'contain', display: 'block', position: 'relative', mixBlendMode: 'multiply' }}
+                    className="kyk-ink-art"
+                    style={{ width: '100%', height: 210, objectFit: 'contain', display: 'block', position: 'relative' }}
                   />
                 </div>
                 <VDim value="2.85" height={210} side="right" />
@@ -79,13 +80,13 @@ function HeroSheet() {
               <div className="kyk-lockup" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 18, marginTop: 'var(--space-5)', flexWrap: 'wrap' }}>
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>The</span>
                 <div style={{ maxWidth: '100%' }}>
-                  <img src="/assets/slipknot_sketch.png" alt="Slipknot — hand-drawn" width={266} height={116} loading="lazy" decoding="async" style={{ height: 58, width: 'auto', maxWidth: '100%', display: 'block', objectFit: 'contain', mixBlendMode: 'multiply', margin: '0 auto' }} />
+                  <img src="/assets/slipknot_sketch.png" alt="Slipknot — hand-drawn" className="kyk-ink-art" width={266} height={116} loading="lazy" decoding="async" style={{ height: 58, width: 'auto', maxWidth: '100%', display: 'block', objectFit: 'contain', margin: '0 auto' }} />
                   <Dimension value="2.65" width="100%" style={{ marginTop: 4 }} />
                 </div>
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>Experience</span>
               </div>
               <p className="kyk-caps" style={{ margin: '18px 0 0', fontSize: 'var(--text-dim)', color: 'var(--text-annotation)', textAlign: 'center' }}>
-                This is not a tribute. This is a resurrection.
+                A Slipknot Experience.
               </p>
             </div>
           </div>
@@ -101,7 +102,7 @@ function HeroSheet() {
             />
             <div>
               <p className="kyk-caps" style={{ margin: 0, fontSize: 'var(--text-dim)', textDecoration: 'underline', textUnderlineOffset: '3px', color: 'var(--text-title)' }}>Material:</p>
-              <p className="kyk-caps" style={{ margin: '6px 0 0', fontSize: 'var(--text-dim)', color: 'var(--text-body)' }}>Graphite on<br />drafting paper</p>
+              <p className="kyk-caps" style={{ margin: '6px 0 0', fontSize: 'var(--text-dim)', color: 'var(--text-body)' }}>Ink on<br />black</p>
             </div>
             <TitleBlock title="LOGOTYPE, HAND-DRAWN" drawnBy="J. BAILEY" drawnByLabel="Owned by:" scale="1:1" sheet="1 OF 9" />
           </div>

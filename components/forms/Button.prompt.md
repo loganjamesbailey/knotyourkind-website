@@ -1,4 +1,4 @@
-Drafting button: hairline border, caps; hover inverts to graphite fill.
+Drafting button: hairline border, Anybody 700 caps; hover inverts to white fill. Radius 0.
 
 ```jsx
 <Button onClick={…}>SUBMIT INQUIRY</Button>

@@ -2,16 +2,18 @@
 
 **weareknotyourkind.com**
 
-The Slipknot Experience. Experience the (sic)ness.
+A Slipknot Experience. Experience the (sic)ness.
 
 ---
 
 ## Design system
 
-Implemented from the **Knot Your Kind Design System** (Claude Design):
+Restyled in place from the existing Knot Your Kind website kit:
 
-- Source project: [claude.ai/design](https://claude.ai/design/p/e3a90c83-eae4-4aad-8184-0dfaf21ccb30?file=ui_kits%2Fwebsite%2Findex.html)
-- Visual direction: **The Fabrication Drawing** — graphite on drafting paper, dimensioned sheets, title blocks, inspection stamps
+- Visual direction: **locked brand** — black sheet, white ink, red stamp (`#000` / `#FFF` / `#D2232A`)
+- Type: **Anybody 700** only
+- Radius: **0** on every corner
+- Tagline: **A Slipknot Experience** — never Tribute
 - UI kit: `ui_kits/website/` (hero sheet, about BOM, Tribal S detail, Part #8 frame assembly)
 - Tokens: `tokens/` · components: `components/` · runtime: `_ds_bundle.js`
 
@@ -47,10 +49,10 @@ python3 -m http.server 8080
 - **Social / booking**: `ui_kits/website/Chrome.jsx` (nav Book Us + footer links) — rebuild is reflected in `_ds_bundle.js` for the live site
 - **About BOM copy**: `ui_kits/website/AboutBom.jsx`
 - **Hero / Part #8 / Tribal S**: matching files under `ui_kits/website/`
-- **Assets**: `/assets/` (graphite sketches used by the live site)
+- **Assets**: `/assets/` (sketches invert to white ink on the black sheet)
 - **Shows / booking sections**: removed per ECO-010 / ECO-011 in the design system
 
 ## Tech Stack
 - Static HTML + React 18 (CDN) + design-system bundle
-- Google Fonts (Share Tech Mono, Oswald)
+- Google Fonts (Anybody 700)
 - GitHub Pages hosting · custom domain `weareknotyourkind.com`

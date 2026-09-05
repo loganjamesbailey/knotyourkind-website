@@ -1,5 +1,6 @@
 /* Knot Your Kind — line system. Line-weight discipline is the whole game.
-   Hairlines everywhere; ONE heavier weight reserved for the subject. */
+   Hairlines everywhere; ONE heavier weight reserved for the subject.
+   Radius is locked at 0. All corners and edges to be sharp. */
 :root {
   --line-w-hair: 1px;                 /* dimension lines, borders, leaders */
   --line-w-subject: 2.5px;            /* the subject of the drawing only */

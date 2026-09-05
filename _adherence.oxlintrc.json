@@ -36,8 +36,8 @@
         "message": "Raw px value — use a design-system spacing token via var()."
       },
       {
-        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Share Tech Mono|Oswald))/i]",
-        "message": "Font not provided by the design system. Available: Share Tech Mono, Oswald."
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Anybody))/i]",
+        "message": "Font not provided by the design system. Available: Anybody 700."
       },
       {
         "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|disabled|onClick|type|style|key|ref|className|style|children)$/]",
@@ -152,10 +152,14 @@
       "--focus-ring",
       "--font-drafting",
       "--font-title",
+      "--font-weight-locked",
       "--graphite-1",
       "--graphite-2",
       "--graphite-3",
       "--graphite-4",
+      "--kyk-black",
+      "--kyk-red",
+      "--kyk-white",
       "--leading-note",
       "--line-construction",
       "--line-standard",
@@ -197,6 +201,10 @@
       "--tracking-wide"
     ],
     "tokenKinds": {
+      "--kyk-black": "color",
+      "--kyk-white": "color",
+      "--kyk-red": "color",
+      "--font-weight-locked": "font",
       "--paper-1": "color",
       "--paper-2": "color",
       "--paper-3": "color",
@@ -249,8 +257,7 @@
       "--shadow-sheet": "shadow"
     },
     "fontFamilies": [
-      "Oswald",
-      "Share Tech Mono"
+      "Anybody"
     ]
   }
 }

@@ -1,11 +1,11 @@
-/* Knot Your Kind — type tokens. Two voices only:
-   1. Drafting caps (mono, letterspaced, all caps) — every annotation, dimension,
-      label, and body note.
+/* Knot Your Kind — type tokens. Locked face: Anybody 700 only.
+   1. Anybody 700, all-caps, letterspaced — annotations, chrome, body.
    2. The hand-drawn logotype (image asset) — the artifact being documented.
    Serif and decorative type are out. */
 :root {
-  --font-drafting: 'Share Tech Mono', 'Courier New', monospace;
-  --font-title: 'Oswald', 'Arial Narrow', sans-serif; /* large drawing titles only */
+  --font-drafting: 'Anybody', 'Arial Narrow', sans-serif;
+  --font-title: 'Anybody', 'Arial Narrow', sans-serif;
+  --font-weight-locked: 700;
 
   /* Sizes (px) */
   --text-dim: 12px;          /* dimensions, tolerances */
@@ -26,13 +26,15 @@
 body {
   font-family: var(--font-drafting);
   font-size: var(--text-note);
+  font-weight: var(--font-weight-locked);
   color: var(--text-body);
   letter-spacing: var(--tracking-drafting);
 }
 
-/* Drafting text is uppercase by rule. */
-.kyk-caps { text-transform: uppercase; letter-spacing: var(--tracking-drafting); }
-.kyk-caps-wide { text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+/* Locked type is uppercase by rule. */
+.kyk-caps { text-transform: uppercase; letter-spacing: var(--tracking-drafting); font-weight: var(--font-weight-locked); }
+.kyk-caps-wide { text-transform: uppercase; letter-spacing: var(--tracking-wide); font-weight: var(--font-weight-locked); }
 
 a { color: var(--text-body); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-a:hover { color: var(--text-title); }
+a:hover { color: var(--stamp-red); }
+a:focus-visible { outline: 1px solid var(--focus-ring); outline-offset: 3px; }

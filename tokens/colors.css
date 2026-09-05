@@ -1,20 +1,35 @@
-/* Knot Your Kind — color tokens. "The Fabrication Drawing."
-   Graphite on warm drafting paper. No blueprint blue, no white-on-black. */
+/* Knot Your Kind — locked brand color tokens.
+   Knot Your Kind — A Slipknot Experience.
+   Map: paper → black grounds, graphite → white ink, stamp → #D2232A.
+   Never use "Tribute" in product copy. */
 :root {
-  /* Base — paper */
-  --paper-1: #efede7;        /* primary sheet */
-  --paper-2: #e7e4dc;        /* desk / behind-sheet */
-  --paper-3: #f4f2ee;        /* raised field (title block cells) */
+  /* Locked primaries */
+  --kyk-black: #000000;
+  --kyk-white: #FFFFFF;
+  --kyk-red: #D2232A;
 
-  /* Base — graphite */
-  --graphite-1: #2c2b28;     /* heavy line, subject of the drawing */
-  --graphite-2: #45433f;     /* standard linework + text */
-  --graphite-3: #77746d;     /* light annotations, secondary text */
-  --graphite-4: #a8a49b;     /* construction lines, faint grid */
+  /* Locked supporting scale */
+  --kyk-black-rich: #0A0A0A;
+  --kyk-black-card: #111111;
+  --kyk-gray-dark: #1A1A1A;
+  --kyk-gray-mid: #2A2A2A;
+  --kyk-gray-muted: #999999;
+  --kyk-off-white: #E8E8E8;
 
-  /* Accent — inspection stamp only. Never for UI chrome. */
-  --stamp-red: #b83328;
-  --stamp-red-faded: rgba(184, 51, 40, 0.92);
+  /* Mapped — grounds (was warm paper) */
+  --paper-1: var(--kyk-black);       /* primary sheet */
+  --paper-2: var(--kyk-black-rich);  /* page / behind-sheet */
+  --paper-3: var(--kyk-black-card);  /* raised field (title block cells) */
+
+  /* Mapped — ink (was graphite) */
+  --graphite-1: var(--kyk-white);      /* heavy line, subject */
+  --graphite-2: var(--kyk-off-white);  /* standard linework + text */
+  --graphite-3: var(--kyk-gray-muted); /* annotations, secondary text */
+  --graphite-4: var(--kyk-gray-mid);   /* construction lines, faint grid */
+
+  /* Accent — brand red. Stamps, focus, hover. */
+  --stamp-red: var(--kyk-red);
+  --stamp-red-faded: rgba(210, 35, 42, 0.92);
 
   /* Semantic aliases */
   --surface-page: var(--paper-2);
@@ -26,5 +41,5 @@
   --line-subject: var(--graphite-1);
   --line-standard: var(--graphite-2);
   --line-construction: var(--graphite-4);
-  --focus-ring: var(--graphite-2);
+  --focus-ring: var(--stamp-red);
 }

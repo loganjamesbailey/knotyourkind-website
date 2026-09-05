@@ -17,6 +17,7 @@ export function Button({ children, variant = 'default', disabled, onClick, type 
       onMouseUp={() => setPress(false)}
       style={{
         fontFamily: 'var(--font-drafting)',
+        fontWeight: 700,
         fontSize: 'var(--text-label)',
         letterSpacing: 'var(--tracking-wide)',
         textTransform: 'uppercase',

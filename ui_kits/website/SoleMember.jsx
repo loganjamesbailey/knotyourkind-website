@@ -61,7 +61,8 @@ function SoleMember() {
                   height={380}
                   loading="lazy"
                   decoding="async"
-                  style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', mixBlendMode: 'multiply' }}
+                  className="kyk-ink-art"
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
                 />
                 <EndoskeletonOverlay />
               </div>

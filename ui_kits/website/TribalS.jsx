@@ -20,7 +20,8 @@ function TribalS() {
                 height={420}
                 loading="lazy"
                 decoding="async"
-                style={{ height: 420, maxWidth: '100%', width: 'auto', display: 'block', mixBlendMode: 'multiply', margin: '0 auto' }}
+                className="kyk-ink-art"
+                style={{ height: 420, maxWidth: '100%', width: 'auto', display: 'block', margin: '0 auto' }}
               />
               <div className="kyk-callouts-side" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '30px 0 40px', marginLeft: -6 }}>
                 <Callout label="R.625" lineLength={44} />

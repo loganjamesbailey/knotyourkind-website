@@ -6,7 +6,10 @@
 @import './tokens/surfaces.css';
 
 /* —— Global layout safety —— */
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-radius: 0;
+}
 
 html {
   scroll-behavior: smooth;
@@ -24,8 +27,10 @@ body {
   min-height: 100vh;
   max-width: 100%;
   overflow-x: clip;
-  font-family: var(--font-drafting), ui-monospace, monospace;
+  font-family: var(--font-drafting), 'Arial Narrow', sans-serif;
+  font-weight: var(--font-weight-locked);
   color: var(--text-body);
+  background-color: var(--surface-page);
 }
 
 #root {
@@ -88,7 +93,24 @@ table {
   flex: none;
   background: var(--surface-sheet);
   border: var(--line-w-hair) solid var(--line-standard);
+  border-radius: var(--radius-none);
   cursor: pointer;
+}
+
+.kyk-nav-brand img,
+.kyk-hero-art img,
+.kyk-subject img,
+.kyk-subject-figure img {
+  filter: invert(1);
+}
+
+button,
+input,
+textarea,
+select {
+  border-radius: var(--radius-none);
+  font-family: inherit;
+  font-weight: var(--font-weight-locked);
 }
 
 /* —— Tablet & phone (portrait) —— */

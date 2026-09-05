@@ -4,7 +4,7 @@ function SectionTitle({ label, title }) {
   return (
     <header className="kyk-section-title" style={{ marginBottom: 'var(--space-4)' }}>
       <p className="kyk-caps" style={{ margin: 0, fontSize: 'var(--text-dim)', color: 'var(--text-annotation)' }}>{label}</p>
-      <h2 style={{ margin: '4px 0 0', fontFamily: 'var(--font-title)', fontWeight: 500, fontSize: 'var(--text-title-sm)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-title)' }}>{title}</h2>
+      <h2 style={{ margin: '4px 0 0', fontFamily: 'var(--font-title)', fontWeight: 700, fontSize: 'var(--text-title-sm)', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-title)' }}>{title}</h2>
     </header>
   );
 }
