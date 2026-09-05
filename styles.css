@@ -41,11 +41,19 @@ body {
 }
 
 .kyk-site {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   width: 100%;
   overflow-x: visible;
   min-width: 0;
+}
+
+.kyk-slab-black,
+.kyk-slab-charcoal,
+.kyk-site > footer {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
@@ -276,11 +284,11 @@ select {
 /* Opening hero — 2172×724 ultrawide bumper, contained so wordmark + glow never crop */
 .kyk-hero-bumper {
   position: relative;
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  padding: 6vh 0;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 7vh 4vw;
   background: #000;
   overflow: hidden;
 }
@@ -325,10 +333,10 @@ select {
 /* Promo reel — 1:1, no frame, vignette into the black field */
 .kyk-reel {
   position: relative;
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
   padding: var(--space-6) 0;
   background: #000;
   overflow: hidden;
@@ -360,8 +368,10 @@ select {
 
 .kyk-bleed-photo {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
   min-height: min(72vh, 720px);
   overflow: hidden;
   background: var(--kyk-black);
@@ -427,7 +437,10 @@ select {
   }
 
   #home,
-  #home.kyk-hero-bumper,
+  #home.kyk-hero-bumper {
+    padding: 6vh 4vw !important;
+  }
+
   #mark,
   #mark.kyk-bleed-photo,
   #territory,
@@ -689,7 +702,10 @@ select {
   }
 
   .kyk-hero-bumper {
-    padding: 4vh 0;
+    min-height: 28vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .kyk-bleed-copy {
