@@ -120,10 +120,7 @@ function SiteFooter() {
           scale="NTS"
           sheet="1 OF 9"
         />
-        <p className="kyk-footer-copy kyk-caps">
-          © 2024 All rights reserved
-          <span className="kyk-footer-brand">Knot Your Kind — A Slipknot Experience</span>
-        </p>
+        <p className="kyk-footer-copy kyk-caps">© 2024 KNOT YOUR KIND, LLC. ALL RIGHTS RESERVED.</p>
       </div>
     </footer>
   );

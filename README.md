@@ -17,7 +17,8 @@ Restyled in place from the existing Knot Your Kind website kit:
 - Radius: **0**. No drop shadow. Logo / wordmark / nonagram are image assets only
 - Tagline: **A Slipknot Experience** — never Tribute, never Kinda
 - Rhythm: black → inverted white slab with diagonal cuts → black
-- UI kit: `ui_kits/website/` (hero sheet, about BOM, Tribal S detail, Members / Part #8, join/audition)
+- UI kit: `ui_kits/website/` — one James media hit per section (plate / bumper / promo / Iowa bleed)
+- Stills: `assets/james-site/` · motion: `media/`
 - Tokens: `tokens/` · components: `components/` · runtime: `_ds_bundle.js`
 - Audition form: `form.config.js` → FormSubmit.co → `jbaile07@me.com`
 

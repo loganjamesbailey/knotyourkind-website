@@ -1021,9 +1021,7 @@ function SiteFooter() {
     sheet: "1 OF 9"
   }), /*#__PURE__*/React.createElement("p", {
     className: "kyk-footer-copy kyk-caps"
-  }, "\xA9 2024 All rights reserved", /*#__PURE__*/React.createElement("span", {
-    className: "kyk-footer-brand"
-  }, "Knot Your Kind \u2014 A Slipknot Experience"))));
+  }, "\xA9 2024 KNOT YOUR KIND, LLC. ALL RIGHTS RESERVED.")));
 }
 Object.assign(window, {
   SiteNav,
@@ -1584,7 +1582,20 @@ function TribalS() {
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
-  }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-tribal-rail",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("video", {
+    className: "kyk-tribal-video",
+    muted: true,
+    autoPlay: true,
+    loop: true,
+    playsInline: true,
+    preload: "metadata"
+  }, /*#__PURE__*/React.createElement("source", {
+    src: "/media/kyk-logo-bumper-neon-glitch-ultrawide.mp4",
+    type: "video/mp4"
+  }))), /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
     label: "Detail Drawing",
     title: "Tribal S Logo"
   }), /*#__PURE__*/React.createElement("div", {
@@ -1627,12 +1638,12 @@ function TribalS() {
     height: 420
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/tribal_s_sketch.png",
-    alt: "Tribal S — dimensioned fabrication drawing",
-    className: "kyk-ink-art",
+    alt: "Tribal S \u2014 dimensioned fabrication drawing",
     width: 280,
     height: 420,
     loading: "lazy",
     decoding: "async",
+    className: "kyk-ink-art",
     style: {
       height: 420,
       maxWidth: '100%',
@@ -1671,7 +1682,7 @@ function TribalS() {
       fontSize: 'var(--text-dim)',
       color: 'var(--text-body)'
     }
-  }, "15° TYP. · .125 THICKNESS")), /*#__PURE__*/React.createElement("div", {
+  }, "15\xB0 TYP. \xB7 .125 THICKNESS")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       flexDirection: 'column',
@@ -1703,15 +1714,15 @@ function TribalS() {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".X"), /*#__PURE__*/React.createElement("td", null, "= ±.1")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+  }, ".X"), /*#__PURE__*/React.createElement("td", null, "= \xB1.1")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".XX"), /*#__PURE__*/React.createElement("td", null, "= ±.01")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+  }, ".XX"), /*#__PURE__*/React.createElement("td", null, "= \xB1.01")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".XXX"), /*#__PURE__*/React.createElement("td", null, "= ±.005"))))), /*#__PURE__*/React.createElement(TitleBlock, {
+  }, ".XXX"), /*#__PURE__*/React.createElement("td", null, "= \xB1.005"))))), /*#__PURE__*/React.createElement(TitleBlock, {
     title: "TRIBAL S LOGO",
     drawnBy: "PROPERTY OF SLIPKNOT",
     date: "UNDETERMINED",
@@ -1726,7 +1737,6 @@ function TribalS() {
 Object.assign(window, {
   TribalS
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/TribalS.jsx", error: String((e && e.message) || e) }); }
 
 
@@ -1989,6 +1999,109 @@ Object.assign(window, {
   JoinCast
 });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/JoinCast.jsx", error: String((e && e.message) || e) }); }
+
+
+// ui_kits/website/MarkPlate.jsx
+try { (() => {
+const React = window.React;
+
+/** Single statement plate. Wordmark is already in the art — do not overlay another. */
+function MarkPlate() {
+  return /*#__PURE__*/React.createElement("section", {
+    id: "mark",
+    className: "kyk-slab-black",
+    style: {
+      padding: '0 var(--space-5) var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement("figure", {
+    className: "kyk-statement-plate"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps kyk-media-label"
+  }, "Plate \u2014 Crow / Bars"), /*#__PURE__*/React.createElement("img", {
+    src: "/assets/james-site/crow-red-eyes-bars.jpg",
+    alt: "Knot Your Kind \u2014 A Slipknot Experience",
+    width: 1600,
+    height: 1600,
+    loading: "lazy",
+    decoding: "async"
+  })));
+}
+Object.assign(window, {
+  MarkPlate
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/MarkPlate.jsx", error: String((e && e.message) || e) }); }
+
+
+// ui_kits/website/PromoReel.jsx
+try { (() => {
+const React = window.React;
+
+/** Contained 1:1 promo. One motion hit — not a hero wallpaper. */
+function PromoReel() {
+  return /*#__PURE__*/React.createElement("section", {
+    id: "reel",
+    className: "kyk-slab-black",
+    style: {
+      padding: '0 var(--space-5) var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-promo-frame"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps kyk-media-label"
+  }, "Reel \u2014 30s"), /*#__PURE__*/React.createElement("video", {
+    className: "kyk-promo-video",
+    muted: true,
+    autoPlay: true,
+    loop: true,
+    playsInline: true,
+    preload: "metadata",
+    "aria-label": "Knot Your Kind promo"
+  }, /*#__PURE__*/React.createElement("source", {
+    src: "/media/kyk-promo-clip-2026-09-05.mp4",
+    type: "video/mp4"
+  }))));
+}
+Object.assign(window, {
+  PromoReel
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/PromoReel.jsx", error: String((e && e.message) || e) }); }
+
+
+// ui_kits/website/Territory.jsx
+try { (() => {
+const React = window.React;
+
+/** Full-bleed Iowa still. Type sits on a heavy black scrim — no second wordmark. */
+function Territory() {
+  return /*#__PURE__*/React.createElement("section", {
+    id: "territory",
+    className: "kyk-bleed-photo",
+    "aria-label": "Iowa field"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "kyk-bleed-photo-img",
+    src: "/assets/james-site/iowa-winter-farm-silos.jpg",
+    alt: "",
+    width: 2000,
+    height: 1333,
+    loading: "lazy",
+    decoding: "async"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-bleed-scrim",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-bleed-copy"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps kyk-media-label"
+  }, "Field note \u2014 Iowa"), /*#__PURE__*/React.createElement("h2", {
+    className: "kyk-h1"
+  }, "Built on this ground."), /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps-wide kyk-bleed-tag"
+  }, "A Slipknot Experience")));
+}
+Object.assign(window, {
+  Territory
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Territory.jsx", error: String((e && e.message) || e) }); }
 
 __ds_ns.Callout = __ds_scope.Callout;
 __ds_ns.Dimension = __ds_scope.Dimension;

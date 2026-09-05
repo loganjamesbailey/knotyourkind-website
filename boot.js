@@ -28,6 +28,9 @@
       window.TribalS,
       window.SoleMember,
       window.JoinCast,
+      window.MarkPlate,
+      window.PromoReel,
+      window.Territory,
     ];
     for (var i = 0; i < need.length; i++) {
       if (!need[i]) {
@@ -48,8 +51,11 @@
         e(window.SiteNav),
         e(window.HeroSheet),
         e(window.AboutBom),
+        e(window.MarkPlate),
         e(window.TribalS),
         e(window.SoleMember),
+        e(window.PromoReel),
+        e(window.Territory),
         e(window.JoinCast),
         e(window.SiteFooter)
       );
