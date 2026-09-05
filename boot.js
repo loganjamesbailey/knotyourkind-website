@@ -5,7 +5,7 @@
     root.textContent = '';
     var main = document.createElement('main');
     main.style.cssText =
-      'max-width:40rem;margin:3rem auto;padding:1.5rem;font-family:monospace;text-transform:uppercase;color:#2c2b28;';
+      'max-width:40rem;margin:3rem auto;padding:1.5rem;font-family:Anybody,Arial Narrow,sans-serif;font-weight:700;text-transform:uppercase;color:#FFFFFF;background:#000000;';
     var h1 = document.createElement('h1');
     h1.textContent = 'Knot Your Kind';
     var p = document.createElement('p');
@@ -23,10 +23,15 @@
       ds,
       window.SiteNav,
       window.SiteFooter,
+      window.HeroBumper,
       window.HeroSheet,
       window.AboutBom,
       window.TribalS,
       window.SoleMember,
+      window.JoinCast,
+      window.MarkPlate,
+      window.PromoReel,
+      window.Territory,
     ];
     for (var i = 0; i < need.length; i++) {
       if (!need[i]) {
@@ -45,10 +50,15 @@
         'div',
         { className: 'kyk-site' },
         e(window.SiteNav),
-        e(window.HeroSheet),
+        e(window.HeroBumper),
         e(window.AboutBom),
+        e(window.HeroSheet),
+        e(window.MarkPlate),
         e(window.TribalS),
         e(window.SoleMember),
+        e(window.PromoReel),
+        e(window.Territory),
+        e(window.JoinCast),
         e(window.SiteFooter)
       );
     }

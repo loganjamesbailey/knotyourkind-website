@@ -1,30 +1,55 @@
-/* Knot Your Kind — color tokens. "The Fabrication Drawing."
-   Graphite on warm drafting paper. No blueprint blue, no white-on-black. */
+/* Knot Your Kind — locked brand color tokens.
+   Official name: Knot Your Kind — A Slipknot Experience.
+   Never "A Tribute to Slipknot". Never brand as "Kinda".
+   Never Gutenberg orange, Blanky #F8AB43, or rainbow fills. */
 :root {
-  /* Base — paper */
-  --paper-1: #efede7;        /* primary sheet */
-  --paper-2: #e7e4dc;        /* desk / behind-sheet */
-  --paper-3: #f4f2ee;        /* raised field (title block cells) */
+  /* Locked primaries */
+  --kyk-black: #000000;
+  --kyk-white: #FFFFFF;
+  --kyk-red: #D2232A;
+  --kyk-deep-red: #8E1D21;
+  --kyk-pure-red: #FF0000;
 
-  /* Base — graphite */
-  --graphite-1: #2c2b28;     /* heavy line, subject of the drawing */
-  --graphite-2: #45433f;     /* standard linework + text */
-  --graphite-3: #77746d;     /* light annotations, secondary text */
-  --graphite-4: #a8a49b;     /* construction lines, faint grid */
+  /* Locked interaction reds */
+  --kyk-readmore-hover: #A50000;
+  --kyk-nav-hover: #FF3900;
+  --kyk-nav-active: #F00000;
 
-  /* Accent — inspection stamp only. Never for UI chrome. */
-  --stamp-red: #b83328;
-  --stamp-red-faded: rgba(184, 51, 40, 0.92);
+  /* Locked surfaces */
+  --kyk-dropdown: #1B1B1B;
+  --kyk-popup: #2A2A2A;
+  --kyk-chip: #333333;
+
+  /* Mapped — grounds (was warm paper) */
+  --paper-1: var(--kyk-black);
+  --paper-2: var(--kyk-black);
+  --paper-3: var(--kyk-popup);
+
+  /* Mapped — ink (was graphite) */
+  --graphite-1: var(--kyk-white);
+  --graphite-2: var(--kyk-white);
+  --graphite-3: #999999;
+  --graphite-4: var(--kyk-chip);
+
+  /* Accent — brand red. Stamps, focus. Interaction reds above. */
+  --stamp-red: var(--kyk-red);
+  --stamp-red-faded: rgba(210, 35, 42, 0.92);
 
   /* Semantic aliases */
-  --surface-page: var(--paper-2);
+  --surface-page: var(--kyk-black);
   --surface-sheet: var(--paper-1);
   --surface-cell: var(--paper-3);
+  --surface-dropdown: var(--kyk-dropdown);
+  --surface-popup: var(--kyk-popup);
+  --surface-chip: var(--kyk-chip);
   --text-title: var(--graphite-1);
   --text-body: var(--graphite-2);
   --text-annotation: var(--graphite-3);
   --line-subject: var(--graphite-1);
   --line-standard: var(--graphite-2);
   --line-construction: var(--graphite-4);
-  --focus-ring: var(--graphite-2);
+  --focus-ring: var(--kyk-red);
+  --color-readmore-hover: var(--kyk-readmore-hover);
+  --color-nav-hover: var(--kyk-nav-hover);
+  --color-nav-active: var(--kyk-nav-active);
 }

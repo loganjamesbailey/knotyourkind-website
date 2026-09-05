@@ -3,38 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Knot Your Kind — The Slipknot Experience. This is not a tribute. This is a resurrection. Experience the (sic)ness.">
-  <meta name="theme-color" content="#e7e4dc">
-  <meta property="og:title" content="KNOT YOUR KIND | The Slipknot Experience">
-  <meta property="og:description" content="This is not a tribute. This is a resurrection. Experience the (sic)ness.">
+  <meta name="description" content="Knot Your Kind — A Slipknot Experience. Experience the (sic)ness.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="KNOT YOUR KIND | A Slipknot Experience">
+  <meta property="og:description" content="Knot Your Kind — A Slipknot Experience. Experience the (sic)ness.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://weareknotyourkind.com/">
   <meta property="og:image" content="https://weareknotyourkind.com/assets/logotype_graphite.png">
   <meta name="twitter:card" content="summary_large_image">
   <!-- Baseline CSP: same-origin + self-hosted React + optional Google Fonts until self-hosted -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self'; form-action 'self'; frame-ancestors 'none'">
-  <title>KNOT YOUR KIND | The Slipknot Experience</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action 'self' https://formsubmit.co https://api.web3forms.com https://formspree.io https://getform.io; frame-ancestors 'none'">
+  <title>KNOT YOUR KIND | A Slipknot Experience</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oswald:wght@500&display=swap">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wght@700&display=swap">
+  <link rel="stylesheet" href="/styles.css?v=474e1a8">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/kyk_nonagram_transparent.png">
+  <link rel="apple-touch-icon" href="/assets/favicon.svg">
 </head>
 <body>
   <div id="root">
     <noscript>
-      <main style="max-width:40rem;margin:2rem auto;padding:1rem;font-family:monospace;text-transform:uppercase;">
-        <h1>Knot Your Kind</h1>
-        <p>The Slipknot Experience.</p>
-        <p>This is not a tribute. This is a resurrection. Experience the (sic)ness.</p>
+      <main style="max-width:40rem;margin:2rem auto;padding:1rem;font-family:'Anybody',sans-serif;font-weight:700;text-transform:uppercase;">
+        <h1 style="line-height:1">Knot Your Kind</h1>
+        <p>A Slipknot Experience.</p>
+        <p>Experience the (sic)ness.</p>
       </main>
     </noscript>
   </div>
   <!-- Same-origin React (SRI) — not unpkg. Deferred so HTML/CSS paint first. -->
   <script defer src="/vendor/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
   <script defer src="/vendor/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
-  <script defer src="/_ds_bundle.js"></script>
-  <script defer src="/boot.js"></script>
+  <script defer src="/form.config.js"></script>
+  <script defer src="/_ds_bundle.js?v=474e1a8"></script>
+  <script defer src="/boot.js?v=474e1a8"></script>
 </body>
 </html>

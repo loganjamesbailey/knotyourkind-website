@@ -6,7 +6,10 @@
 @import './tokens/surfaces.css';
 
 /* —— Global layout safety —— */
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-radius: 0;
+}
 
 html {
   scroll-behavior: smooth;
@@ -24,8 +27,10 @@ body {
   min-height: 100vh;
   max-width: 100%;
   overflow-x: clip;
-  font-family: var(--font-drafting), ui-monospace, monospace;
+  font-family: var(--font-drafting), 'Arial Narrow', sans-serif;
+  font-weight: var(--font-weight-locked);
   color: var(--text-body);
+  background-color: var(--surface-page);
 }
 
 #root {
@@ -36,11 +41,19 @@ body {
 }
 
 .kyk-site {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   width: 100%;
-  overflow-x: clip;
+  overflow-x: visible;
   min-width: 0;
+}
+
+.kyk-slab-black,
+.kyk-slab-charcoal,
+.kyk-site > footer {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
@@ -78,6 +91,64 @@ table {
   gap: var(--space-4);
 }
 
+.kyk-nav-link {
+  font-size: var(--text-dim);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-body);
+  white-space: nowrap;
+  transition: color var(--motion-hover) ease;
+}
+
+.kyk-nav-link:hover {
+  color: var(--color-nav-hover);
+}
+
+.kyk-nav-link:active,
+.kyk-nav-link.is-active {
+  color: var(--color-nav-active);
+}
+
+.kyk-btn {
+  transition: color var(--motion-hover) ease, background-color var(--motion-hover) ease, border-color var(--motion-hover) ease;
+}
+
+.kyk-chip {
+  display: inline-block;
+  background: var(--surface-chip);
+  color: var(--kyk-white);
+  border-radius: var(--radius-none);
+  padding: 4px 10px;
+  text-transform: uppercase;
+}
+
+.kyk-hero-watermark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  overflow: hidden;
+}
+
+.kyk-hero-watermark img {
+  position: absolute;
+  width: min(42%, 320px);
+  height: auto;
+  object-fit: contain;
+}
+
+.kyk-hero-watermark .kyk-hero-mark-s {
+  right: 0;
+  top: 8%;
+}
+
+.kyk-hero-watermark .kyk-hero-mark-star {
+  left: 2%;
+  bottom: 6%;
+  width: min(28%, 180px);
+}
+
 .kyk-nav-toggle {
   display: none;
   align-items: center;
@@ -88,7 +159,312 @@ table {
   flex: none;
   background: var(--surface-sheet);
   border: var(--line-w-hair) solid var(--line-standard);
+  border-radius: var(--radius-none);
   cursor: pointer;
+}
+
+.kyk-nav-brand img:not(.kyk-nonagram),
+.kyk-hero-art img,
+.kyk-subject img,
+.kyk-subject-figure img {
+  filter: invert(1);
+}
+
+.kyk-nav-brand .kyk-nonagram,
+.kyk-hero-mark-star {
+  filter: none;
+}
+
+button,
+input,
+textarea,
+select {
+  border-radius: var(--radius-none);
+  font-family: inherit;
+  font-weight: var(--font-weight-locked);
+}
+
+.kyk-footer-copy {
+  margin: 0;
+  padding-bottom: 8px;
+  max-width: 22rem;
+  font-size: 10px;
+  font-weight: var(--font-weight-locked);
+  line-height: 1.45;
+  color: var(--kyk-white);
+  text-align: right;
+  letter-spacing: var(--tracking-drafting);
+}
+
+.kyk-join-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.kyk-audition-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.kyk-audition-form label,
+.kyk-file-field {
+  display: block;
+  background: #FFFFFF !important;
+  border: var(--line-w-hair) solid #FFFFFF !important;
+  border-radius: var(--radius-none);
+  padding: var(--cell-pad-y) var(--cell-pad-x) 10px;
+}
+
+.kyk-audition-form label > span,
+.kyk-file-label,
+.kyk-file-meta {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: #000000 !important;
+}
+
+.kyk-audition-form input,
+.kyk-audition-form select,
+.kyk-audition-form textarea,
+.kyk-file-field input[type="file"] {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 4px;
+  padding: 6px 0 4px;
+  border: none;
+  outline: none;
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  border-radius: 0 !important;
+}
+
+.kyk-file-field input[type="file"] {
+  margin-top: 8px;
+}
+
+.kyk-file-meta {
+  margin-top: 8px;
+}
+
+.kyk-form-error {
+  margin: 0;
+  color: var(--kyk-red);
+  font-size: var(--text-dim);
+  line-height: 1.5;
+}
+
+.kyk-honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.kyk-media-label {
+  margin: 0 0 10px;
+  font-size: 10px;
+  color: var(--text-annotation);
+}
+
+/* Opening hero — 2172×724 ultrawide bumper, contained so wordmark + glow never crop */
+.kyk-hero-bumper {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 7vh 4vw;
+  background: #000;
+  overflow: hidden;
+}
+
+.kyk-hero-bumper-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2172 / 724;
+  object-fit: contain;
+  object-position: center center;
+  background: #000;
+}
+
+.kyk-media-fade {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #000 0%,
+    rgba(0, 0, 0, 0) 14%,
+    rgba(0, 0, 0, 0) 86%,
+    #000 100%
+  );
+}
+
+.kyk-statement-plate {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 0;
+}
+
+.kyk-statement-plate img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+  border-radius: var(--radius-none);
+}
+
+/* Promo reel — 1:1, no frame, vignette into the black field */
+.kyk-reel {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding: var(--space-6) 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.kyk-promo-video {
+  display: block;
+  width: min(100%, 720px);
+  height: auto;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #000;
+  border: none;
+  border-radius: 0;
+}
+
+.kyk-reel-vignette {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0) 38%,
+    rgba(0, 0, 0, 0.5) 72%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+
+.kyk-bleed-photo {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  min-height: min(72vh, 720px);
+  overflow: hidden;
+  background: var(--kyk-black);
+}
+
+.kyk-bleed-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none;
+}
+
+/* Crow plate — intrinsic 1:1 still, full width, no cover box, no sheet frame. */
+#mark.kyk-mark-plate {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: visible;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#mark.kyk-mark-plate,
+#mark.kyk-mark-plate * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#mark.kyk-mark-plate .kyk-sheet-frame,
+#mark.kyk-mark-plate .kyk-paper {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.kyk-mark-plate-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  object-position: center center;
+  background: #000;
+  filter: none;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.kyk-bleed-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.kyk-bleed-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: min(72vh, 720px);
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-5);
+}
+
+.kyk-bleed-copy .kyk-h1 {
+  max-width: 16ch;
+  color: var(--kyk-white);
+}
+
+.kyk-bleed-tag {
+  margin: 12px 0 0;
+  font-size: var(--text-label);
+  color: var(--kyk-red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kyk-hero-bumper-video,
+  .kyk-promo-video {
+    display: none;
+  }
 }
 
 /* —— Tablet & phone (portrait) —— */
@@ -105,8 +481,19 @@ table {
     padding-right: 10px !important;
   }
 
-  #home {
-    padding: 10px !important;
+  #home,
+  #home.kyk-hero-bumper {
+    padding: 6vh 4vw !important;
+  }
+
+  #mark,
+  #mark.kyk-mark-plate,
+  #mark.kyk-bleed-photo,
+  #territory,
+  #territory.kyk-bleed-photo,
+  #reel,
+  #reel.kyk-reel {
+    padding: 0 !important;
   }
 
   /* SheetFrame inner padding is inline — tighten via paper children */
@@ -196,9 +583,9 @@ table {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: var(--surface-sheet);
+    background: var(--surface-dropdown);
     border-bottom: var(--line-w-hair) solid var(--line-standard);
-    box-shadow: var(--shadow-sheet);
+    box-shadow: none;
     padding: 6px var(--space-5) 10px;
     z-index: 99;
   }
@@ -311,8 +698,9 @@ table {
     align-items: stretch !important;
   }
 
-  /* About BOM grid */
-  .kyk-about-grid {
+  /* About BOM / join grids */
+  .kyk-about-grid,
+  .kyk-join-grid {
     grid-template-columns: 1fr !important;
     gap: 20px !important;
   }
@@ -324,7 +712,16 @@ table {
   /* Section titles */
   .kyk-section-title h2 {
     font-size: 18px !important;
-    line-height: 1.25 !important;
+    line-height: 1 !important;
+  }
+
+  .kyk-h1 {
+    font-size: 28px !important;
+    line-height: 1 !important;
+  }
+
+  .kyk-slab-invert .kyk-paper {
+    clip-path: polygon(0 16px, 20px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 20px) 100%, 0 100%);
   }
 
   /* Notes / body */
@@ -343,6 +740,41 @@ table {
   footer > div {
     flex-direction: column !important;
     align-items: stretch !important;
+  }
+
+  .kyk-footer-copy {
+    text-align: left;
+    max-width: none;
+  }
+
+  .kyk-hero-bumper {
+    min-height: 28vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .kyk-bleed-copy {
+    padding: var(--space-6) 16px;
+    min-height: 56vh;
+  }
+
+  .kyk-bleed-photo {
+    min-height: 56vh;
+  }
+
+  #mark.kyk-mark-plate {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+
+  #mark.kyk-mark-plate .kyk-mark-plate-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
   }
 }
 

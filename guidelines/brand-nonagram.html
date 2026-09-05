@@ -11,15 +11,14 @@
 <body style="margin:0;padding:20px;background:var(--surface-sheet);">
   <div id="root"></div>
   <script type="text/babel">
-    const { Nonagram } = window.KnotYourKindDesignSystem_e3a90c;
     ReactDOM.createRoot(document.getElementById('root')).render(
       <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
-        <Nonagram size={230} weight="subject" />
+        <img src="../assets/favicon.svg" alt="Knot Your Kind nonagram" width={230} height={230} style={{ width: 230, height: 230, objectFit: 'contain' }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
-          <Nonagram size={90} showConstruction={false} />
-          <Nonagram size={40} showConstruction={false} />
+          <img src="../assets/favicon.svg" alt="" width={90} height={90} style={{ width: 90, height: 90, objectFit: 'contain' }} />
+          <img src="../assets/favicon.svg" alt="" width={40} height={40} style={{ width: 40, height: 40, objectFit: 'contain' }} />
           <p style={{ margin: 0, fontSize: 11, textTransform: 'uppercase', color: 'var(--text-annotation)', lineHeight: 1.7, maxWidth: 200 }}>
-            9 points · 18 straight segments · symmetric · construction circle Ø per reference
+            Image asset only · never redraw the nonagram in type or generated SVG for product UI
           </p>
         </div>
       </div>

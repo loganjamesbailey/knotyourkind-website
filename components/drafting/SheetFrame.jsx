@@ -1,6 +1,6 @@
 const React = window.React;
 
-/** A sheet of drafting paper with tooth and a double-ruled drawing frame. */
+/** A black sheet with faint grain and a double-ruled drawing frame. Radius 0. */
 export function SheetFrame({ children, padding = 'var(--space-5)', style, className }) {
   return (
     <div

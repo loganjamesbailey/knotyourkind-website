@@ -1,26 +1,27 @@
-/* Knot Your Kind — surfaces. Warm drafting paper with subtle tooth. */
+/* Knot Your Kind — surfaces. Black sheet, hairline frame, radius 0. */
 :root {
   --paper-tooth: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); /* @kind other */
-  --shadow-sheet: 0 1px 2px rgba(44, 43, 40, 0.10), 0 6px 24px rgba(44, 43, 40, 0.08);
+  --shadow-sheet: none;
 }
 
-/* The desk the sheet sits on */
+/* The void the sheet sits in */
 body {
   background-color: var(--surface-page);
 }
 
-/* A sheet of drafting paper. Tooth via faint noise; never grunge. */
+/* A black sheet. Faint grain only — never grunge, never rounded. */
 .kyk-paper {
   position: relative;
   background-color: var(--surface-sheet);
   box-shadow: var(--shadow-sheet);
+  border-radius: var(--radius-none);
 }
 .kyk-paper::after {
   content: '';
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.04;
   background-image: var(--paper-tooth);
   background-size: 256px;
 }
@@ -30,4 +31,45 @@ body {
   border: var(--line-w-hair) solid var(--line-standard);
   outline: var(--line-w-hair) solid var(--line-standard);
   outline-offset: var(--sheet-border-gap);
+  border-radius: var(--radius-none);
+}
+
+/* Graphite-on-paper sketches invert to white ink on black. */
+.kyk-ink-art {
+  filter: invert(1);
+  mix-blend-mode: normal;
+}
+
+/* Inverted white slab — black type, diagonal cuts, no shadow. */
+.kyk-slab-invert {
+  --surface-sheet: var(--kyk-white);
+  --surface-cell: #F0F0F0;
+  --text-title: var(--kyk-black);
+  --text-body: var(--kyk-black);
+  --text-annotation: var(--kyk-chip);
+  --line-subject: var(--kyk-black);
+  --line-standard: var(--kyk-black);
+  --line-construction: #CCCCCC;
+  --graphite-1: var(--kyk-black);
+  --graphite-2: var(--kyk-black);
+  --graphite-3: var(--kyk-chip);
+  --graphite-4: #CCCCCC;
+}
+
+.kyk-slab-invert .kyk-paper {
+  background-color: var(--kyk-white);
+  box-shadow: none;
+  clip-path: polygon(0 28px, 36px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 36px) 100%, 0 100%);
+}
+
+.kyk-slab-invert .kyk-ink-art,
+.kyk-slab-invert .kyk-subject img,
+.kyk-slab-invert .kyk-subject-figure img {
+  filter: none;
+}
+
+/* Charcoal slab — Tribal S sheet language, not a hard white invert */
+.kyk-slab-charcoal {
+  background: linear-gradient(180deg, #1c1c1c 0%, #0d0d0d 42%, #000000 100%);
+  color: var(--kyk-white);
 }

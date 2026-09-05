@@ -5,16 +5,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KNOT YOUR KIND | The Slipknot Experience</title>
+  <title>KNOT YOUR KIND | A Slipknot Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wght@700&display=swap">
   <link rel="stylesheet" href="/styles.css">
   <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="/form.config.js"></script>
   <script src="/_ds_bundle.js"></script>
   <style>
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: var(--font-drafting), ui-monospace, monospace;
+      font-family: var(--font-drafting), 'Arial Narrow', sans-serif;
+      font-weight: 700;
       color: var(--text-body);
       min-height: 100vh;
     }
@@ -30,10 +35,15 @@
           'div',
           { style: { maxWidth: 1280, margin: '0 auto' } },
           e(window.SiteNav),
-          e(window.HeroSheet),
+          e(window.HeroBumper),
           e(window.AboutBom),
+          e(window.HeroSheet),
+          e(window.MarkPlate),
           e(window.TribalS),
           e(window.SoleMember),
+          e(window.PromoReel),
+          e(window.Territory),
+          e(window.JoinCast),
           e(window.SiteFooter)
         );
       }

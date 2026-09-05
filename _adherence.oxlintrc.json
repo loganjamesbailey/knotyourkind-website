@@ -36,16 +36,16 @@
         "message": "Raw px value — use a design-system spacing token via var()."
       },
       {
-        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Share Tech Mono|Oswald))/i]",
-        "message": "Font not provided by the design system. Available: Share Tech Mono, Oswald."
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Anybody))/i]",
+        "message": "Font not provided by the design system. Available: Anybody 700."
       },
       {
         "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|disabled|onClick|type|style|key|ref|className|style|children)$/]",
         "message": "<Button> doesn't accept that prop. Declared props: children, variant, disabled, onClick, type, style."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|subject)$/]",
-        "message": "<Button> variant must be one of 'default' | 'subject'."
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|deep|invert|bar|subject)$/]",
+        "message": "<Button> variant must be one of 'default' | 'deep' | 'invert' | 'bar'."
       },
       {
         "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit)$/]",
@@ -60,7 +60,7 @@
         "message": "<Dimension> doesn't accept that prop. Declared props: value, width, style."
       },
       {
-        "selector": "JSXOpeningElement[name.name='Field'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|name|type|textarea|placeholder|required|rows|value|onChange|style|key|ref|className|style|children)$/]",
+        "selector": "JSXOpeningElement[name.name='Field'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|name|type|textarea|select|options|placeholder|required|rows|value|onChange|style|key|ref|className|style|children)$/]",
         "message": "<Field> doesn't accept that prop. Declared props: label, name, type, textarea, placeholder, required, rows, value, onChange, style."
       },
       {
@@ -152,10 +152,14 @@
       "--focus-ring",
       "--font-drafting",
       "--font-title",
+      "--font-weight-locked",
       "--graphite-1",
       "--graphite-2",
       "--graphite-3",
       "--graphite-4",
+      "--kyk-black",
+      "--kyk-red",
+      "--kyk-white",
       "--leading-note",
       "--line-construction",
       "--line-standard",
@@ -197,6 +201,10 @@
       "--tracking-wide"
     ],
     "tokenKinds": {
+      "--kyk-black": "color",
+      "--kyk-white": "color",
+      "--kyk-red": "color",
+      "--font-weight-locked": "font",
       "--paper-1": "color",
       "--paper-2": "color",
       "--paper-3": "color",
@@ -249,8 +257,7 @@
       "--shadow-sheet": "shadow"
     },
     "fontFamilies": [
-      "Oswald",
-      "Share Tech Mono"
+      "Anybody"
     ]
   }
 }

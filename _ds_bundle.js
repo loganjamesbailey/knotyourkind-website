@@ -431,16 +431,17 @@ function Stamp({
       transform: `rotate(${angle}deg)`,
       border: `${s.border}px solid ${c}`,
       color: c,
-      background: 'rgba(239, 237, 231, 0.72)',
+      background: 'rgba(0, 0, 0, 0.72)',
       padding: s.pad,
       fontFamily: 'var(--font-drafting)',
       fontSize: s.fs,
-      fontWeight: 600,
+      fontWeight: 700,
       letterSpacing: 'var(--tracking-wide)',
       textTransform: 'uppercase',
       whiteSpace: 'nowrap',
       lineHeight: 1.15,
-      boxShadow: '0 2px 0 rgba(44, 43, 40, 0.08)',
+      borderRadius: 'var(--radius-none)',
+      boxShadow: 'none',
       opacity: 1,
       ...style
     }
@@ -554,7 +555,41 @@ Object.assign(__ds_scope, { TitleBlock });
 try { (() => {
 const React = window.React;
 
-/** Drafting button: hairline border, letterspaced caps. Inverts to graphite on hover. */
+const BUTTON_VARIANTS = {
+  default: {
+    restBg: 'var(--kyk-red)',
+    restFg: 'var(--kyk-white)',
+    restBorder: 'var(--kyk-red)',
+    hoverBg: 'var(--kyk-white)',
+    hoverFg: 'var(--kyk-red)',
+    hoverBorder: 'var(--kyk-red)'
+  },
+  deep: {
+    restBg: 'var(--kyk-deep-red)',
+    restFg: 'var(--kyk-white)',
+    restBorder: 'var(--kyk-deep-red)',
+    hoverBg: 'var(--kyk-black)',
+    hoverFg: 'var(--kyk-white)',
+    hoverBorder: 'var(--kyk-black)'
+  },
+  invert: {
+    restBg: 'var(--kyk-white)',
+    restFg: 'var(--kyk-black)',
+    restBorder: 'var(--kyk-white)',
+    hoverBg: 'var(--kyk-black)',
+    hoverFg: 'var(--kyk-white)',
+    hoverBorder: 'var(--kyk-black)'
+  },
+  bar: {
+    restBg: 'var(--kyk-pure-red)',
+    restFg: 'var(--kyk-white)',
+    restBorder: 'var(--kyk-pure-red)',
+    hoverBg: 'var(--kyk-readmore-hover)',
+    hoverFg: 'var(--kyk-white)',
+    hoverBorder: 'var(--kyk-readmore-hover)'
+  }
+};
+/** Guide buttons: default #D2232A, deep #8E1D21, invert white/black, bar #FF0000. */
 function Button({
   children,
   variant = 'default',
@@ -565,8 +600,9 @@ function Button({
 }) {
   const [hover, setHover] = React.useState(false);
   const [press, setPress] = React.useState(false);
-  const filled = variant === 'subject';
-  const inverted = (hover || filled) && !disabled;
+  const key = variant === 'subject' ? 'default' : BUTTON_VARIANTS[variant] ? variant : 'default';
+  const pal = BUTTON_VARIANTS[key];
+  const hot = (hover || press) && !disabled;
   return /*#__PURE__*/React.createElement("button", {
     type: type,
     disabled: disabled,
@@ -578,19 +614,21 @@ function Button({
     },
     onMouseDown: () => setPress(true),
     onMouseUp: () => setPress(false),
+    className: 'kyk-btn kyk-btn-' + key,
     style: {
       fontFamily: 'var(--font-drafting)',
+      fontWeight: 700,
       fontSize: 'var(--text-label)',
       letterSpacing: 'var(--tracking-wide)',
       textTransform: 'uppercase',
       padding: '12px 28px',
-      border: `${filled ? 'var(--line-w-subject)' : 'var(--line-w-hair)'} solid var(--line-subject)`,
+      border: `var(--line-w-hair) solid ${hot ? pal.hoverBorder : pal.restBorder}`,
       borderRadius: 'var(--radius-none)',
-      backgroundColor: inverted ? press ? 'var(--graphite-1)' : 'var(--graphite-2)' : 'transparent',
-      color: inverted ? 'var(--surface-sheet)' : 'var(--text-title)',
+      backgroundColor: hot ? pal.hoverBg : pal.restBg,
+      color: hot ? pal.hoverFg : pal.restFg,
       cursor: disabled ? 'not-allowed' : 'pointer',
       opacity: disabled ? 0.45 : 1,
-      transition: 'background-color 120ms linear, color 120ms linear',
+      transition: 'background-color var(--motion-hover) ease, color var(--motion-hover) ease, border-color var(--motion-hover) ease',
       ...style
     }
   }, children);
@@ -601,6 +639,7 @@ Object.assign(__ds_scope, { Button });
 
 // components/forms/Field.jsx
 try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const React = window.React;
 
 /** Labeled form field styled as a title-block cell. */
@@ -609,6 +648,8 @@ function Field({
   name,
   type = 'text',
   textarea,
+  select,
+  options,
   placeholder,
   required,
   rows = 4,
@@ -617,6 +658,7 @@ function Field({
   style
 }) {
   const [focus, setFocus] = React.useState(false);
+  const isEmail = type === 'email';
   const inputStyle = {
     display: 'block',
     width: '100%',
@@ -624,35 +666,59 @@ function Field({
     border: 'none',
     outline: 'none',
     background: 'transparent',
-    fontFamily: 'var(--font-drafting)',
+    fontFamily: isEmail ? 'var(--font-email)' : 'var(--font-drafting)',
     fontSize: 'var(--text-label)',
-    letterSpacing: 'var(--tracking-drafting)',
-    textTransform: 'uppercase',
+    letterSpacing: isEmail ? 0 : 'var(--tracking-drafting)',
+    textTransform: isEmail ? 'none' : 'uppercase',
     color: 'var(--text-title)',
     padding: '6px var(--cell-pad-x) 10px',
-    resize: 'vertical'
+    resize: 'vertical',
+    appearance: select ? 'none' : undefined,
+    borderRadius: 'var(--radius-none)'
   };
-  const control = textarea ? /*#__PURE__*/React.createElement("textarea", {
-    name: name,
-    placeholder: placeholder,
-    required: required,
-    rows: rows,
-    value: value,
-    onChange: onChange,
+  const focusBind = {
     onFocus: () => setFocus(true),
-    onBlur: () => setFocus(false),
-    style: inputStyle
-  }) : /*#__PURE__*/React.createElement("input", {
-    name: name,
-    type: type,
-    placeholder: placeholder,
-    required: required,
-    value: value,
-    onChange: onChange,
-    onFocus: () => setFocus(true),
-    onBlur: () => setFocus(false),
-    style: inputStyle
-  });
+    onBlur: () => setFocus(false)
+  };
+  let control;
+  if (textarea) {
+    control = /*#__PURE__*/React.createElement("textarea", _extends({
+      name: name,
+      placeholder: placeholder,
+      required: required,
+      rows: rows,
+      value: value,
+      onChange: onChange
+    }, focusBind, {
+      style: inputStyle
+    }));
+  } else if (select) {
+    control = /*#__PURE__*/React.createElement("select", _extends({
+      name: name,
+      required: required,
+      value: value,
+      onChange: onChange
+    }, focusBind, {
+      style: inputStyle
+    }), /*#__PURE__*/React.createElement("option", {
+      value: ""
+    }, placeholder || 'SELECT'), (options || []).map(opt => /*#__PURE__*/React.createElement("option", {
+      key: opt.value || opt,
+      value: opt.value || opt
+    }, opt.label || opt)));
+  } else {
+    control = /*#__PURE__*/React.createElement("input", _extends({
+      name: name,
+      type: type,
+      placeholder: placeholder,
+      required: required,
+      value: value,
+      onChange: onChange
+    }, focusBind, {
+      className: isEmail ? 'kyk-field-email' : undefined,
+      style: inputStyle
+    }));
+  }
   return /*#__PURE__*/React.createElement("label", {
     style: {
       display: 'block',
@@ -672,7 +738,6 @@ function Field({
     }
   }, label), control);
 }
-
 Object.assign(__ds_scope, { Field });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "components/forms/Field.jsx", error: String((e && e.message) || e) }); }
 
@@ -699,9 +764,10 @@ function SectionTitle({
     style: {
       margin: '4px 0 0',
       fontFamily: 'var(--font-title)',
-      fontWeight: 500,
+      fontWeight: 700,
       fontSize: 'var(--text-title-sm)',
       letterSpacing: '0.08em',
+      lineHeight: 1,
       textTransform: 'uppercase',
       color: 'var(--text-title)'
     }
@@ -716,11 +782,12 @@ function AboutBom() {
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("section", {
     id: "about",
+    className: "kyk-slab-charcoal",
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(SectionTitle, {
-    label: "Section A–A",
+    label: "Section A\u2013A",
     title: "We Are Knot Your Kind"
   }), /*#__PURE__*/React.createElement("div", {
     className: "kyk-about-grid",
@@ -742,7 +809,7 @@ function AboutBom() {
       fontSize: 'var(--text-dim)',
       color: 'var(--text-title)'
     }
-  }, "Bill of Materials — Assembly, Rev B"), /*#__PURE__*/React.createElement("div", {
+  }, "Bill of Materials \u2014 Assembly, Rev B"), /*#__PURE__*/React.createElement("div", {
     className: "kyk-table-scroll"
   }, /*#__PURE__*/React.createElement(RevisionTable, {
     columns: ['ITEM', 'QTY', 'DESCRIPTION', 'SPEC'],
@@ -770,7 +837,6 @@ Object.assign(window, {
   AboutBom,
   SectionTitle
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/AboutBom.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/Chrome.jsx
@@ -781,21 +847,19 @@ function NavLink({
   children,
   onNavigate
 }) {
-  const [hover, setHover] = React.useState(false);
+  const [active, setActive] = React.useState(false);
+  React.useEffect(() => {
+    function sync() {
+      setActive(window.location.hash === href);
+    }
+    sync();
+    window.addEventListener('hashchange', sync);
+    return () => window.removeEventListener('hashchange', sync);
+  }, [href]);
   return /*#__PURE__*/React.createElement("a", {
     href: href,
-    onMouseEnter: () => setHover(true),
-    onMouseLeave: () => setHover(false),
-    onClick: onNavigate,
-    style: {
-      fontSize: 'var(--text-dim)',
-      letterSpacing: 'var(--tracking-wide)',
-      textTransform: 'uppercase',
-      textDecoration: hover ? 'underline' : 'none',
-      textUnderlineOffset: '4px',
-      color: hover ? 'var(--text-title)' : 'var(--text-body)',
-      whiteSpace: 'nowrap'
-    }
+    className: 'kyk-nav-link' + (active ? ' is-active' : ''),
+    onClick: onNavigate
   }, children);
 }
 function NavToggle({
@@ -814,12 +878,30 @@ function NavToggle({
     viewBox: "0 0 22 16",
     fill: "none",
     "aria-hidden": "true"
-  }, /*#__PURE__*/React.createElement("line", { x1: "0", y1: "1", x2: "22", y2: "1", stroke: "var(--graphite-1)", strokeWidth: "2" }), /*#__PURE__*/React.createElement("line", { x1: "0", y1: "8", x2: "22", y2: "8", stroke: "var(--graphite-1)", strokeWidth: "2" }), /*#__PURE__*/React.createElement("line", { x1: "0", y1: "15", x2: "22", y2: "15", stroke: "var(--graphite-1)", strokeWidth: "2" })));
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: "0",
+    y1: "1",
+    x2: "22",
+    y2: "1",
+    stroke: "var(--graphite-1)",
+    strokeWidth: "2"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "0",
+    y1: "8",
+    x2: "22",
+    y2: "8",
+    stroke: "var(--graphite-1)",
+    strokeWidth: "2"
+  }), /*#__PURE__*/React.createElement("line", {
+    x1: "0",
+    y1: "15",
+    x2: "22",
+    y2: "15",
+    stroke: "var(--graphite-1)",
+    strokeWidth: "2"
+  })));
 }
 function SiteNav() {
-  const {
-    Nonagram
-  } = window.KnotYourKindDesignSystem_e3a90c;
   const [open, setOpen] = React.useState(false);
   const navRef = React.useRef(null);
   React.useEffect(() => {
@@ -864,18 +946,23 @@ function SiteNav() {
       flex: 'none'
     },
     onClick: close
-  }, /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: "kyk-nonagram",
+    src: "/assets/favicon.svg",
+    alt: "",
+    width: 34,
+    height: 34,
+    decoding: "async",
     style: {
-      display: 'inline-flex',
+      width: 34,
+      height: 34,
+      display: 'block',
+      objectFit: 'contain',
       flex: 'none'
     }
-  }, /*#__PURE__*/React.createElement(Nonagram, {
-    size: 34,
-    showConstruction: false
-  })), /*#__PURE__*/React.createElement("img", {
+  }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/nav-logotype.png",
-    alt: "Knot Your Kind",
+    alt: "Knot Your Kind \u2014 A Slipknot Experience",
     width: 1569,
     height: 481,
     decoding: "async",
@@ -904,7 +991,10 @@ function SiteNav() {
   }, "Tribal S"), /*#__PURE__*/React.createElement(NavLink, {
     href: "#the-one",
     onNavigate: close
-  }, "The One")));
+  }, "Members"), /*#__PURE__*/React.createElement(NavLink, {
+    href: "#join",
+    onNavigate: close
+  }, "Join")));
 }
 function SiteFooter() {
   const {
@@ -929,22 +1019,45 @@ function SiteFooter() {
     scale: "NTS",
     sheet: "1 OF 9"
   }), /*#__PURE__*/React.createElement("p", {
-    style: {
-      margin: 0,
-      fontSize: 10,
-      textTransform: 'uppercase',
-      color: 'var(--text-annotation)',
-      paddingBottom: 8
-    }
-  }, "All rights reserved Knot Your Kind, LLC.")));
+    className: "kyk-footer-copy kyk-caps"
+  }, "\xA9 2024 KNOT YOUR KIND, LLC. ALL RIGHTS RESERVED.")));
 }
 Object.assign(window, {
   SiteNav,
   SiteFooter,
   NavLink
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Chrome.jsx", error: String((e && e.message) || e) }); }
+
+// ui_kits/website/HeroBumper.jsx
+try { (() => {
+const React = window.React;
+
+/** Opening hero: ultrawide bumper letterboxed so the full wordmark + glow stay visible. */
+function HeroBumper() {
+  return /*#__PURE__*/React.createElement("section", {
+    id: "home",
+    className: "kyk-hero-bumper",
+    "aria-label": "Knot Your Kind bumper"
+  }, /*#__PURE__*/React.createElement("video", {
+    className: "kyk-hero-bumper-video",
+    muted: true,
+    autoPlay: true,
+    loop: true,
+    playsInline: true,
+    preload: "metadata"
+  }, /*#__PURE__*/React.createElement("source", {
+    src: "/media/kyk-logo-bumper-neon-glitch-ultrawide.mp4",
+    type: "video/mp4"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-media-fade",
+    "aria-hidden": "true"
+  }));
+}
+Object.assign(window, {
+  HeroBumper
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/HeroBumper.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/HeroSheet.jsx
 try { (() => {
@@ -1025,9 +1138,10 @@ function HeroSheet() {
     backgroundSize: '56px 56px'
   };
   return /*#__PURE__*/React.createElement("section", {
-    id: "home",
+    id: "logotype",
+    className: "kyk-slab-black",
     style: {
-      padding: 'var(--space-5)'
+      padding: '0 var(--space-5) var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(SheetFrame, {
     padding: "var(--space-6)"
@@ -1036,7 +1150,22 @@ function HeroSheet() {
       position: 'relative',
       overflow: 'visible'
     }
-  }, /*#__PURE__*/React.createElement(Stamp, {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-hero-watermark",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "kyk-hero-mark-s kyk-ink-art",
+    src: "/assets/tribal_s_sketch.png",
+    alt: "",
+    width: 293,
+    height: 420
+  }), /*#__PURE__*/React.createElement("img", {
+    className: "kyk-hero-mark-star",
+    src: "/assets/favicon.svg",
+    alt: "",
+    width: 180,
+    height: 180
+  })), /*#__PURE__*/React.createElement(Stamp, {
     size: "xl",
     angle: -11,
     className: "kyk-stamp-hero",
@@ -1103,18 +1232,18 @@ function HeroSheet() {
     }
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/logotype_sketch.png",
-    alt: "Knot Your Kind — hand-drawn logotype, dimensioned",
+    alt: "Knot Your Kind \u2014 hand-drawn logotype, dimensioned",
     width: 1520,
     height: 420,
     fetchPriority: "high",
     decoding: "async",
+    className: "kyk-ink-art",
     style: {
       width: '100%',
       height: 210,
       objectFit: 'contain',
       display: 'block',
-      position: 'relative',
-      mixBlendMode: 'multiply'
+      position: 'relative'
     }
   })), /*#__PURE__*/React.createElement(VDim, {
     value: "2.85",
@@ -1142,7 +1271,8 @@ function HeroSheet() {
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/slipknot_sketch.png",
-    alt: "Slipknot — hand-drawn",
+    alt: "Slipknot \u2014 hand-drawn",
+    className: "kyk-ink-art",
     width: 266,
     height: 116,
     loading: "lazy",
@@ -1153,7 +1283,6 @@ function HeroSheet() {
       maxWidth: '100%',
       display: 'block',
       objectFit: 'contain',
-      mixBlendMode: 'multiply',
       margin: '0 auto'
     }
   }), /*#__PURE__*/React.createElement(Dimension, {
@@ -1168,15 +1297,21 @@ function HeroSheet() {
       fontSize: 22,
       color: 'var(--text-body)'
     }
-  }, "Experience")), /*#__PURE__*/React.createElement("p", {
-    className: "kyk-caps",
+  }, "Experience")), /*#__PURE__*/React.createElement("h1", {
+    className: "kyk-h1",
     style: {
       margin: '18px 0 0',
-      fontSize: 'var(--text-dim)',
-      color: 'var(--text-annotation)',
       textAlign: 'center'
     }
-  }, "This is not a tribute. This is a resurrection."))), /*#__PURE__*/React.createElement("div", {
+  }, "Knot Your Kind"), /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps-wide",
+    style: {
+      margin: '8px 0 0',
+      fontSize: 'var(--text-label)',
+      color: 'var(--stamp-red)',
+      textAlign: 'center'
+    }
+  }, "A Slipknot Experience"))), /*#__PURE__*/React.createElement("div", {
     className: "kyk-hero-meta",
     style: {
       display: 'flex',
@@ -1205,7 +1340,7 @@ function HeroSheet() {
       fontSize: 'var(--text-dim)',
       color: 'var(--text-body)'
     }
-  }, "Graphite on", /*#__PURE__*/React.createElement("br", null), "drafting paper")), /*#__PURE__*/React.createElement(TitleBlock, {
+  }, "Ink on", /*#__PURE__*/React.createElement("br", null), "black")), /*#__PURE__*/React.createElement(TitleBlock, {
     title: "LOGOTYPE, HAND-DRAWN",
     drawnBy: "J. BAILEY",
     drawnByLabel: "Owned by:",
@@ -1217,11 +1352,11 @@ Object.assign(window, {
   HeroSheet,
   VDim
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/HeroSheet.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/SoleMember.jsx
 try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
 const React = window.React;
 
 /* X-ray skeleton overlay — visible adamantium-style frame under mask + suit. */
@@ -1244,29 +1379,26 @@ function EndoskeletonOverlay() {
   for (let k = 0; k < 6; k++) {
     const y = 545 + k * 44;
     const spread = 150 - k * 8;
-    ribs.push(/*#__PURE__*/React.createElement("path", {
+    ribs.push(/*#__PURE__*/React.createElement("path", _extends({
       key: 'l' + k,
-      d: `M 405 ${y} C ${405 - spread * 0.8} ${y - 26}, ${405 - spread} ${y + 4}, ${405 - spread + 18} ${y + 30}`,
-      ...bone
-    }));
-    ribs.push(/*#__PURE__*/React.createElement("path", {
+      d: `M 405 ${y} C ${405 - spread * 0.8} ${y - 26}, ${405 - spread} ${y + 4}, ${405 - spread + 18} ${y + 30}`
+    }, bone)));
+    ribs.push(/*#__PURE__*/React.createElement("path", _extends({
       key: 'r' + k,
-      d: `M 415 ${y - 4} C ${415 + spread * 0.8} ${y - 30}, ${415 + spread} ${y}, ${415 + spread - 18} ${y + 26}`,
-      ...bone
-    }));
+      d: `M 415 ${y - 4} C ${415 + spread * 0.8} ${y - 30}, ${415 + spread} ${y}, ${415 + spread - 18} ${y + 26}`
+    }, bone)));
   }
   const vertebrae = [];
   for (let k = 0; k < 11; k++) {
     const y = 400 + k * 45;
-    vertebrae.push(/*#__PURE__*/React.createElement("rect", {
+    vertebrae.push(/*#__PURE__*/React.createElement("rect", _extends({
       key: 'v' + k,
       x: 396,
       y: y,
       width: 22,
       height: 26,
-      rx: 0,
-      ...fine
-    }));
+      rx: 0
+    }, fine)));
   }
   return /*#__PURE__*/React.createElement("svg", {
     viewBox: "0 0 900 900",
@@ -1277,84 +1409,65 @@ function EndoskeletonOverlay() {
       height: '100%'
     },
     preserveAspectRatio: "xMidYMid meet"
-  }, /*#__PURE__*/React.createElement("ellipse", {
+  }, /*#__PURE__*/React.createElement("ellipse", _extends({
     cx: "365",
     cy: "200",
     rx: "112",
-    ry: "138",
-    ...bone
-  }), /*#__PURE__*/React.createElement("ellipse", {
+    ry: "138"
+  }, bone)), /*#__PURE__*/React.createElement("ellipse", _extends({
     cx: "322",
     cy: "205",
     rx: "26",
-    ry: "20",
-    ...fine
-  }), /*#__PURE__*/React.createElement("ellipse", {
+    ry: "20"
+  }, fine)), /*#__PURE__*/React.createElement("ellipse", _extends({
     cx: "408",
     cy: "205",
     rx: "26",
-    ry: "20",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 358 235 L 372 235 L 365 262 Z",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 305 300 Q 365 330 425 300",
-    ...bone
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 312 312 L 312 296 M 330 320 L 330 302 M 348 326 L 348 306 M 366 328 L 366 308 M 384 326 L 384 306 M 402 320 L 402 302 M 418 312 L 418 296",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 300 268 Q 365 356 430 268",
-    ...bone
-  }), vertebrae, /*#__PURE__*/React.createElement("path", {
-    d: "M 405 470 Q 290 452 172 502",
-    ...bone
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 415 470 Q 530 448 648 486",
-    ...bone
-  }), /*#__PURE__*/React.createElement("circle", {
+    ry: "20"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 358 235 L 372 235 L 365 262 Z"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 305 300 Q 365 330 425 300"
+  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 312 312 L 312 296 M 330 320 L 330 302 M 348 326 L 348 306 M 366 328 L 366 308 M 384 326 L 384 306 M 402 320 L 402 302 M 418 312 L 418 296"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 300 268 Q 365 356 430 268"
+  }, bone)), vertebrae, /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 405 470 Q 290 452 172 502"
+  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 415 470 Q 530 448 648 486"
+  }, bone)), /*#__PURE__*/React.createElement("circle", _extends({
     cx: "168",
     cy: "512",
-    r: "24",
-    ...bone
-  }), /*#__PURE__*/React.createElement("circle", {
+    r: "24"
+  }, bone)), /*#__PURE__*/React.createElement("circle", _extends({
     cx: "652",
     cy: "496",
-    r: "24",
-    ...bone
-  }), /*#__PURE__*/React.createElement("line", {
+    r: "24"
+  }, bone)), /*#__PURE__*/React.createElement("line", _extends({
     x1: "408",
     y1: "500",
     x2: "410",
-    y2: "640",
-    ...bone
-  }), ribs, /*#__PURE__*/React.createElement("path", {
-    d: "M 158 534 C 130 620, 108 700, 88 788",
-    ...bone
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 182 536 C 156 622, 136 702, 118 792",
-    ...fine
-  }), /*#__PURE__*/React.createElement("circle", {
+    y2: "640"
+  }, bone)), ribs, /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 158 534 C 130 620, 108 700, 88 788"
+  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 182 536 C 156 622, 136 702, 118 792"
+  }, fine)), /*#__PURE__*/React.createElement("circle", _extends({
     cx: "100",
     cy: "800",
-    r: "16",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 662 518 C 700 600, 740 680, 782 756",
-    ...bone
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 640 522 C 676 604, 714 684, 756 764",
-    ...fine
-  }), /*#__PURE__*/React.createElement("circle", {
+    r: "16"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 662 518 C 700 600, 740 680, 782 756"
+  }, bone)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 640 522 C 676 604, 714 684, 756 764"
+  }, fine)), /*#__PURE__*/React.createElement("circle", _extends({
     cx: "772",
     cy: "770",
-    r: "16",
-    ...fine
-  }), /*#__PURE__*/React.createElement("path", {
-    d: "M 320 862 Q 408 828 500 858",
-    ...bone
-  }));
+    r: "16"
+  }, fine)), /*#__PURE__*/React.createElement("path", _extends({
+    d: "M 320 862 Q 408 828 500 858"
+  }, bone)));
 }
 function SoleMember() {
   const {
@@ -1367,11 +1480,12 @@ function SoleMember() {
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("section", {
     id: "the-one",
+    className: "kyk-slab-charcoal",
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
   }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
-    label: "Section View — Internal Structure Shown Hidden",
+    label: "Members \u2014 Section View, Internal Structure Shown Hidden",
     title: "Part #8, Frame Assembly"
   }), /*#__PURE__*/React.createElement("div", {
     className: "kyk-drawing-row",
@@ -1410,17 +1524,17 @@ function SoleMember() {
     }
   }, /*#__PURE__*/React.createElement("img", {
     src: "/assets/member_8_blueprint.png",
-    alt: "Part #8 — mask and suit over metal endoskeleton, hidden lines",
+    alt: "Part #8 \u2014 mask and suit over metal endoskeleton, hidden lines",
     width: 380,
     height: 380,
     loading: "lazy",
     decoding: "async",
+    className: "kyk-ink-art",
     style: {
       width: '100%',
       height: '100%',
       objectFit: 'contain',
-      display: 'block',
-      mixBlendMode: 'multiply'
+      display: 'block'
     }
   }), /*#__PURE__*/React.createElement(EndoskeletonOverlay, null)), /*#__PURE__*/React.createElement("div", {
     className: "kyk-callouts-side",
@@ -1477,7 +1591,6 @@ function SoleMember() {
 Object.assign(window, {
   SoleMember
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/SoleMember.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/TribalS.jsx
@@ -1493,6 +1606,7 @@ function TribalS() {
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("section", {
     id: "tribal-s",
+    className: "kyk-slab-black",
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
@@ -1539,17 +1653,17 @@ function TribalS() {
     height: 420
   }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/tribal_s_sketch.png",
-    alt: "Tribal S — dimensioned fabrication drawing",
+    alt: "Tribal S \u2014 dimensioned fabrication drawing",
     width: 280,
     height: 420,
     loading: "lazy",
     decoding: "async",
+    className: "kyk-ink-art",
     style: {
       height: 420,
       maxWidth: '100%',
       width: 'auto',
       display: 'block',
-      mixBlendMode: 'multiply',
       margin: '0 auto'
     }
   }), /*#__PURE__*/React.createElement("div", {
@@ -1583,7 +1697,7 @@ function TribalS() {
       fontSize: 'var(--text-dim)',
       color: 'var(--text-body)'
     }
-  }, "15° TYP. · .125 THICKNESS")), /*#__PURE__*/React.createElement("div", {
+  }, "15\xB0 TYP. \xB7 .125 THICKNESS")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       flexDirection: 'column',
@@ -1615,15 +1729,15 @@ function TribalS() {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".X"), /*#__PURE__*/React.createElement("td", null, "= ±.1")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+  }, ".X"), /*#__PURE__*/React.createElement("td", null, "= \xB1.1")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".XX"), /*#__PURE__*/React.createElement("td", null, "= ±.01")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
+  }, ".XX"), /*#__PURE__*/React.createElement("td", null, "= \xB1.01")), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", {
     style: {
       padding: '2px 18px 2px 0'
     }
-  }, ".XXX"), /*#__PURE__*/React.createElement("td", null, "= ±.005"))))), /*#__PURE__*/React.createElement(TitleBlock, {
+  }, ".XXX"), /*#__PURE__*/React.createElement("td", null, "= \xB1.005"))))), /*#__PURE__*/React.createElement(TitleBlock, {
     title: "TRIBAL S LOGO",
     drawnBy: "PROPERTY OF SLIPKNOT",
     date: "UNDETERMINED",
@@ -1638,8 +1752,369 @@ function TribalS() {
 Object.assign(window, {
   TribalS
 });
-
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/TribalS.jsx", error: String((e && e.message) || e) }); }
+
+
+// ui_kits/website/JoinCast.jsx
+try { (() => {
+const React = window.React;
+const POSITIONS = [{
+  value: 'Drummer',
+  label: 'Drummer'
+}, {
+  value: 'Guitarist',
+  label: 'Guitarist'
+}, {
+  value: 'Bassist',
+  label: 'Bassist'
+}, {
+  value: 'Sampler',
+  label: 'Sampler'
+}];
+const ACCEPT = '.mp4,.mov,.webm,.mp3,.wav,.m4a,video/mp4,video/quicktime,video/webm,audio/mpeg,audio/wav,audio/x-wav,audio/mp4,audio/x-m4a';
+const EXT_OK = /\.(mp4|mov|webm|mp3|wav|m4a)$/i;
+function formAction(cfg) {
+  const provider = cfg && cfg.provider || 'formsubmit';
+  const to = cfg && cfg.to || 'jbaile07@me.com';
+  if (provider === 'formspree' || provider === 'getform') return String(cfg.endpoint || '').trim();
+  if (provider === 'web3forms') return 'https://api.web3forms.com/submit';
+  return 'https://formsubmit.co/' + encodeURIComponent(to);
+}
+function formatBytes(n) {
+  if (n < 1024) return n + ' B';
+  if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+  return (n / (1024 * 1024)).toFixed(1) + ' MB';
+}
+function sentFromUrl() {
+  try {
+    return new URLSearchParams(window.location.search).get('sent') === '1';
+  } catch (e) {
+    return false;
+  }
+}
+function JoinCast() {
+  const {
+    SheetFrame,
+    TitleBlock,
+    NotesList,
+    Stamp,
+    Field,
+    Button
+  } = window.KnotYourKindDesignSystem_e3a90c;
+  const cfg = Object.assign({
+    to: 'jbaile07@me.com',
+    provider: 'formsubmit',
+    endpoint: '',
+    accessKey: '',
+    maxBytes: 10 * 1024 * 1024
+  }, window.KYK_FORM || {});
+  const maxBytes = Number(cfg.maxBytes) > 0 ? Number(cfg.maxBytes) : 10 * 1024 * 1024;
+  const action = formAction(cfg);
+  const provider = (cfg.provider || 'formsubmit').toLowerCase();
+  const configured = provider === 'formsubmit' && !!cfg.to || (provider === 'formspree' || provider === 'getform') && !!String(cfg.endpoint || '').trim() || provider === 'web3forms' && !!String(cfg.accessKey || '').trim();
+  const [fileError, setFileError] = React.useState('');
+  const [fileLabel, setFileLabel] = React.useState('');
+  const [blocked, setBlocked] = React.useState(false);
+  const [sent] = React.useState(sentFromUrl);
+  function onFileChange(e) {
+    const file = e.target.files && e.target.files[0];
+    setFileError('');
+    setBlocked(false);
+    if (!file) {
+      setFileLabel('');
+      return;
+    }
+    setFileLabel(file.name + ' — ' + formatBytes(file.size));
+    if (!EXT_OK.test(file.name)) {
+      setFileError('FILE MUST BE MP4, MOV, WEBM, MP3, WAV, OR M4A.');
+      setBlocked(true);
+      return;
+    }
+    if (file.size > maxBytes) {
+      setFileError('FILE TOO LARGE. MAX ' + formatBytes(maxBytes) + '. COMPRESS THE CLIP AND TRY AGAIN.');
+      setBlocked(true);
+    }
+  }
+  function onSubmit(e) {
+    if (!configured) {
+      e.preventDefault();
+      setFileError('FORM ENDPOINT IS NOT CONFIGURED. SEE FORM.CONFIG.JS.');
+      return;
+    }
+    const fileInput = e.target.querySelector('input[type="file"]');
+    const file = fileInput && fileInput.files && fileInput.files[0];
+    if (!file) {
+      e.preventDefault();
+      setFileError('ATTACH A VIDEO OR AUDIO AUDITION.');
+      setBlocked(true);
+      return;
+    }
+    if (!EXT_OK.test(file.name) || file.size > maxBytes) {
+      e.preventDefault();
+      setBlocked(true);
+      if (!EXT_OK.test(file.name)) setFileError('FILE MUST BE MP4, MOV, WEBM, MP3, WAV, OR M4A.');else setFileError('FILE TOO LARGE. MAX ' + formatBytes(maxBytes) + '.');
+    }
+  }
+  const nextUrl = (typeof window !== 'undefined' ? window.location.origin : '') + '/?sent=1#join';
+  return /*#__PURE__*/React.createElement("section", {
+    id: "join",
+    className: "kyk-slab-black",
+    style: {
+      padding: '0 var(--space-5) var(--space-5)'
+    }
+  }, /*#__PURE__*/React.createElement(SheetFrame, null, /*#__PURE__*/React.createElement(window.SectionTitle, {
+    label: "Casting Call \u2014 Open Requisition",
+    title: "Join The Band"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-join-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps",
+    style: {
+      margin: '0 0 var(--space-3)',
+      fontSize: 'var(--text-label)',
+      color: 'var(--text-title)',
+      lineHeight: 1.45
+    }
+  }, "Knot Your Kind \u2014 A Slipknot Experience is casting. We are currently looking for drummers, guitarists, a bassist, and a sampler."), /*#__PURE__*/React.createElement(NotesList, {
+    className: "kyk-notes",
+    notes: ['POSITIONS OPEN: DRUMMER. GUITARIST. BASSIST. SAMPLER.', 'SUBMIT NAME, POSITION, AND ONE AUDITION CLIP (VIDEO OR AUDIO).', 'MESSAGE IS OPTIONAL. KEEP IT SHORT.', 'MAX FILE ' + formatBytes(maxBytes) + '. MP4 / MOV / WEBM / MP3 / WAV / M4A.']
+  }), /*#__PURE__*/React.createElement(Stamp, {
+    angle: -5,
+    style: {
+      marginTop: 'var(--space-4)'
+    }
+  }, "Now Casting")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      minWidth: 0
+    }
+  }, sent ? /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps kyk-form-status",
+    role: "status",
+    style: {
+      margin: 0,
+      color: 'var(--kyk-red)',
+      fontSize: 'var(--text-label)',
+      lineHeight: 1.5
+    }
+  }, "Submission handed to the form relay. If this was the first send, jbaile07@me.com must confirm the activation email before auditions arrive.") : /*#__PURE__*/React.createElement("form", {
+    className: "kyk-audition-form",
+    action: configured ? action : undefined,
+    method: "POST",
+    encType: "multipart/form-data",
+    onSubmit: onSubmit
+  }, provider === 'formsubmit' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_subject",
+    value: "Knot Your Kind audition"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_template",
+    value: "table"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_captcha",
+    value: "false"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_next",
+    value: nextUrl
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    name: "_honey",
+    tabIndex: -1,
+    autoComplete: "off",
+    className: "kyk-honey",
+    "aria-hidden": "true"
+  })), provider === 'web3forms' && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "access_key",
+    value: cfg.accessKey || ''
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "subject",
+    value: "Knot Your Kind audition"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "from_name",
+    value: "Knot Your Kind audition"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "redirect",
+    value: nextUrl
+  })), /*#__PURE__*/React.createElement("input", {
+    type: "hidden",
+    name: "_gotcha",
+    tabIndex: -1,
+    autoComplete: "off",
+    className: "kyk-honey",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement(Field, {
+    label: "Name",
+    name: "name",
+    placeholder: "YOUR NAME",
+    required: true
+  }), /*#__PURE__*/React.createElement(Field, {
+    label: "Position",
+    name: "position",
+    select: true,
+    required: true,
+    placeholder: "SELECT POSITION",
+    options: POSITIONS
+  }), /*#__PURE__*/React.createElement(Field, {
+    label: "Message (optional)",
+    name: "message",
+    textarea: true,
+    rows: 3,
+    placeholder: "NOTES, CITY, AVAILABILITY"
+  }), /*#__PURE__*/React.createElement("label", {
+    className: "kyk-file-field"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "kyk-file-label"
+  }, "Audition \u2014 video or audio"), /*#__PURE__*/React.createElement("input", {
+    type: "file",
+    name: "attachment",
+    accept: ACCEPT,
+    required: true,
+    onChange: onFileChange
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "kyk-file-meta"
+  }, fileLabel || 'MP4 / MOV / WEBM / MP3 / WAV / M4A · MAX ' + formatBytes(maxBytes))), fileError ? /*#__PURE__*/React.createElement("p", {
+    className: "kyk-form-error kyk-caps",
+    role: "alert"
+  }, fileError) : null, !configured ? /*#__PURE__*/React.createElement("p", {
+    className: "kyk-form-error kyk-caps",
+    role: "alert"
+  }, "Form backend is not configured. Set the provider in form.config.js. Submissions will not send.") : null,   /*#__PURE__*/React.createElement(Button, {
+    type: "submit",
+    variant: "default",
+    disabled: blocked || !configured
+  }, "Submit Audition"), /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps",
+    style: {
+      margin: '12px 0 0',
+      fontSize: 'var(--text-dim)',
+      color: 'var(--text-annotation)',
+      lineHeight: 1.6
+    }
+  }, "Routed to ", cfg.to || 'jbaile07@me.com', " via ", provider.toUpperCase(), ". First FormSubmit send requires inbox confirmation.")), /*#__PURE__*/React.createElement(TitleBlock, {
+    title: "CASTING, OPEN REQ",
+    scale: "NTS",
+    sheet: "5 OF 9",
+    style: {
+      marginTop: 'var(--space-4)',
+      alignSelf: 'flex-end'
+    }
+  })))));
+}
+Object.assign(window, {
+  JoinCast
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/JoinCast.jsx", error: String((e && e.message) || e) }); }
+
+
+// ui_kits/website/MarkPlate.jsx
+try { (() => {
+const React = window.React;
+
+/** Full-bleed square still on black. No SheetFrame, no fade, no cover crop. */
+function MarkPlate() {
+  return /*#__PURE__*/React.createElement("section", {
+    id: "mark",
+    className: "kyk-mark-plate",
+    "aria-label": "Crow plate"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "kyk-mark-plate-img",
+    src: "/assets/james-site/crow-red-eyes-bars.jpg",
+    alt: "Knot Your Kind \u2014 A Slipknot Experience",
+    width: 1408,
+    height: 1408,
+    loading: "lazy",
+    decoding: "async"
+  }));
+}
+Object.assign(window, {
+  MarkPlate
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/MarkPlate.jsx", error: String((e && e.message) || e) }); }
+
+
+// ui_kits/website/PromoReel.jsx
+try { (() => {
+const React = window.React;
+
+/** 1:1 promo, no frame. Soft black vignette fades into the page field. */
+function PromoReel() {
+  return /*#__PURE__*/React.createElement("section", {
+    id: "reel",
+    className: "kyk-reel",
+    "aria-label": "Promo reel"
+  }, /*#__PURE__*/React.createElement("video", {
+    className: "kyk-promo-video",
+    muted: true,
+    autoPlay: true,
+    loop: true,
+    playsInline: true,
+    preload: "metadata",
+    "aria-label": "Knot Your Kind promo"
+  }, /*#__PURE__*/React.createElement("source", {
+    src: "/media/kyk-promo-clip-2026-09-05.mp4",
+    type: "video/mp4"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-reel-vignette",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-media-fade",
+    "aria-hidden": "true"
+  }));
+}
+Object.assign(window, {
+  PromoReel
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/PromoReel.jsx", error: String((e && e.message) || e) }); }
+
+
+// ui_kits/website/Territory.jsx
+try { (() => {
+const React = window.React;
+
+/** Full-bleed Iowa still. Type sits on a heavy black scrim — no second wordmark. */
+function Territory() {
+  return /*#__PURE__*/React.createElement("section", {
+    id: "territory",
+    className: "kyk-bleed-photo",
+    "aria-label": "Iowa field"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "kyk-bleed-photo-img",
+    src: "/assets/james-site/iowa-winter-farm-silos.jpg",
+    alt: "",
+    width: 2000,
+    height: 1333,
+    loading: "lazy",
+    decoding: "async"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-bleed-scrim",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-media-fade",
+    "aria-hidden": "true"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "kyk-bleed-copy"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps kyk-media-label"
+  }, "Field note \u2014 Iowa"), /*#__PURE__*/React.createElement("h2", {
+    className: "kyk-h1"
+  }, "Built on this ground."), /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps-wide kyk-bleed-tag"
+  }, "A Slipknot Experience")));
+}
+Object.assign(window, {
+  Territory
+});
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Territory.jsx", error: String((e && e.message) || e) }); }
 
 __ds_ns.Callout = __ds_scope.Callout;
 __ds_ns.Dimension = __ds_scope.Dimension;

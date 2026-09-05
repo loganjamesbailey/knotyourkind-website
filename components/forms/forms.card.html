@@ -16,7 +16,9 @@
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '18px 24px', alignItems: 'start' }}>
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
           <Button>Send Inquiry</Button>
-          <Button variant="subject">Get Tickets</Button>
+          <Button variant="deep">Book</Button>
+          <Button variant="invert">Invert</Button>
+          <Button variant="bar">Read More</Button>
           <Button disabled>Sold Out</Button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -24,7 +26,7 @@
           <Field label="VENUE / EVENT:" placeholder="VENUE NAME" />
         </div>
         <p style={{ margin: 0, fontSize: 10, textTransform: 'uppercase', color: 'var(--text-annotation)', lineHeight: 1.7 }}>
-          Hover: fill inverts to graphite. Press: darkens to graphite-1. No shrink, no glow, radius 0.
+          default #D2232A · deep #8E1D21 · invert white/black · bar #FF0000 hover #A50000. Motion 0.3s. Radius 0. Email fields use Arial only.
         </p>
         <Field label="TELL US ABOUT YOUR EVENT:" textarea rows={3} />
       </div>

@@ -1,20 +1,23 @@
-/* Knot Your Kind — type tokens. Two voices only:
-   1. Drafting caps (mono, letterspaced, all caps) — every annotation, dimension,
-      label, and body note.
-   2. The hand-drawn logotype (image asset) — the artifact being documented.
-   Serif and decorative type are out. */
+/* Knot Your Kind — type tokens.
+   Anybody 700 for UI. Uppercase labels and headlines.
+   H1 line-height ~1. Arial only for form email fields.
+   Logo / wordmark / nonagram are image assets — never redraw in type. */
 :root {
-  --font-drafting: 'Share Tech Mono', 'Courier New', monospace;
-  --font-title: 'Oswald', 'Arial Narrow', sans-serif; /* large drawing titles only */
+  --font-drafting: 'Anybody', 'Arial Narrow', sans-serif;
+  --font-title: 'Anybody', 'Arial Narrow', sans-serif;
+  --font-email: Arial, Helvetica, sans-serif;
+  --font-weight-locked: 700;
+  --leading-h1: 1;
+  --motion-hover: 0.3s;
 
   /* Sizes (px) */
-  --text-dim: 12px;          /* dimensions, tolerances */
-  --text-note: 13px;         /* numbered notes, body copy */
-  --text-label: 14px;        /* field labels, nav */
-  --text-callout: 15px;      /* leader-line callouts */
-  --text-cell-value: 18px;   /* title-block values */
-  --text-title-sm: 24px;     /* section titles */
-  --text-title-lg: 40px;     /* sheet titles */
+  --text-dim: 12px;
+  --text-note: 13px;
+  --text-label: 14px;
+  --text-callout: 15px;
+  --text-cell-value: 18px;
+  --text-title-sm: 24px;
+  --text-title-lg: 40px;
 
   /* Tracking */
   --tracking-drafting: 0.08em;
@@ -26,13 +29,45 @@
 body {
   font-family: var(--font-drafting);
   font-size: var(--text-note);
+  font-weight: var(--font-weight-locked);
   color: var(--text-body);
   letter-spacing: var(--tracking-drafting);
 }
 
-/* Drafting text is uppercase by rule. */
-.kyk-caps { text-transform: uppercase; letter-spacing: var(--tracking-drafting); }
-.kyk-caps-wide { text-transform: uppercase; letter-spacing: var(--tracking-wide); }
+h1, .kyk-h1 {
+  font-family: var(--font-title);
+  font-weight: var(--font-weight-locked);
+  font-size: var(--text-title-lg);
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-title);
+  margin: 0;
+}
 
-a { color: var(--text-body); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-a:hover { color: var(--text-title); }
+h2, .kyk-section-title h2 {
+  line-height: 1.05;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-locked);
+}
+
+.kyk-caps { text-transform: uppercase; letter-spacing: var(--tracking-drafting); font-weight: var(--font-weight-locked); }
+.kyk-caps-wide { text-transform: uppercase; letter-spacing: var(--tracking-wide); font-weight: var(--font-weight-locked); }
+
+a {
+  color: var(--text-body);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--motion-hover) ease, border-color var(--motion-hover) ease, background-color var(--motion-hover) ease;
+}
+a:hover { color: var(--kyk-red); }
+a:active, a.is-active { color: var(--color-nav-active); }
+a:focus-visible { outline: 1px solid var(--focus-ring); outline-offset: 3px; }
+
+input[type="email"],
+.kyk-field-email {
+  font-family: var(--font-email);
+  text-transform: none;
+  letter-spacing: 0;
+}

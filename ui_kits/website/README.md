@@ -1,12 +1,18 @@
 # UI Kit — Website (weareknotyourkind.com)
 
-The band site re-documented in the Fabrication Drawing system. Content (shows, members, booking copy, social links) is real, taken from loganjamesbailey/knotyourkind-website; the visual treatment supersedes the live dark site per the brand brief.
+The band site, restyled in place to the locked Knot Your Kind — A Slipknot Experience brand. Content (members, booking copy) is real; tokens map to `#000` / `#FFF` / `#D2232A` plus locked interaction reds. Type is Anybody 700, radius is 0. Never Tribute. Never Kinda.
 
-- `index.html` — one-page interactive site: nav, dimensioned logotype hero sheet, bill of materials (about), Tribal S detail drawing, Part #8 frame assembly (tonal sketch + X-ray skeleton), footer title block.
-- `Chrome.jsx` — nav + footer.
-- `HeroSheet.jsx` — the logotype documented as an artifact.
-- `AboutBom.jsx` — about section as bill of materials.
-- `TribalS.jsx` — Tribal S detail drawing (cropped from the reference sheet, re-annotated live).
-- `SoleMember.jsx` — Part #8 frame assembly: photo converted to tonal graphite sketch (mask + suit visible), metal endoskeleton drawn as an X-ray-style bone overlay (#0–#7 removed per ECO-009).
+- `index.html` — one-page site with one media hit per section (no stacked full-bleeds).
+- `Chrome.jsx` — nav + footer (`© 2024 KNOT YOUR KIND, LLC. ALL RIGHTS RESERVED.`).
+- `HeroSheet.jsx` — logotype drawing (no James still).
+- `AboutBom.jsx` — invert BOM (no James still).
+- `MarkPlate.jsx` — crow-red-eyes-bars statement plate (wordmark already in art).
+- `TribalS.jsx` — Tribal S drawing + muted ultrawide bumper rail.
+- `SoleMember.jsx` — Members (`#the-one`): Part #8 frame assembly.
+- `PromoReel.jsx` — contained 1:1 promo loop.
+- `Territory.jsx` — Iowa winter full-bleed + 65% black scrim + Anybody type.
+- `JoinCast.jsx` — casting form (`#join`) to jbaile07@me.com.
+
+Held (in `assets/james-site/`, not on the page): crow-fence-burn-field-portrait, burn-field-mud-track — second crow / second fire still would stack.
 
 Removed per user direction: Shows section (ECO-010), Booking section (ECO-011).
