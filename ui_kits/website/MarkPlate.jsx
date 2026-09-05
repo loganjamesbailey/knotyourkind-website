@@ -1,19 +1,18 @@
 const React = window.React;
 
-/** Crow-bars statement, full-bleed like territory. Wordmark is in the art — no overlay, no frame. */
+/** Full-bleed square still on black. No SheetFrame, no fade, no cover crop. */
 function MarkPlate() {
   return (
-    <section id="mark" className="kyk-bleed-photo kyk-bleed-mark" aria-label="Crow plate">
+    <section id="mark" className="kyk-mark-plate" aria-label="Crow plate">
       <img
-        className="kyk-bleed-photo-img"
+        className="kyk-mark-plate-img"
         src="/assets/james-site/crow-red-eyes-bars.jpg"
         alt="Knot Your Kind — A Slipknot Experience"
-        width={1600}
-        height={1600}
+        width={1408}
+        height={1408}
         loading="lazy"
         decoding="async"
       />
-      <div className="kyk-media-fade" aria-hidden="true"></div>
     </section>
   );
 }

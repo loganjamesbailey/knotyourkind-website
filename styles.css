@@ -386,16 +386,49 @@ select {
   filter: none;
 }
 
-/* Crow plate — square still on black. Contain, never cover-zoom the face. */
-#mark.kyk-bleed-mark {
+/* Crow plate — intrinsic 1:1 still, full width, no cover box, no sheet frame. */
+#mark.kyk-mark-plate {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
   min-height: 0;
-  height: min(100vw, 100vh);
+  margin: 0;
+  padding: 0;
   background: #000;
+  overflow: visible;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-#mark.kyk-bleed-mark .kyk-bleed-photo-img {
+#mark.kyk-mark-plate,
+#mark.kyk-mark-plate * {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#mark.kyk-mark-plate .kyk-sheet-frame,
+#mark.kyk-mark-plate .kyk-paper {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.kyk-mark-plate-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   object-position: center center;
+  background: #000;
+  filter: none;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .kyk-bleed-scrim {
@@ -454,6 +487,7 @@ select {
   }
 
   #mark,
+  #mark.kyk-mark-plate,
   #mark.kyk-bleed-photo,
   #territory,
   #territory.kyk-bleed-photo,
@@ -729,9 +763,18 @@ select {
     min-height: 56vh;
   }
 
-  #mark.kyk-bleed-mark {
-    min-height: 0;
-    height: min(100vw, 100vh);
+  #mark.kyk-mark-plate {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+
+  #mark.kyk-mark-plate .kyk-mark-plate-img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    object-fit: contain !important;
   }
 }
 
