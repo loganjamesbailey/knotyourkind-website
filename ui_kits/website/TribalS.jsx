@@ -3,7 +3,7 @@ const React = window.React;
 function TribalS() {
   const { SheetFrame, TitleBlock, NotesList, Callout, Dimension } = window.KnotYourKindDesignSystem_e3a90c;
   return (
-    <section id="tribal-s" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
+    <section id="tribal-s" className="kyk-slab-black" style={{ padding: '0 var(--space-5) var(--space-5)' }}>
       <SheetFrame>
         <window.SectionTitle label="Detail Drawing" title="Tribal S Logo" />
         <div className="kyk-drawing-row" style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-6)', alignItems: 'flex-start' }}>

@@ -579,6 +579,7 @@ function Button({
     },
     onMouseDown: () => setPress(true),
     onMouseUp: () => setPress(false),
+    className: "kyk-btn kyk-readmore",
     style: {
       fontFamily: 'var(--font-drafting)',
       fontWeight: 700,
@@ -588,11 +589,11 @@ function Button({
       padding: '12px 28px',
       border: `${filled ? 'var(--line-w-subject)' : 'var(--line-w-hair)'} solid var(--line-subject)`,
       borderRadius: 'var(--radius-none)',
-      backgroundColor: inverted ? press ? 'var(--graphite-1)' : 'var(--graphite-2)' : 'transparent',
-      color: inverted ? 'var(--surface-sheet)' : 'var(--text-title)',
+      backgroundColor: inverted ? press ? 'var(--kyk-deep-red)' : 'var(--kyk-readmore-hover)' : 'transparent',
+      color: inverted ? 'var(--kyk-white)' : 'var(--text-title)',
       cursor: disabled ? 'not-allowed' : 'pointer',
       opacity: disabled ? 0.45 : 1,
-      transition: 'background-color 120ms linear, color 120ms linear',
+      transition: 'background-color var(--motion-hover) ease, color var(--motion-hover) ease, border-color var(--motion-hover) ease',
       ...style
     }
   }, children);
@@ -619,6 +620,7 @@ function Field({
   style
 }) {
   const [focus, setFocus] = React.useState(false);
+  const isEmail = type === 'email';
   const inputStyle = {
     display: 'block',
     width: '100%',
@@ -626,10 +628,10 @@ function Field({
     border: 'none',
     outline: 'none',
     background: 'transparent',
-    fontFamily: 'var(--font-drafting)',
+    fontFamily: isEmail ? 'var(--font-email)' : 'var(--font-drafting)',
     fontSize: 'var(--text-label)',
-    letterSpacing: 'var(--tracking-drafting)',
-    textTransform: 'uppercase',
+    letterSpacing: isEmail ? 0 : 'var(--tracking-drafting)',
+    textTransform: isEmail ? 'none' : 'uppercase',
     color: 'var(--text-title)',
     padding: '6px var(--cell-pad-x) 10px',
     resize: 'vertical'
@@ -653,6 +655,7 @@ function Field({
     onChange: onChange,
     onFocus: () => setFocus(true),
     onBlur: () => setFocus(false),
+    className: isEmail ? 'kyk-field-email' : undefined,
     style: inputStyle
   });
   return /*#__PURE__*/React.createElement("label", {
@@ -704,6 +707,7 @@ function SectionTitle({
       fontWeight: 700,
       fontSize: 'var(--text-title-sm)',
       letterSpacing: '0.08em',
+      lineHeight: 1,
       textTransform: 'uppercase',
       color: 'var(--text-title)'
     }
@@ -718,6 +722,7 @@ function AboutBom() {
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("section", {
     id: "about",
+    className: "kyk-slab-invert",
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
@@ -783,21 +788,19 @@ function NavLink({
   children,
   onNavigate
 }) {
-  const [hover, setHover] = React.useState(false);
+  const [active, setActive] = React.useState(false);
+  React.useEffect(() => {
+    function sync() {
+      setActive(window.location.hash === href);
+    }
+    sync();
+    window.addEventListener('hashchange', sync);
+    return () => window.removeEventListener('hashchange', sync);
+  }, [href]);
   return /*#__PURE__*/React.createElement("a", {
     href: href,
-    onMouseEnter: () => setHover(true),
-    onMouseLeave: () => setHover(false),
-    onClick: onNavigate,
-    style: {
-      fontSize: 'var(--text-dim)',
-      letterSpacing: 'var(--tracking-wide)',
-      textTransform: 'uppercase',
-      textDecoration: hover ? 'underline' : 'none',
-      textUnderlineOffset: '4px',
-      color: hover ? 'var(--text-title)' : 'var(--text-body)',
-      whiteSpace: 'nowrap'
-    }
+    className: 'kyk-nav-link' + (active ? ' is-active' : ''),
+    onClick: onNavigate
   }, children);
 }
 function NavToggle({
@@ -819,9 +822,6 @@ function NavToggle({
   }, /*#__PURE__*/React.createElement("line", { x1: "0", y1: "1", x2: "22", y2: "1", stroke: "var(--graphite-1)", strokeWidth: "2" }), /*#__PURE__*/React.createElement("line", { x1: "0", y1: "8", x2: "22", y2: "8", stroke: "var(--graphite-1)", strokeWidth: "2" }), /*#__PURE__*/React.createElement("line", { x1: "0", y1: "15", x2: "22", y2: "15", stroke: "var(--graphite-1)", strokeWidth: "2" })));
 }
 function SiteNav() {
-  const {
-    Nonagram
-  } = window.KnotYourKindDesignSystem_e3a90c;
   const [open, setOpen] = React.useState(false);
   const navRef = React.useRef(null);
   React.useEffect(() => {
@@ -866,18 +866,23 @@ function SiteNav() {
       flex: 'none'
     },
     onClick: close
-  }, /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("img", {
     className: "kyk-nonagram",
+    src: "/assets/favicon.svg",
+    alt: "",
+    width: 34,
+    height: 34,
+    decoding: "async",
     style: {
-      display: 'inline-flex',
+      width: 34,
+      height: 34,
+      display: 'block',
+      objectFit: 'contain',
       flex: 'none'
     }
-  }, /*#__PURE__*/React.createElement(Nonagram, {
-    size: 34,
-    showConstruction: false
-  })), /*#__PURE__*/React.createElement("img", {
+  }), /*#__PURE__*/React.createElement("img", {
     src: "/assets/nav-logotype.png",
-    alt: "Knot Your Kind",
+    alt: "Knot Your Kind — A Slipknot Experience",
     width: 1569,
     height: 481,
     decoding: "async",
@@ -938,7 +943,7 @@ function SiteFooter() {
       color: 'var(--text-annotation)',
       paddingBottom: 8
     }
-  }, "All rights reserved Knot Your Kind, LLC.")));
+  }, "Knot Your Kind \u2014 A Slipknot Experience. All rights reserved Knot Your Kind, LLC.")));
 }
 Object.assign(window, {
   SiteNav,
@@ -1028,6 +1033,7 @@ function HeroSheet() {
   };
   return /*#__PURE__*/React.createElement("section", {
     id: "home",
+    className: "kyk-slab-black",
     style: {
       padding: 'var(--space-5)'
     }
@@ -1038,7 +1044,22 @@ function HeroSheet() {
       position: 'relative',
       overflow: 'visible'
     }
-  }, /*#__PURE__*/React.createElement(Stamp, {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "kyk-hero-watermark",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("img", {
+    className: "kyk-hero-mark-s kyk-ink-art",
+    src: "/assets/tribal_s_sketch.png",
+    alt: "",
+    width: 293,
+    height: 420
+  }), /*#__PURE__*/React.createElement("img", {
+    className: "kyk-hero-mark-star kyk-ink-art",
+    src: "/assets/favicon.svg",
+    alt: "",
+    width: 180,
+    height: 180
+  })), /*#__PURE__*/React.createElement(Stamp, {
     size: "xl",
     angle: -11,
     className: "kyk-stamp-hero",
@@ -1170,15 +1191,21 @@ function HeroSheet() {
       fontSize: 22,
       color: 'var(--text-body)'
     }
-  }, "Experience")), /*#__PURE__*/React.createElement("p", {
-    className: "kyk-caps",
+  }, "Experience")), /*#__PURE__*/React.createElement("h1", {
+    className: "kyk-h1",
     style: {
       margin: '18px 0 0',
-      fontSize: 'var(--text-dim)',
-      color: 'var(--text-annotation)',
       textAlign: 'center'
     }
-  }, "A Slipknot Experience."))), /*#__PURE__*/React.createElement("div", {
+  }, "Knot Your Kind"), /*#__PURE__*/React.createElement("p", {
+    className: "kyk-caps-wide",
+    style: {
+      margin: '8px 0 0',
+      fontSize: 'var(--text-label)',
+      color: 'var(--stamp-red)',
+      textAlign: 'center'
+    }
+  }, "A Slipknot Experience"))), /*#__PURE__*/React.createElement("div", {
     className: "kyk-hero-meta",
     style: {
       display: 'flex',
@@ -1369,6 +1396,7 @@ function SoleMember() {
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("section", {
     id: "the-one",
+    className: "kyk-slab-invert",
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }
@@ -1495,6 +1523,7 @@ function TribalS() {
   } = window.KnotYourKindDesignSystem_e3a90c;
   return /*#__PURE__*/React.createElement("section", {
     id: "tribal-s",
+    className: "kyk-slab-black",
     style: {
       padding: '0 var(--space-5) var(--space-5)'
     }

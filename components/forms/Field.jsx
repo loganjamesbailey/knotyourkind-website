@@ -3,6 +3,7 @@ const React = window.React;
 /** Labeled form field styled as a title-block cell. */
 export function Field({ label, name, type = 'text', textarea, placeholder, required, rows = 4, value, onChange, style }) {
   const [focus, setFocus] = React.useState(false);
+  const isEmail = type === 'email';
   const inputStyle = {
     display: 'block',
     width: '100%',
@@ -10,10 +11,10 @@ export function Field({ label, name, type = 'text', textarea, placeholder, requi
     border: 'none',
     outline: 'none',
     background: 'transparent',
-    fontFamily: 'var(--font-drafting)',
+    fontFamily: isEmail ? 'var(--font-email)' : 'var(--font-drafting)',
     fontSize: 'var(--text-label)',
-    letterSpacing: 'var(--tracking-drafting)',
-    textTransform: 'uppercase',
+    letterSpacing: isEmail ? 0 : 'var(--tracking-drafting)',
+    textTransform: isEmail ? 'none' : 'uppercase',
     color: 'var(--text-title)',
     padding: '6px var(--cell-pad-x) 10px',
     resize: 'vertical',
@@ -23,7 +24,7 @@ export function Field({ label, name, type = 'text', textarea, placeholder, requi
       onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} style={inputStyle}></textarea>
   ) : (
     <input name={name} type={type} placeholder={placeholder} required={required} value={value} onChange={onChange}
-      onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} style={inputStyle} />
+      onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} className={isEmail ? 'kyk-field-email' : undefined} style={inputStyle} />
   );
   return (
     <label style={{ display: 'block', border: `var(--line-w-hair) solid ${focus ? 'var(--line-subject)' : 'var(--line-standard)'}`, backgroundColor: 'var(--surface-cell)', ...style }}>

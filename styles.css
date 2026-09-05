@@ -83,6 +83,72 @@ table {
   gap: var(--space-4);
 }
 
+.kyk-nav-link {
+  font-size: var(--text-dim);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-body);
+  white-space: nowrap;
+  transition: color var(--motion-hover) ease;
+}
+
+.kyk-nav-link:hover {
+  color: var(--color-nav-hover);
+}
+
+.kyk-nav-link:active,
+.kyk-nav-link.is-active {
+  color: var(--color-nav-active);
+}
+
+.kyk-btn,
+.kyk-readmore {
+  transition: color var(--motion-hover) ease, background-color var(--motion-hover) ease, border-color var(--motion-hover) ease;
+}
+
+.kyk-readmore:hover,
+.kyk-btn:hover {
+  background-color: var(--color-readmore-hover);
+  border-color: var(--color-readmore-hover);
+  color: var(--kyk-white);
+}
+
+.kyk-chip {
+  display: inline-block;
+  background: var(--surface-chip);
+  color: var(--kyk-white);
+  border-radius: var(--radius-none);
+  padding: 4px 10px;
+  text-transform: uppercase;
+}
+
+.kyk-hero-watermark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.1;
+  overflow: hidden;
+}
+
+.kyk-hero-watermark img {
+  position: absolute;
+  width: min(42%, 320px);
+  height: auto;
+  object-fit: contain;
+}
+
+.kyk-hero-watermark .kyk-hero-mark-s {
+  right: 0;
+  top: 8%;
+}
+
+.kyk-hero-watermark .kyk-hero-mark-star {
+  left: 2%;
+  bottom: 6%;
+  width: min(28%, 180px);
+}
+
 .kyk-nav-toggle {
   display: none;
   align-items: center;
@@ -97,11 +163,16 @@ table {
   cursor: pointer;
 }
 
-.kyk-nav-brand img,
+.kyk-nav-brand img:not(.kyk-nonagram),
 .kyk-hero-art img,
 .kyk-subject img,
 .kyk-subject-figure img {
   filter: invert(1);
+}
+
+.kyk-nav-brand .kyk-nonagram,
+.kyk-hero-mark-star {
+  filter: none;
 }
 
 button,
@@ -218,9 +289,9 @@ select {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-    background: var(--surface-sheet);
+    background: var(--surface-dropdown);
     border-bottom: var(--line-w-hair) solid var(--line-standard);
-    box-shadow: var(--shadow-sheet);
+    box-shadow: none;
     padding: 6px var(--space-5) 10px;
     z-index: 99;
   }
@@ -346,7 +417,16 @@ select {
   /* Section titles */
   .kyk-section-title h2 {
     font-size: 18px !important;
-    line-height: 1.25 !important;
+    line-height: 1 !important;
+  }
+
+  .kyk-h1 {
+    font-size: 28px !important;
+    line-height: 1 !important;
+  }
+
+  .kyk-slab-invert .kyk-paper {
+    clip-path: polygon(0 16px, 20px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 20px) 100%, 0 100%);
   }
 
   /* Notes / body */

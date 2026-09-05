@@ -39,3 +39,31 @@ body {
   filter: invert(1);
   mix-blend-mode: normal;
 }
+
+/* Inverted white slab — black type, diagonal cuts, no shadow. */
+.kyk-slab-invert {
+  --surface-sheet: var(--kyk-white);
+  --surface-cell: #F0F0F0;
+  --text-title: var(--kyk-black);
+  --text-body: var(--kyk-black);
+  --text-annotation: var(--kyk-chip);
+  --line-subject: var(--kyk-black);
+  --line-standard: var(--kyk-black);
+  --line-construction: #CCCCCC;
+  --graphite-1: var(--kyk-black);
+  --graphite-2: var(--kyk-black);
+  --graphite-3: var(--kyk-chip);
+  --graphite-4: #CCCCCC;
+}
+
+.kyk-slab-invert .kyk-paper {
+  background-color: var(--kyk-white);
+  box-shadow: none;
+  clip-path: polygon(0 28px, 36px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 36px) 100%, 0 100%);
+}
+
+.kyk-slab-invert .kyk-ink-art,
+.kyk-slab-invert .kyk-subject img,
+.kyk-slab-invert .kyk-subject-figure img {
+  filter: none;
+}

@@ -1,22 +1,22 @@
 const React = window.React;
 
 function NavLink({ href, children, onNavigate }) {
-  const [hover, setHover] = React.useState(false);
+  const [active, setActive] = React.useState(false);
+
+  React.useEffect(() => {
+    function sync() {
+      setActive(window.location.hash === href);
+    }
+    sync();
+    window.addEventListener('hashchange', sync);
+    return () => window.removeEventListener('hashchange', sync);
+  }, [href]);
+
   return (
     <a
       href={href}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      className={'kyk-nav-link' + (active ? ' is-active' : '')}
       onClick={onNavigate}
-      style={{
-        fontSize: 'var(--text-dim)',
-        letterSpacing: 'var(--tracking-wide)',
-        textTransform: 'uppercase',
-        textDecoration: hover ? 'underline' : 'none',
-        textUnderlineOffset: '4px',
-        color: hover ? 'var(--text-title)' : 'var(--text-body)',
-        whiteSpace: 'nowrap',
-      }}
     >
       {children}
     </a>
@@ -42,7 +42,6 @@ function NavToggle({ open, onClick }) {
 }
 
 function SiteNav() {
-  const { Nonagram } = window.KnotYourKindDesignSystem_e3a90c;
   const [open, setOpen] = React.useState(false);
   const navRef = React.useRef(null);
 
@@ -86,10 +85,16 @@ function SiteNav() {
         style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', minWidth: 0, flex: 'none' }}
         onClick={close}
       >
-        <span className="kyk-nonagram" style={{ display: 'inline-flex', flex: 'none' }}>
-          <Nonagram size={34} showConstruction={false} />
-        </span>
-        <img src="/assets/nav-logotype.png" alt="Knot Your Kind" width={1569} height={481} decoding="async" style={{ height: 34, width: 'auto', display: 'block', objectFit: 'contain' }} />
+        <img
+          className="kyk-nonagram"
+          src="/assets/favicon.svg"
+          alt=""
+          width={34}
+          height={34}
+          decoding="async"
+          style={{ width: 34, height: 34, display: 'block', objectFit: 'contain', flex: 'none' }}
+        />
+        <img src="/assets/nav-logotype.png" alt="Knot Your Kind — A Slipknot Experience" width={1569} height={481} decoding="async" style={{ height: 34, width: 'auto', display: 'block', objectFit: 'contain' }} />
       </a>
       <span style={{ flex: 1, minWidth: 8 }}></span>
       <NavToggle open={open} onClick={() => setOpen((o) => !o)} />
@@ -115,7 +120,7 @@ function SiteFooter() {
           sheet="1 OF 9"
         />
         <p style={{ margin: 0, fontSize: 10, textTransform: 'uppercase', color: 'var(--text-annotation)', paddingBottom: 8 }}>
-          All rights reserved Knot Your Kind, LLC.
+          Knot Your Kind — A Slipknot Experience. All rights reserved Knot Your Kind, LLC.
         </p>
       </div>
     </footer>

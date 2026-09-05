@@ -33,9 +33,13 @@ function HeroSheet() {
     backgroundSize: '56px 56px',
   };
   return (
-    <section id="home" style={{ padding: 'var(--space-5)' }}>
+    <section id="home" className="kyk-slab-black" style={{ padding: 'var(--space-5)' }}>
       <SheetFrame padding="var(--space-6)">
         <div style={{ position: 'relative', overflow: 'visible' }}>
+          <div className="kyk-hero-watermark" aria-hidden="true">
+            <img className="kyk-hero-mark-s kyk-ink-art" src="/assets/tribal_s_sketch.png" alt="" width={293} height={420} />
+            <img className="kyk-hero-mark-star" src="/assets/favicon.svg" alt="" width={180} height={180} />
+          </div>
           <Stamp
             size="xl"
             angle={-11}
@@ -85,8 +89,9 @@ function HeroSheet() {
                 </div>
                 <span className="kyk-caps-wide" style={{ fontSize: 22, color: 'var(--text-body)' }}>Experience</span>
               </div>
-              <p className="kyk-caps" style={{ margin: '18px 0 0', fontSize: 'var(--text-dim)', color: 'var(--text-annotation)', textAlign: 'center' }}>
-                A Slipknot Experience.
+              <h1 className="kyk-h1" style={{ margin: '18px 0 0', textAlign: 'center' }}>Knot Your Kind</h1>
+              <p className="kyk-caps-wide" style={{ margin: '8px 0 0', fontSize: 'var(--text-label)', color: 'var(--stamp-red)', textAlign: 'center' }}>
+                A Slipknot Experience
               </p>
             </div>
           </div>

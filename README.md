@@ -10,10 +10,13 @@ A Slipknot Experience. Experience the (sic)ness.
 
 Restyled in place from the existing Knot Your Kind website kit:
 
-- Visual direction: **locked brand** — black sheet, white ink, red stamp (`#000` / `#FFF` / `#D2232A`)
-- Type: **Anybody 700** only
-- Radius: **0** on every corner
-- Tagline: **A Slipknot Experience** — never Tribute
+- Visual direction: late-90s/2000s nu-metal poster, cleaned up — black canvas, white type, blood-red hits
+- Colors: `#000` / `#FFF` / `#D2232A` plus deep `#8E1D21`, pure `#FF0000`, nav hover `#FF3900`, nav active `#F00000`, read-more hover `#A50000`
+- Surfaces: dropdown `#1B1B1B`, popup `#2A2A2A`, chip `#333`
+- Type: **Anybody 700**, uppercase labels/headlines, H1 line-height 1; Arial only on email fields
+- Radius: **0**. No drop shadow. Logo / wordmark / nonagram are image assets only
+- Tagline: **A Slipknot Experience** — never Tribute, never Kinda
+- Rhythm: black → inverted white slab with diagonal cuts → black
 - UI kit: `ui_kits/website/` (hero sheet, about BOM, Tribal S detail, Part #8 frame assembly)
 - Tokens: `tokens/` · components: `components/` · runtime: `_ds_bundle.js`
 

@@ -15,6 +15,7 @@ export function Button({ children, variant = 'default', disabled, onClick, type 
       onMouseLeave={() => { setHover(false); setPress(false); }}
       onMouseDown={() => setPress(true)}
       onMouseUp={() => setPress(false)}
+      className="kyk-btn kyk-readmore"
       style={{
         fontFamily: 'var(--font-drafting)',
         fontWeight: 700,
@@ -24,11 +25,11 @@ export function Button({ children, variant = 'default', disabled, onClick, type 
         padding: '12px 28px',
         border: `${filled ? 'var(--line-w-subject)' : 'var(--line-w-hair)'} solid var(--line-subject)`,
         borderRadius: 'var(--radius-none)',
-        backgroundColor: inverted ? (press ? 'var(--graphite-1)' : 'var(--graphite-2)') : 'transparent',
-        color: inverted ? 'var(--surface-sheet)' : 'var(--text-title)',
+        backgroundColor: inverted ? (press ? 'var(--kyk-deep-red)' : 'var(--kyk-readmore-hover)') : 'transparent',
+        color: inverted ? 'var(--kyk-white)' : 'var(--text-title)',
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.45 : 1,
-        transition: 'background-color 120ms linear, color 120ms linear',
+        transition: 'background-color var(--motion-hover) ease, color var(--motion-hover) ease, border-color var(--motion-hover) ease',
         ...style,
       }}
     >

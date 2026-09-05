@@ -1,45 +1,55 @@
 /* Knot Your Kind — locked brand color tokens.
-   Knot Your Kind — A Slipknot Experience.
-   Map: paper → black grounds, graphite → white ink, stamp → #D2232A.
-   Never use "Tribute" in product copy. */
+   Official name: Knot Your Kind — A Slipknot Experience.
+   Never "A Tribute to Slipknot". Never brand as "Kinda".
+   Never Gutenberg orange, Blanky #F8AB43, or rainbow fills. */
 :root {
   /* Locked primaries */
   --kyk-black: #000000;
   --kyk-white: #FFFFFF;
   --kyk-red: #D2232A;
+  --kyk-deep-red: #8E1D21;
+  --kyk-pure-red: #FF0000;
 
-  /* Locked supporting scale */
-  --kyk-black-rich: #0A0A0A;
-  --kyk-black-card: #111111;
-  --kyk-gray-dark: #1A1A1A;
-  --kyk-gray-mid: #2A2A2A;
-  --kyk-gray-muted: #999999;
-  --kyk-off-white: #E8E8E8;
+  /* Locked interaction reds */
+  --kyk-readmore-hover: #A50000;
+  --kyk-nav-hover: #FF3900;
+  --kyk-nav-active: #F00000;
+
+  /* Locked surfaces */
+  --kyk-dropdown: #1B1B1B;
+  --kyk-popup: #2A2A2A;
+  --kyk-chip: #333333;
 
   /* Mapped — grounds (was warm paper) */
-  --paper-1: var(--kyk-black);       /* primary sheet */
-  --paper-2: var(--kyk-black-rich);  /* page / behind-sheet */
-  --paper-3: var(--kyk-black-card);  /* raised field (title block cells) */
+  --paper-1: var(--kyk-black);
+  --paper-2: var(--kyk-black);
+  --paper-3: var(--kyk-popup);
 
   /* Mapped — ink (was graphite) */
-  --graphite-1: var(--kyk-white);      /* heavy line, subject */
-  --graphite-2: var(--kyk-off-white);  /* standard linework + text */
-  --graphite-3: var(--kyk-gray-muted); /* annotations, secondary text */
-  --graphite-4: var(--kyk-gray-mid);   /* construction lines, faint grid */
+  --graphite-1: var(--kyk-white);
+  --graphite-2: var(--kyk-white);
+  --graphite-3: #999999;
+  --graphite-4: var(--kyk-chip);
 
-  /* Accent — brand red. Stamps, focus, hover. */
+  /* Accent — brand red. Stamps, focus. Interaction reds above. */
   --stamp-red: var(--kyk-red);
   --stamp-red-faded: rgba(210, 35, 42, 0.92);
 
   /* Semantic aliases */
-  --surface-page: var(--paper-2);
+  --surface-page: var(--kyk-black);
   --surface-sheet: var(--paper-1);
   --surface-cell: var(--paper-3);
+  --surface-dropdown: var(--kyk-dropdown);
+  --surface-popup: var(--kyk-popup);
+  --surface-chip: var(--kyk-chip);
   --text-title: var(--graphite-1);
   --text-body: var(--graphite-2);
   --text-annotation: var(--graphite-3);
   --line-subject: var(--graphite-1);
   --line-standard: var(--graphite-2);
   --line-construction: var(--graphite-4);
-  --focus-ring: var(--stamp-red);
+  --focus-ring: var(--kyk-red);
+  --color-readmore-hover: var(--kyk-readmore-hover);
+  --color-nav-hover: var(--kyk-nav-hover);
+  --color-nav-active: var(--kyk-nav-active);
 }
